@@ -1,5 +1,5 @@
 const path = require('path');
-var webpack = require('webpack');
+const WebExtWebpackPlugin = require('web-ext-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -13,15 +13,14 @@ module.exports = {
   mode: 'production',
   module: {
     rules: [{
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loaders: ['babel-loader']
-    },{
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'sass-loader']
     },{
       test: /\.png$/,
       loaders: ['url-loader']
     }]
-  }
+  },
+  plugins: [
+    new WebExtWebpackPlugin({ sourceDir: './extension-dist' })
+  ]
 };
