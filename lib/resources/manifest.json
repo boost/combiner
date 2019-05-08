@@ -2,13 +2,14 @@
   "manifest_version": 2,
   "name": "Boost",
   "description": "This extension provides harvest-pivotal-basecamp linking.",
-  "author": "Paul Mesnilgrente",
+  "author": "Paul Mesnilgrente <paul.mesnilgrente@boost.co.nz>",
   "homepage_url": "https://www.github.com/boost/boost-browser-extension",
   "version": "0.0.1",
   "icons": {
     "19":"19x19.png",
     "20":"20x20.png",
-    "38":"38x38.png"
+    "38":"38x38.png",
+    "48":"48x48.png"
   },
   "content_scripts": [
     {
@@ -20,10 +21,5 @@
       "js": ["basecamp.js"],
       "run_at": "document_end"
     }
-  ],
-  "permissions": [
-    "activeTab",
-    "https://www.pivotaltracker.com/*",
-    "https://basecamp.com/*"
   ]
 }
