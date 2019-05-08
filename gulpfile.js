@@ -70,19 +70,9 @@ function zipit() {
  *
  */
 
-function changelog() {
-  return src('CHANGELOG.md', { buffer: false })
-    .pipe(conventionalChangelog({ preset: 'eslint' }))
-    .pipe(dest('./'));
-}
-
-/**
- *
- */
-
 function dev() {
   watch('lib/extension/**/*.{js,scss}', ['defaultTask']);
 }
 
 exports.default = series(clean, webpackit, copy);
-exports.build = series(exports.default, uglify_pivotal, uglify_basecamp, zipit, changelog);
+exports.build = series(exports.default, uglify_pivotal, uglify_basecamp, zipit);
