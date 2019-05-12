@@ -125,8 +125,7 @@ let injectHarvestPlatformConfig = () => {
     script.async = true;
     script.textContent = `window._harvestPlatformConfig = ${PLATFORM_CONFIG}`;
 
-    let entry = document.getElementsByTagName('script')[0];
-    entry.parentNode.insertBefore(script, entry);
+    $('head').append(script);
 
     resolve();
   });
@@ -158,22 +157,22 @@ let setupTimers = () => {
  */
 
 let setupTimer = ($el, id, name, className, $labels, $appendTo) => {
-  let data = {};
+  let data_item = {};
   let labels = parseLabelElements($labels);
   let $timer = $el.find('.harvest-timer');
 
-  data.id = id;
-  data.name = name;
-  data.name += labels.length ? ` [${labels.join(', ')}]` : '';
-  data.name += ` ${STORY_PERMALINK.replace('%ITEM_ID%', id)}`;
+  data_item.id = id;
+  data_item.name = name;
+  data_item.name += labels.length ? ` [${labels.join(', ')}]` : '';
+  data_item.name += ` ${STORY_PERMALINK.replace('%ITEM_ID%', id)}`;
 
   if (!$timer.length) {
     $timer = $('<div />')
       .appendTo($appendTo)
       .addClass(`harvest-timer ${className}`)
       .attr('data-uid', uniqueId('timer_'))
-      .attr('data-project', JSON.stringify(getProjectData($el)))
-      .attr('data-item', JSON.stringify(data));
+      .attr('data-group', JSON.stringify(getProjectData($el)))
+      .attr('data-item', JSON.stringify(data_item));
   }
 };
 
