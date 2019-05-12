@@ -1,10 +1,9 @@
 const path = require('path');
-const WebExtWebpackPlugin = require('web-ext-webpack-plugin');
 
 module.exports = {
   entry: {
-    pivotal: './lib/extension/pivotal.js',
-    basecamp: './lib/extension/basecamp.js'
+    pivotal: './src/pivotal.js',
+    basecamp: './src/basecamp.js'
   },
   output: {
     filename: '[name].js',
@@ -19,8 +18,5 @@ module.exports = {
       test: /\.png$/,
       loaders: ['url-loader']
     }]
-  },
-  plugins: [
-    new WebExtWebpackPlugin({ sourceDir: './extension-dist' })
-  ]
+  }
 };

@@ -1,9 +1,6 @@
 import './pivotal.scss';
 
-import $ from 'jquery';
-import Debug from 'debug';
-
-let debug = Debug('harvest-tracker-extension');
+var $ = require('jquery');
 
 const STORY_PERMALINK = 'https://www.pivotaltracker.com/story/show/%ITEM_ID%';
 
@@ -22,7 +19,7 @@ let uniqueId = (prefix) => {
  *
  */
 
-let getProjectData = function getProjectData($el) {
+let getProjectData = ($el) => {
   var $header;
 
   if (/\/workspaces\/\d+\/?$/.test(window.location.href)) {
@@ -99,7 +96,7 @@ let storyTypes = [{
  *
  */
 
-let findStoryType = function findStoryType($el) {
+let findStoryType = ($el) => {
   return storyTypes.filter((storyType) => {
     return storyType.check($el);
   }).shift();
@@ -109,7 +106,7 @@ let findStoryType = function findStoryType($el) {
  *
  */
 
-let parseLabelElements = function parseLabelElements($labels) {
+let parseLabelElements = ($labels) => {
   return $labels.map((i, el) => {
     return $(el).text().replace(/\,\s$/, '');
   }).get().filter((v, k, arr) => {
@@ -121,12 +118,12 @@ let parseLabelElements = function parseLabelElements($labels) {
  *
  */
 
-let injectHarvestPlatformConfig = function injectHarvestPlatformConfig() {
+let injectHarvestPlatformConfig = () => {
   return new Promise((resolve, reject) => {
     let script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
-    script.innerHTML = `window._harvestPlatformConfig = ${PLATFORM_CONFIG}`;
+    script.textContent = `window._harvestPlatformConfig = ${PLATFORM_CONFIG}`;
 
     let entry = document.getElementsByTagName('script')[0];
     entry.parentNode.insertBefore(script, entry);
@@ -139,7 +136,7 @@ let injectHarvestPlatformConfig = function injectHarvestPlatformConfig() {
  *
  */
 
-let setupTimers = function setupTimers() {
+let setupTimers = () => {
   return new Promise((resolve, reject) => {
     let $stories = $('.story.model.item').not(':has(.harvest-timer)');
 
@@ -150,7 +147,7 @@ let setupTimers = function setupTimers() {
       if (storyType) {
         (storyType.fn || $.noop)($el, setupTimer);
       }
-    }.bind(this));
+    });
 
     resolve($stories.find('.harvest-timer'));
   });
@@ -160,7 +157,7 @@ let setupTimers = function setupTimers() {
  *
  */
 
-let setupTimer = function setupTimer($el, id, name, className, $labels, $appendTo) {
+let setupTimer = ($el, id, name, className, $labels, $appendTo) => {
   let data = {};
   let labels = parseLabelElements($labels);
   let $timer = $el.find('.harvest-timer');
@@ -184,16 +181,16 @@ let setupTimer = function setupTimer($el, id, name, className, $labels, $appendT
  *
  */
 
-let loadHarvestPlatform = function loadHarvestPlatform() {
+let loadHarvestPlatform = () => {
   let url = 'https://platform.harvestapp.com/assets/platform.js';
-  return new Promise.resolve($.getScript(url));
+  return Promise.resolve($.getScript(url));
 };
 
 /**
  *
  */
 
-let setupEventProxy = function setupEventProxy() {
+let setupEventProxy = () => {
   return new Promise((resolve, reject) => {
     let script = document.createElement('script');
     let fn = [
@@ -219,7 +216,7 @@ let setupEventProxy = function setupEventProxy() {
  *
  */
 
-let reinitializeTimer = function reinitializeTimer(i, el) {
+let reinitializeTimer = (i, el) => {
   window.dispatchEvent(new CustomEvent('reinitializeTimer', {
     detail: {
       uid: $(el).data('uid')
@@ -231,11 +228,11 @@ let reinitializeTimer = function reinitializeTimer(i, el) {
  *
  */
 
-let reinitializeTimers = function reinitializeTimers() {
-  debug(`reinitializing timers...`);
+let reinitializeTimers = () => {
+  console.log(`Reinitializing timers...`);
   return setupTimers().then(function ($timers) {
     $timers.each(reinitializeTimer);
-    debug(`reinitialized (${$timers.length}) timers`);
+    console.log(`Reinitialized (${$timers.length}) timers`);
   });
 };
 
@@ -243,20 +240,21 @@ let reinitializeTimers = function reinitializeTimers() {
  *
  */
 
-let run = function run() {
-  return new Promise.resolve().bind(this)
-    .tap(debug.bind(null, 'injecting Harvest Platform configuration...'))
+let run = () => {
+  console.log('run!');
+  return Promise.resolve()
+    .then(console.log('Injecting Harvest Platform configuration...'))
     .then(injectHarvestPlatformConfig)
-    .tap(debug.bind(null, 'setting up timers...'))
+    .then(console.log('Setting up timers...'))
     .then(setupTimers)
-    .tap(debug.bind(null, 'injecting Harvest Platform...'))
+    .then(console.log('Injecting Harvest Platform...'))
     .then(loadHarvestPlatform)
-    .tap(debug.bind(null, 'setting up event proxy...'))
+    .then(console.log('Setting up event proxy...'))
     .then(setupEventProxy)
-    .tap(debug.bind(null, 'setting up reinitialization loop...'))
+    .then(console.log('Setting up reinitialization loop...'))
     .then(function reinitializationLoop() {
       setInterval(reinitializeTimers, 1000);
-    }).catch(debug);
+    }).catch(console.error);
 };
 
 /**
@@ -264,15 +262,16 @@ let run = function run() {
  */
 
 $(function() {
-  (function waitForStoriesThenRun(){
+  function waitForStoriesThenRun() {
     let $stories = $('.story.model');
 
     if (!$stories.length) {
-      debug('waiting for stories...');
+      console.log('Waiting for stories...');
       return setTimeout(waitForStoriesThenRun, 250);
     }
 
-    debug('found (%s) stories...', $stories.length);
+    console.log(`Found ${$stories.length} stories...`, );
     run();
-  }());
+  }
+  waitForStoriesThenRun();
 });

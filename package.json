@@ -6,7 +6,6 @@
   "dependencies": {},
   "devDependencies": {
     "css-loader": "^2.1.1",
-    "debug": "^4.1.1",
     "del": "^4.1.1",
     "file-loader": "^3.0.1",
     "gulp": "^4.0.2",
@@ -18,12 +17,14 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
-    "web-ext-webpack-plugin": "github:hiikezoe/web-ext-webpack-plugin",
+    "web-ext": "^3.0.0",
     "webextension-polyfill": "^0.4.0",
-    "webpack": "^4.30.0"
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "gulp watch",
     "build": "gulp build"
   },
   "repository": {
