@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "The missing link between Harvest and PivotalTracker.",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+    "clipboard": "^2.0.4"
+  },
   "devDependencies": {
     "css-loader": "^2.1.1",
     "del": "^4.1.1",
