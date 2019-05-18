@@ -44,7 +44,7 @@ function uglifyBasecamp() {
 }
 
 function copy() {
-  return src('assets/*')
+  return src(['assets/*', '*_locales/**/*'])
     .pipe(dest('dist'));
 }
 
@@ -55,7 +55,7 @@ function zipit() {
 }
 
 function copyWatch() {
-  watch('assets/*', copy);
+  watch(['assets/*', '*_locales/**/*'], copy);
 }
 
 
@@ -89,4 +89,4 @@ function webExtWatch(cb) {
 
 exports.default = series(clean, webpackIt, copy);
 exports.build = series(exports.default, uglifyPivotal, uglifyBasecamp, zipit);
-exports.watch = series(exports.default, parallel(webpackWatch, copyWatch, webExtWatch));
+exports.watch = series(exports.default, parallel(webpackWatch, copyWatch/*, webExtWatch*/));
