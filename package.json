@@ -25,7 +25,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "gulp watch",
-    "build": "gulp build"
+    "build": "gulp build",
+    "web-ext": "./node_modules/.bin/web-ext -s dist run"
   },
   "repository": {
     "type": "git",
