@@ -1,5 +1,5 @@
 /**
- * Clipboard buttons
+ * Basecamp clipboard buttons
  */
 .copy-title, .copy-r4a {
   cursor: pointer;
@@ -15,32 +15,6 @@
 .copy-title {
   margin-left: 33px;
 }
-
-/**
- * Shrink the "close/save" button in detail view to create space for Harvest
- * timer alongside other action buttons.
- */
-
-// section.model_details .story .persistence.use_click_to_copy .save,
-// section.model_details .story .persistence.use_click_to_copy .close {
-//   width: 78px;
-// }
-
-// .story.model.item header.preview {
-//   .expander {
-//     width: 13px;
-//   }
-
-//   .meta {
-//     margin-left: 34px;
-//     &:before {
-//       margin-left: -35px;
-//     }
-//     span {
-//       width: 14px;
-//     }
-//   }
-// }
 
 /**
  * Timer-specific styling.
