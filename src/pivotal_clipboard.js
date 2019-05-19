@@ -35,7 +35,6 @@ function copyTitle() {
 function copyR4A() {
   const storyId = $(this).attr('data-id');
   fetchStory(storyId).then((story) => {
-    debugger;
     copyToClipboard(story.description);
   });
 }
@@ -45,9 +44,9 @@ function runClipboard($stories) {
     const storyId = $(this).attr('data-id');
     const storyTitle = $(this).find('span[data-aid="StoryPreviewItem__title"]').text();
     const buttonTitle = `<button data-id="${storyId}" class="copy-title">T</button>`
-    const buttonR4A   = `<button data-id="${storyId}" class="copy-r4a">r4a</button>`
-    $(this).find('header.preview').after(buttonTitle);
-    $(this).find('header.preview').after(buttonR4A);
+    const buttonR4A   = `<button data-id="${storyId}" class="copy-r4a">R4A</button>`
+    $(this).find('span.meta').before(buttonTitle);
+    $(this).find('span.meta').before(buttonR4A);
     $(this).find('.copy-title').click(copyTitle);
     $(this).find('.copy-r4a').click(copyR4A);
   });
