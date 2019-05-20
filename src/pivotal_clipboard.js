@@ -1,6 +1,7 @@
 import './pivotal.scss';
 import { fetchStory, fetchProjects } from './pivotal_tracker';
 import copyToClipboard from './clipboard';
+import { buildTitle, buildR4A } from './pivotal_basecamp';
 var $ = require('jquery');
 
 function copyTitle() {
@@ -13,7 +14,7 @@ function copyTitle() {
 function copyR4A() {
   const storyId = $(this).attr('data-id');
   fetchStory(storyId).then((story) => {
-    copyToClipboard(story.description);
+    copyToClipboard(null, buildR4A(story));
   });
 }
 
