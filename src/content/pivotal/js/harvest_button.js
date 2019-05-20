@@ -1,4 +1,4 @@
-import './pivotal.scss';
+import '../scss/pivotal.scss';
 var $ = require('jquery');
 
 const STORY_PERMALINK = 'https://www.pivotaltracker.com/story/show/%ITEM_ID%';

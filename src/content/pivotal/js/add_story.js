@@ -1,3 +1,4 @@
+var browser = require("webextension-polyfill");
 var $ = require('jquery');
 
 function waitForDescriptionTextarea() {

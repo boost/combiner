@@ -3,8 +3,8 @@ var WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
   entry: {
-    pivotal: './src/pivotal.js',
-    basecamp: './src/basecamp.js'
+    pivotal: './src/content/pivotal/js/index.js',
+    basecamp: './src/content/basecamp/index.js'
   },
   output: {
     filename: '[name].js',

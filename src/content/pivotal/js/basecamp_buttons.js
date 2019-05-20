@@ -1,7 +1,7 @@
-import './pivotal.scss';
-import { fetchStory, fetchProjects } from './pivotal_tracker';
-import copyToClipboard from './clipboard';
-import { buildTitle, buildR4A } from './pivotal_basecamp';
+import '../scss/pivotal.scss';
+import { fetchStory, fetchProjects } from './utils/tracker_api';
+import copyToClipboard from './utils/clipboard';
+import { buildTitle, buildR4A } from './utils/basecamp';
 var $ = require('jquery');
 
 function copyTitle() {
