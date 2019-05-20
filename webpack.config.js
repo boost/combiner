@@ -1,4 +1,5 @@
 const path = require('path');
+var WebpackNotifierPlugin = require('webpack-notifier');
 
 module.exports = {
   entry: {
@@ -18,5 +19,8 @@ module.exports = {
       test: /\.png$/,
       loaders: ['url-loader']
     }]
-  }
+  },
+  plugins: [
+    new WebpackNotifierPlugin()
+  ]
 };
