@@ -1,5 +1,6 @@
 var browser = require("webextension-polyfill");
 var $ = require('jquery');
+import snippetInput from './utils/snippet_input';
 
 function waitForDescriptionTextarea() {
   let $textarea = $('.edit.details.new textarea[placeholder="Add a description"]');
@@ -8,7 +9,7 @@ function waitForDescriptionTextarea() {
     setTimeout(waitForDescriptionTextarea, 250);
   }
 
-  $textarea.val(browser.i18n.getMessage('storyDescription'));
+  snippetInput($textarea, browser.i18n.getMessage('storyDescription'));
 }
 
 function waitForNewStory() {
@@ -17,7 +18,10 @@ function waitForNewStory() {
   if (!$story.length) {
     return setTimeout(waitForNewStory, 250);
   }
-  $story.find('textarea[name="story[name]"]').val('As ... so that I can');
+  var $titleInput = $story.find('textarea[name="story[name]"]');
+  const titleMessage = '[TITLE]: As [user], I want [description], so that I can [benefit].';
+  snippetInput($titleInput, titleMessage);
+
   $story.find('div[data-aid="renderedDescription"]').click(waitForDescriptionTextarea);
 }
 
