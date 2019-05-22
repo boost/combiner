@@ -61,11 +61,14 @@ function zip() {
     .pipe(dest('.'));
 }
 
-function copyWatch() {
-  watch(copyGlobs, copy).
+function copyLocalesWatch() {
   watch(localesGlob, copyLocales);
+}
+
+function copyWatch() {
+  watch(copyGlobs, copy);
 }
 
 exports.default = series(clean, webpackIt, copy, copyLocales);
 exports.build = series(exports.default, uglifyPivotal, uglifyBasecamp, zip);
-exports.watch = series(exports.default, parallel(webpackWatch, copyWatch));
+exports.watch = series(exports.default, parallel(webpackWatch, copyWatch, copyLocalesWatch));
