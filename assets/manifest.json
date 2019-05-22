@@ -4,7 +4,7 @@
   "description": "This extension provides harvest-pivotal-basecamp linking.",
   "author": "Paul Mesnilgrente <paul.mesnilgrente@boost.co.nz>",
   "homepage_url": "https://www.github.com/boost/boost-browser-extension",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "default_locale": "en",
   "icons": {
     "16":"16x16.png",

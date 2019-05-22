@@ -22,8 +22,8 @@ function runClipboard($stories) {
   $stories.each(function(index) {
     const storyId = $(this).attr('data-id');
 
-    const buttonTitle = `<button data-id="${storyId}" class="copy-title">T</button>`
-    const buttonR4A   = `<button data-id="${storyId}" class="copy-r4a">R4A</button>`
+    const buttonTitle = $('<button>', { 'data-id': storyId, class: "copy-title", text: 'T' });
+    const buttonR4A   = $('<button>', { 'data-id': storyId, class: "copy-r4a", text: 'R4A' });
 
     $(this).find('span.meta').before(buttonTitle);
     $(this).find('span.meta').before(buttonR4A);

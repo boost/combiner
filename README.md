@@ -10,25 +10,39 @@ tracking and review, and also generate ready for acceptance messages for basecam
 > Google Chrome and Firefox are currently the only supported browsers.
 
 
-## Installation
+## I. Installation
+
+### I. Chrome
 
 Visit the [Chrome Webstore](https://chrome.google.com/webstore) to install the
-latest version to your browser.
+latest version on your browser.
 
+### I.2 Firefox
 
-## Development on Chrome
+Visit the [Firefox add-ons](https://addons.mozilla.org/) website
+to install the latest version on your browser.
+
+## II. Contribution
+
+To contribute to this repository, you should have an account on:
+
+- [Harvest](https://harvestapp.com)
+- [Pivotal tracker](https://www.pivotaltracker.com)
+- [Basecamp](https://basecamp.com/)
+
+### II.1 Development on Chrome
 
 - Clone this repository and `cd` into it
-- Run `npm install` to get the dependencies
-- Run `npm run build` to build the extension
+- Run `npm run watch` to get the
 - In your Chrome extensions tab, enable "developer mode", then click the
   "load unpacked extension..." button and select the `dist/` directory within
   the location where you cloned this repository
 - Navigate to a PivotalTracker project in your browser and voilá!
 
-## Development on Firefox
+### II.2 Development on Firefox
 
 - Clone this repository and `cd` into it
 - Run `npm install` to get the dependencies
 - Run `npm run watch` to clean, copy, webpack, and watch
 - Run `npm run web-ext` to reload the extension every time the `dist` folder changes.
+- Navigate to a PivotalTracker project in your browser and voilá!
