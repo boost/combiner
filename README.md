@@ -9,7 +9,6 @@ tracking and review, and also generate ready for acceptance messages for basecam
 
 > Google Chrome and Firefox are currently the only supported browsers.
 
-
 ## I. Installation
 
 ### I. Chrome
