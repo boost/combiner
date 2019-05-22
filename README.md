@@ -30,4 +30,5 @@ latest version to your browser.
 
 - Clone this repository and `cd` into it
 - Run `npm install` to get the dependencies
-- Run `npm run watch` to build the extension
+- Run `npm run watch` to clean, copy, webpack, and watch
+- Run `npm run web-ext` to reload the extension every time the `dist` folder changes.

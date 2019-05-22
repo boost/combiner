@@ -1,13 +1,15 @@
 const { src, dest, watch, series, parallel } = require('gulp');
 const del         = require('del');
 const terser      = require('gulp-terser');
-const zip         = require('gulp-zip');
+const gulpZip     = require('gulp-zip');
 const runSequence = require('run-sequence');
 const path        = require('path');
 const webpack     = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 
-const copyPaths = ['assets/*', '*_locales/**/*', 'src/background/basecamp/context.js'];
+const copyGlobs = ['assets/*', 'src/background/basecamp/context.js'];
+const localesGlob = '_locales/**/*';
+const distFolder = 'dist';
 
 function clean() {
   return del(['dist', '*.zip']);
@@ -43,21 +45,27 @@ function uglifyBasecamp() {
     .pipe(dest('dist'));
 }
 
-function copy() {
-  return src(copyPaths)
-    .pipe(dest('dist'));
+function copyLocales() {
+  return src([localesGlob], {base: '.'})
+  .pipe(dest(distFolder))
 }
 
-function zipit() {
-  return src('dist/*')
-    .pipe(zip('boost-browser-extension.zip'))
+function copy() {
+  return src(copyGlobs)
+    .pipe(dest(distFolder));
+}
+
+function zip() {
+  return src('dist/**/*')
+    .pipe(gulpZip('boost-browser-extension.zip'))
     .pipe(dest('.'));
 }
 
 function copyWatch() {
-  watch(copyPaths, copy);
+  watch(copyGlobs, copy).
+  watch(localesGlob, copyLocales);
 }
 
-exports.default = series(clean, webpackIt, copy);
-exports.build = series(exports.default, uglifyPivotal, uglifyBasecamp, zipit);
+exports.default = series(clean, webpackIt, copy, copyLocales);
+exports.build = series(exports.default, uglifyPivotal, uglifyBasecamp, zip);
 exports.watch = series(exports.default, parallel(webpackWatch, copyWatch));
