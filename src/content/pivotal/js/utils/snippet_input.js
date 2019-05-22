@@ -1,6 +1,8 @@
+import $ from 'jquery';
 
 export default function snippetInput($input, message, selectAll = true) {
-  function nextSelection($input) {
+  let nextSelection = $input => {
+    console.log('nextSelection', $input);
     const start = $input.val().search(/\[\w*\]/);
     console.log('start:', start);
     if (start !== -1) {
@@ -12,25 +14,24 @@ export default function snippetInput($input, message, selectAll = true) {
   }
 
   function interceptTab(e) {
-    console.log('keydown:', e.keyCode);
     if (e.keyCode == 9) {
-      console.log('keydown == 9:', e.keyCode);
+      console.log($(this));
       nextSelection($(this));
       e.preventDefault();
     }
   }
 
-  function handleFocus() {
-    if (!entirelySelected) {
+  let handleFocus = () => {
+    if (!selectedAll) {
       $(this)[0].setSelectionRange(0, $(this).val().length);
     }
   }
 
   // init context
-  let entirelySelected = false;
+  let selectedAll = false;
   $input.val(message);
   if (selectAll) {
-    entirelySelected = true;
+    selectedAll = true;
     $input[0].setSelectionRange(0, $input.val().length);
   }
 
