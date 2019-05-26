@@ -32,7 +32,7 @@ module.exports = {
       test: /\.(html)$/,
       loader: 'html-loader',
     },{
-      test: /\.jsx$/,
+      test: /\.(js|jsx)$/,
       exclude: /(node_modules|bower_components)/,
       use: {
         loader: 'babel-loader',
@@ -56,5 +56,8 @@ module.exports = {
         { from: './src/images', to: 'images' },
         { from: './src/popup/images', to: 'popup/images' },
     ]),
-  ]
+  ],
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  },
 };
