@@ -7,27 +7,39 @@
   "version": "1.0.0",
   "default_locale": "en",
   "icons": {
-    "16":"16x16.png",
-    "19":"19x19.png",
-    "20":"20x20.png",
-    "38":"38x38.png",
-    "48":"48x48.png"
+    "16": "images/icons/16x16.png",
+    "19": "images/icons/19x19.png",
+    "20": "images/icons/20x20.png",
+    "38": "images/icons/38x38.png",
+    "48": "images/icons/48x48.png"
   },
   "content_scripts": [
     {
       "matches": ["https://www.pivotaltracker.com/*"],
-      "js": ["pivotal.js"]
+      "js": ["content/pivotal.js"]
     },
     {
       "matches": ["https://basecamp.com/*/projects/*/messages/new"],
-      "js": ["basecamp.js"],
+      "js": ["content/basecamp.js"],
       "run_at": "document_end"
     }
   ],
   "background": {
     "scripts": [
-      "context.js"
+      "background/basecamp/context.js"
     ]
+  },
+  "browser_action": {
+    "browser_style": true,
+    "default_icon": {
+      "16": "images/icons/16x16.png",
+      "19": "images/icons/19x19.png",
+      "20": "images/icons/20x20.png",
+      "38": "images/icons/38x38.png",
+      "48": "images/icons/48x48.png"
+    },
+    "default_title": "Boost",
+    "default_popup": "popup/index.html"
   },
   "permissions": [
     "menus",
