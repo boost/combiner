@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 
 class Header extends Component {
   constructor(props) {
-    super();
-    props.title = 'Pivotal token';
+    super(props);
   }
 
   render() {
     return (
       <header>
-        <h1 class="subheader text-center">
+        <h1 className="subheader text-center">
           {this.props.title}
         </h1>
       </header>

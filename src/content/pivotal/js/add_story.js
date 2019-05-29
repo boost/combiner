@@ -1,6 +1,6 @@
-var browser = require("webextension-polyfill");
-var $ = require('jquery');
+import browser from 'webextension-polyfill';
 import snippetInput from './utils/snippet_input';
+import { $ } from 'jquery';
 
 function waitForDescriptionTextarea() {
   let $textarea = $('.edit.details.new textarea[placeholder="Add a description"]');

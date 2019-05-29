@@ -1,5 +1,5 @@
 import '../scss/pivotal.scss';
-var $ = require('jquery');
+import { $ } from 'jquery';
 
 const STORY_PERMALINK = 'https://www.pivotaltracker.com/story/show/%ITEM_ID%';
 

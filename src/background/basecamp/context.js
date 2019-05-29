@@ -4,7 +4,7 @@
  * Basecamp doesn't allow to interact with the message body
  * by using http://wysihtml.com/
  */
-var browser = require("webextension-polyfill");
+import browser from 'webextension-polyfill';
 
 function onCreated() {
   if (browser.runtime.lastError) {

@@ -6,6 +6,7 @@
   "homepage_url": "https://www.github.com/boost/boost-browser-extension",
   "version": "1.0.0",
   "default_locale": "en",
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "16": "images/icons/16x16.png",
     "19": "images/icons/19x19.png",
@@ -44,6 +45,8 @@
   "permissions": [
     "menus",
     "activeTab",
-    "clipboardWrite"
+    "clipboardWrite",
+    "storage",
+    "tabs"
   ]
 }

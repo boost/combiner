@@ -11,10 +11,10 @@ const ENV = process.env.ENV = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
-    'content/pivotal':    './src/content/pivotal/js/index.js',
-    'content/basecamp':   './src/content/basecamp/index.js',
     'background/basecamp/context': './src/background/basecamp/context.js',
-    'popup/main':         './src/popup/main.js'
+    'content/pivotal':             './src/content/pivotal/js/index.js',
+    'content/basecamp':            './src/content/basecamp/index.js',
+    'popup/main':                  './src/popup/main.js'
   },
   output: {
     filename: '[name].js',
