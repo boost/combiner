@@ -1,43 +1,27 @@
-import Me from './Me';
+import MeRequest from './request/MeRequest';
+import StoryRequest from './request/StoryRequest';
+import ProjectsRequest from './request/ProjectsRequest';
 
-const PIVOTAL_URL = `https://www.pivotaltracker.com/services/v5`
 
 class Pivotal {
-  construct(pivotal_token = null) {
-    this.pivotal_token = pivotal_token;
+  constructor(token = null) {
+    this.token = token;
   }
 
   me() {
-    return new Me(this).request();
+    return new MeRequest(this).request();
   }
 
-  story() {
-
+  story(id) {
+    return new StoryRequest(this, id).request();
   }
 
   projects() {
-    return fetchProjects();
-  }
-
-  fetchStory(storyId) {
-    return fetch(`${PIVOTAL_URL}/stories/${storyId}`)
-    .then((storyResponse) => { return storyResponse.json(); })
-    .then((storyJSON) => {
-      return fetchOwners(storyJSON)
-      .then((ownersJSON) => {
-        storyJSON.owners = ownersJSON;
-        return fetchRequester(storyJSON)
-        .then((person) => {
-          storyJSON.requester = person;
-          return storyJSON;
-        });
-      })
-    });
+    return new ProjectsRequest(this).request();
   }
 
   fetchOwners(story) {
     const url = `${PIVOTAL_URL}/projects/${story.project_id}/stories/${story.id}/owners`
-    console.log(url);
     return fetch(url)
     .then((response) => { return response.json(); });
   }
@@ -52,13 +36,7 @@ class Pivotal {
 
   fetchMemberships(story) {
     const url = `${PIVOTAL_URL}/projects/${story.project_id}/memberships`
-    console.log(url);
     return fetch(url)
-    .then((response) => { return response.json(); });
-  }
-
-  fetchProjects() {
-    return fetch(`https://www.pivotaltracker.com/services/v5/projects`)
     .then((response) => { return response.json(); });
   }
 }

@@ -13,12 +13,14 @@ class Root extends Component {
   }
 
   async componentDidMount() {
-    this.state.pivotal_token = await browser.storage.local.get("pivotal_token");
+    const value = await browser.storage.local.get('pivotal_token')
+    if (value.pivotal_token !== null) {
+      this.setState({pivotal_token: value.pivotal_token});
+    }
   }
 
-  handlePivotalValid(token) {
-    console.log('New token:', token);
-    let value = {pivotal_token: token};
+  handlePivotalValid(client) {
+    let value = {pivotal_token: client.token};
     browser.storage.local.set(value);
     this.setState(value);
   }

@@ -6,7 +6,6 @@ class Body extends Component {
   }
 
   render() {
-    console.log(this.props.token);
     return (
       <div>
         <p>Your pivotal token is: {this.props.token}</p>
