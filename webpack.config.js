@@ -14,6 +14,7 @@ module.exports = {
     'background/basecamp/context': './src/background/basecamp/context.js',
     'content/pivotal':             './src/content/pivotal/js/index.js',
     'content/basecamp':            './src/content/basecamp/index.js',
+    'content/github':              './src/content/github/js/index.js',
     'popup/main':                  './src/popup/main.js'
   },
   output: {
@@ -44,7 +45,7 @@ module.exports = {
   },
   plugins: [
     new WebpackNotifierPlugin(),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
     new HtmlWebpackPlugin({
       template: './src/popup/index.html',
       filename: 'popup/index.html',

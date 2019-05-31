@@ -23,6 +23,11 @@
       "matches": ["https://basecamp.com/*/projects/*/messages/new"],
       "js": ["content/basecamp.js"],
       "run_at": "document_end"
+    },
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["content/github.js"],
+      "run_at": "document_end"
     }
   ],
   "background": {
