@@ -13,7 +13,6 @@ class StoryList extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.project == prevProps.project) return;
-    console.log('PROJECT:', this.props.project);
 
     userOwnedStories(this.props.client, this.props.project)
     .then(stories => {

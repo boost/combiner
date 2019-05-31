@@ -1,11 +1,48 @@
 import React, { Component } from 'react';
+import { projects, currentProject } from 'utils';
 
 class SelectProject extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentProject: {id: 0, name: '...'},
+      projects: [{id: 0, name: '...'}]
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    projects(this.props.client)
+    .then(projects => {
+
+      currentProject(this.props.client, projects)
+      .then(project => {
+
+        this.props.onProjectChange(project);
+        this.setState({
+          projects: projects,
+          currentProject: project
+        });
+
+      });
+    })
+  }
+
+  handleChange(event) {
+    const id = event.target.value;
+    const project = this.state.projects.find(project => project.id == id);
+    this.props.onProjectChange(project);
+    this.setState({
+      currentProject: project
+    });
+  }
+
   render() {
     return (
-      <select value={this.props.currentProject.id} onChange={this.props.onChange}>
+      <select value={this.state.currentProject.id} onChange={this.state.handleChange}>
         {
-          this.props.projects.map(project =>
+          this.state.projects.map(project =>
             <option key={project.id} value={project.id}>{project.name}</option>)
         }
       </select>
