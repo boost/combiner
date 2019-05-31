@@ -13,9 +13,7 @@ class PivotalTokenForm extends Component {
   }
 
   handleChange(event) {
-    let newState = this.state;
-    newState.value = event.target.value
-    this.setState(newState);
+    this.setState({value: event.target.value});
   }
 
   handleValidate() {
@@ -23,9 +21,7 @@ class PivotalTokenForm extends Component {
     client.me()
     .then(meJSON => { this.props.onValid(client) })
     .catch(error => {
-      let newState = this.state;
-      newState.token_invalid = true;
-      this.setState(newState)
+      this.setState({token_invalid: true})
     });
   }
 

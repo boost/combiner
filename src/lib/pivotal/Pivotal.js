@@ -1,7 +1,7 @@
-import MeRequest from './request/MeRequest';
-import StoryRequest from './request/StoryRequest';
+import MeRequest       from './request/MeRequest';
+import StoryRequest    from './request/StoryRequest';
+import StoriesRequest  from './request/StoriesRequest';
 import ProjectsRequest from './request/ProjectsRequest';
-
 
 class Pivotal {
   constructor(token = null) {
@@ -14,6 +14,10 @@ class Pivotal {
 
   story(id) {
     return new StoryRequest(this, id).request();
+  }
+
+  stories(project_id, options = {}) {
+    return new StoriesRequest(this, project_id, options).request();
   }
 
   projects() {
@@ -35,7 +39,7 @@ class Pivotal {
   }
 
   fetchMemberships(story) {
-    const url = `${PIVOTAL_URL}/projects/${story.project_id}/memberships`
+    const url = `${PIVOTAL_URL}/projects/${story.project_id}/memberships`;
     return fetch(url)
     .then((response) => { return response.json(); });
   }

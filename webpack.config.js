@@ -58,6 +58,10 @@ module.exports = {
     ]),
   ],
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      pivotal: path.resolve(__dirname, 'src/lib/pivotal'),
+      utils: path.resolve(__dirname, 'src/lib/utils')
+    }
   },
 };
