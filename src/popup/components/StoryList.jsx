@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { userOwnedStories } from 'utils';
+import Story from './Story';
 
 class StoryList extends Component {
   constructor(props) {
@@ -27,15 +28,13 @@ class StoryList extends Component {
     if (this.props.project == null) return (<div></div>);
     if (this.state.loading) return (<p>Stories loading...</p>);
     return (
-      <div>
-        <ul className='story-list'>
-          {
-            this.state.stories.map(story =>
-              <li key={story.id}>{story.name}</li>
-            )
-          }
-        </ul>
-      </div>
+      <ul className='story-list'>
+        {
+          this.state.stories.map(story =>
+            <Story key={story.id} data={story} />
+          )
+        }
+      </ul>
     );
   }
 }

@@ -16,11 +16,11 @@ class SelectProject extends Component {
     projects(this.props.client)
     .then(projects => {
 
-      currentProject(this.props.client, projects)
+      return currentProject(this.props.client, projects)
       .then(project => {
 
         this.props.onProjectChange(project);
-        this.setState({
+        return this.setState({
           projects: projects,
           currentProject: project
         });
@@ -32,15 +32,16 @@ class SelectProject extends Component {
   handleChange(event) {
     const id = event.target.value;
     const project = this.state.projects.find(project => project.id == id);
-    this.props.onProjectChange(project);
     this.setState({
       currentProject: project
     });
+
+    this.props.onProjectChange(project);
   }
 
   render() {
     return (
-      <select value={this.state.currentProject.id} onChange={this.state.handleChange}>
+      <select value={this.state.currentProject.id} onChange={this.handleChange}>
         {
           this.state.projects.map(project =>
             <option key={project.id} value={project.id}>{project.name}</option>)
