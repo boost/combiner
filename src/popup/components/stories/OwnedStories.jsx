@@ -23,10 +23,10 @@ class OwnedStories extends Component {
 
   render() {
     return (
-      <div>
+      <section>
         <SelectProject client={this.props.client} onProjectChange={this.handleProjectChange} />
         <StoryList client={this.props.client} project={this.state.project} />
-      </div>
+      </section>
     );
   }
 }

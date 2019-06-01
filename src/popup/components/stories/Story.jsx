@@ -8,20 +8,12 @@ class Story extends Component {
   }
 
   handleClick() {
-    console.log('Story clicked');
-
-    function onError(error) {
-      console.log(`Error: ${error}`);
-    }
-
     browser.tabs.query({active: true, currentWindow: true})
     .then(tabs => {
-      const tab = tabs[0];
-      console.log('tab:', tab)
       browser.tabs.sendMessage(
-        tab.id,
+        tabs[0].id,
         this.props.data
-      ).catch(onError);
+      ).catch(onError => { console.log(`Error: ${error}`) });
     });
   }
 

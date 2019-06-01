@@ -30,7 +30,6 @@ class Root extends Component {
           activeTab: 'tab'
         });
       }
-      return new Promise();
     });
   }
 

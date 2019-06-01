@@ -26,7 +26,7 @@ class SelectProject extends Component {
         });
 
       });
-    })
+    });
   }
 
   handleChange(event) {
