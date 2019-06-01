@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    let title = 'Started stories';
+    if (this.props.active == 'pivotal') {
+      title = 'Iteration stories';
+    } else if (this.props.active == 'settings') {
+      title = 'Settings';
+    }
     return (
       <header>
-        <h1 className="subheader text-center">
-          {this.props.title}
+        <h1>
+          {title}
         </h1>
       </header>
     )

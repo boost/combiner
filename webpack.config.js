@@ -1,5 +1,5 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -27,7 +27,7 @@ module.exports = {
       test: /\.scss$/,
       loaders: ['style-loader', 'css-loader', 'sass-loader']
     },{
-      test: /\.png$/,
+      test: /\.(png|svg|ttf|woff|woff2|eot)$/,
       loaders: ['url-loader']
     },{
       test: /\.(html)$/,

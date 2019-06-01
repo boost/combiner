@@ -28,13 +28,15 @@ class StoryList extends Component {
     if (this.props.project == null) return (<div></div>);
     if (this.state.loading) return (<p>Stories loading...</p>);
     return (
-      <ul className='story-list'>
-        {
-          this.state.stories.map(story =>
-            <Story key={story.id} data={story} />
-          )
-        }
-      </ul>
+      <section>
+        <ul className='story-list'>
+          {
+            this.state.stories.map(story =>
+              <Story key={story.id} data={story} />
+            )
+          }
+        </ul>
+      </section>
     );
   }
 }

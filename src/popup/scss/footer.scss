@@ -1,5 +1,31 @@
 footer {
-	@include position-fixed-bottom();
-	height: 15vh;
-	background-color: gold;
+  border-top: 1px solid black;
+  @include position-fixed-bottom();
+  @include xy-grid();
+
+  height: 10vh;
+  background-color: white;
+
+  & > div {
+    @include xy-cell('auto');
+
+    padding: 0.5em;
+    cursor: pointer;
+    &:hover {
+      background-color: #f7f7f7;
+    }
+    &.active p {
+      color: $primary-color;
+    }
+  }
+
+  p {
+    text-align: center;
+    color: #999999;
+    margin: 0;
+    padding: 0;
+    i {
+      font-size: 2em;
+    }
+  }
 }

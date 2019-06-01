@@ -1,4 +1,6 @@
 @import '../../../node_modules/foundation-sites/scss/foundation.scss';
+@import '../../../node_modules/@fortawesome/fontawesome-free/css/all.css';
+@include foundation-everything;
 @import 'base.scss';
 @import 'header.scss';
 @import 'footer.scss';
