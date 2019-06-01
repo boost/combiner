@@ -11,19 +11,17 @@ let projects = async client => {
   const value = await browser.storage.local.get('projects');
   if (value.projects !== undefined) return value.projects;
 
-  return client.projects();
+  projects = await client.projects()
+  browser.storage.local.set({'projects': projects});
+  return Promise.resolve(projects);
 }
 
-let currentProject = (client, projects) => {
-  return browser.storage.local.get('currentProject')
-  .then(value => {
-    if (value.currentProject !== undefined) {
-      return value.currentProject;
-    }
-    return new Promise((resolve, reject) => {
-      resolve(projects[0]);
-    });
-  });
+let currentProject = async (client, projects) => {
+  const value = await browser.storage.local.get('currentProject')
+  if (value.currentProject !== undefined) {
+    return Promise.resolve(value.currentProject);
+  }
+  return Promise.resolve(projects[0]);
 }
 
 export { projects, currentProject, userOwnedStories };

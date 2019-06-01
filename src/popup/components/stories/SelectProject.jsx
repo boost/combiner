@@ -35,6 +35,7 @@ class SelectProject extends Component {
     this.setState({
       currentProject: project
     });
+    browser.storage.local.set({'currentProject': project});
 
     this.props.onProjectChange(project);
   }
