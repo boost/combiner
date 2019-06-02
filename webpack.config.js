@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 if (process.env.NODE_ENV == null) {
     process.env.NODE_ENV = 'development';
@@ -25,10 +26,39 @@ module.exports = {
   module: {
     rules: [{
       test: /\.scss$/,
+      include: [path.resolve(__dirname, 'src/content')],
       loaders: ['style-loader', 'css-loader', 'sass-loader']
     },{
-      test: /\.(png|svg|ttf|woff|woff2|eot)$/,
+      test: /\.png$/,
+      include: [path.resolve(__dirname, 'src/content')],
       loaders: ['url-loader']
+    },{
+      test: /\.scss$/,
+      include: [path.resolve(__dirname, 'src/popup')],
+      loaders: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+    },{
+      test: /\.(ttf|otf|eot|svg|woff(2)?)$/,
+      include: [path.resolve(__dirname, 'src/popup')],
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'popup/fonts/',
+          publicPath: './fonts/',
+        },
+      }],
+    },
+    {
+      test: /\.(jpe?g|png|gif|svg)$/,
+      include: [path.resolve(__dirname, 'src/popup')],
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'popup/images/',
+          publicPath: './images/',
+        },
+      }],
     },{
       test: /\.(html)$/,
       loader: 'html-loader',
@@ -46,10 +76,11 @@ module.exports = {
   plugins: [
     new WebpackNotifierPlugin(),
     new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './src/popup/index.html',
       filename: 'popup/index.html',
-      chunks: ['popup/vendor', 'popup/main'],
+      chunks: ['popup/main'],
     }),
     new CopyWebpackPlugin([
         './src/manifest.json',

@@ -2,7 +2,7 @@ import '../scss/pivotal.scss';
 import { fetchStory, fetchProjects } from './utils/tracker_api';
 import copyToClipboard from './utils/clipboard';
 import { buildTitle, buildR4A } from './utils/basecamp';
-import { $ } from 'jquery';
+import $ from 'jquery';
 
 function copyTitle() {
   const storyId = $(this).attr('data-id');

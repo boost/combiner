@@ -1,6 +1,20 @@
 @import '../../../node_modules/foundation-sites/scss/foundation.scss';
-@import '../../../node_modules/@fortawesome/fontawesome-free/css/all.css';
-@include foundation-everything;
+
+// Global styles
+@include foundation-global-styles;
+@include foundation-forms;
+@include foundation-typography;
+
+// Grids
+@include foundation-xy-grid-classes;
+
+// Generic components
+@include foundation-button;
+
+// Containers
+@include foundation-accordion;
+
+// custom files
 @import 'base.scss';
 @import 'header.scss';
 @import 'footer.scss';

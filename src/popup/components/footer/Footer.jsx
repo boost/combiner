@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Footer extends Component {
   constructor(props) {
@@ -25,15 +26,15 @@ class Footer extends Component {
     return (
       <footer>
         <div className={this.props.active == 'tab' ? 'active' : ''} onClick={this.handleTabClick}>
-          <p><i id='tab' className="fas fa-folder"></i></p>
+          <p><FontAwesomeIcon size='2x' icon="folder" /></p>
           <p>Tab</p>
         </div>
         <div className={this.props.active == 'pivotal' ? 'active' : ''} onClick={this.handlePivotalClick}>
-          <p><i id='pivotal' className="fas fa-book-open"></i></p>
+          <p><FontAwesomeIcon size='2x' icon="book-open" /></p>
           <p>Pivotal</p>
         </div>
         <div className={this.props.active == 'settings' ? 'active' : ''} onClick={this.handleSettingsClick}>
-          <p><i id='settings' className="fas fa-cogs"></i></p>
+          <p><FontAwesomeIcon size='2x' icon="cogs" /></p>
           <p>Settings</p>
         </div>
       </footer>
