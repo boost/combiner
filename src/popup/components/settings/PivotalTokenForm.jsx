@@ -19,7 +19,10 @@ class PivotalTokenForm extends Component {
   handleValidate() {
     let client = new Pivotal(this.state.value);
     client.me()
-    .then(meJSON => { this.props.onValid(client) })
+    .then(meJSON => {
+      browser.storage.local.set({pivotal_token: client.token});
+      this.props.onValid(client);
+    })
     .catch(error => { this.setState({token_invalid: true}) });
   }
 

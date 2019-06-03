@@ -2,30 +2,32 @@ import browser from 'webextension-polyfill';
 import React, { Component } from 'react';
 import Pivotal from 'pivotal';
 import StoryList from './StoryList';
-import SelectProject from './SelectProject';
+import { getCurrentProject, getUserOwnedStories } from 'utils';
 
 class OwnedStories extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentProject: {id: 0, name: '...'},
-      projects: [{id: 0, name: '...'}]
-    };
 
-    this.handleProjectChange = this.handleProjectChange.bind(this);
+    this.state = {
+      loading: true,
+      stories: null
+    };
   }
 
-  handleProjectChange(project) {
+  async componentDidMount() {
+    const project = await getCurrentProject(this.props.client);
+    const stories = await getUserOwnedStories(this.props.client, project);
     this.setState({
-      project: project
+      stories: stories,
+      loading: false
     });
   }
 
   render() {
+    if (this.state.loading) return (<p>Stories Loading...</p>);
     return (
       <section>
-        <SelectProject client={this.props.client} onProjectChange={this.handleProjectChange} />
-        <StoryList client={this.props.client} project={this.state.project} />
+        <StoryList client={this.props.client} stories={this.state.stories} />
       </section>
     );
   }

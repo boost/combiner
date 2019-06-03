@@ -11,11 +11,16 @@ class Request {
   }
 
   async request() {
-    const response = await fetch(`${PIVOTAL_URL}${this.uri()}`, this.fetchOptions)
+    const response = await fetch(`${PIVOTAL_URL}${this.uri()}${this.getParams()}`, this.fetchOptions)
     if (!response.ok) {
       throw Error(response.statusText);
     }
     return response.json();
+  }
+
+  getParams() {
+    if (!this.options) return '';
+    return '?' + Object.keys(this.options).map(key => key + '=' + this.options[key]).join('&');
   }
 
   validateOptions(optional_parameters, options) {

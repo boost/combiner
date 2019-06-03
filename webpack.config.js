@@ -24,7 +24,7 @@ module.exports = {
   mode: ENV,
   module: {
     rules: [{
-      test: /\.scss$/,
+      test: /\.(css|scss)$/,
       include: [path.resolve(__dirname, 'src/content')],
       loaders: ['style-loader', 'css-loader', 'sass-loader']
     },{
@@ -32,8 +32,11 @@ module.exports = {
       include: [path.resolve(__dirname, 'src/content')],
       loaders: ['url-loader']
     },{
-      test: /\.scss$/,
-      include: [path.resolve(__dirname, 'src/popup')],
+      test: /\.(css|scss)$/,
+      include: [
+        path.resolve(__dirname, 'src/popup'),
+        path.resolve(__dirname, 'node_modules')
+      ],
       loaders: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
     },{
       test: /\.(ttf|otf|eot|svg|woff(2)?)$/,

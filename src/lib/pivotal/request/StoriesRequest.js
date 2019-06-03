@@ -20,7 +20,7 @@ const OPTIONAL_PARAMETERS = new Set([
 ]);
 
 class StoriesRequest extends Request {
-  constructor(client, project_id, options) {
+  constructor(client, project_id, options = {}) {
     super(client);
     this.validateOptions(OPTIONAL_PARAMETERS, options);
 
@@ -29,8 +29,7 @@ class StoriesRequest extends Request {
   }
 
   uri() {
-    const queryString = '?' + Object.keys(this.options).map(key => key + '=' + this.options[key]).join('&');
-    return `/projects/${this.project_id}/stories${queryString}`
+    return `/projects/${this.project_id}/stories`;
   }
 }
 

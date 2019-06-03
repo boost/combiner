@@ -2,6 +2,8 @@ import MeRequest       from './request/MeRequest';
 import StoryRequest    from './request/StoryRequest';
 import StoriesRequest  from './request/StoriesRequest';
 import ProjectsRequest from './request/ProjectsRequest';
+import IterationRequest from './request/IterationRequest';
+import IterationsRequest from './request/IterationsRequest';
 
 class Pivotal {
   constructor(token = null) {
@@ -22,6 +24,14 @@ class Pivotal {
 
   projects() {
     return new ProjectsRequest(this).request();
+  }
+
+  iterations(project_id) {
+    return new IterationsRequest(this, project_id).request();
+  }
+
+  iteration(project_id, iteration_number) {
+    return new IterationsRequest(this, project_id, iteration_number).request();
   }
 
   fetchOwners(story) {
