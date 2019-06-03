@@ -14,6 +14,18 @@
     "38": "images/icons/38x38.png",
     "48": "images/icons/48x48.png"
   },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      }
+    },
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+J"
+      }
+    }
+  },
   "content_scripts": [
     {
       "matches": ["https://www.pivotaltracker.com/*"],
@@ -30,11 +42,6 @@
       "run_at": "document_end"
     }
   ],
-  "background": {
-    "scripts": [
-      "background/basecamp/context.js"
-    ]
-  },
   "browser_action": {
     "browser_style": true,
     "default_icon": {
@@ -47,8 +54,19 @@
     "default_title": "Boost",
     "default_popup": "popup/index.html"
   },
+  "sidebar_action": {
+    "default_title": "Boost",
+    "default_panel": "popup/index.html?uilocation=sidebar",
+    "default_icon": {
+      "16": "images/icons/16x16.png",
+      "19": "images/icons/19x19.png",
+      "20": "images/icons/20x20.png",
+      "38": "images/icons/38x38.png",
+      "48": "images/icons/48x48.png"
+    }
+  },
   "browser_specific_settings": {
-  "gecko": {
+    "gecko": {
       "id": "{23b14177-1ed1-4442-8d70-c085d0cc4bfe}",
       "strict_min_version": "42.0"
     }

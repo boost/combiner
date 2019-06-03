@@ -5,8 +5,11 @@ import './scss/popup.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faFolder, faBookOpen, faCogs } from '@fortawesome/free-solid-svg-icons';
 
+if (window.location.search !== '' && window.location.search.indexOf('uilocation=sidebar') > -1) {
+  window.document.body.classList.add('body-full');
+}
+
+// React
 library.add(faFolder, faBookOpen, faCogs);
-
 const domContainer = document.querySelector('#root');
-
 ReactDOM.render(React.createElement(Root), domContainer);

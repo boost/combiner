@@ -3,4 +3,9 @@ body {
   height: 600px !important;
 
   background: #f3f3f3;
+
+  &.body-full {
+      width: 100% !important;
+      height: 100% !important;
+  }
 }
