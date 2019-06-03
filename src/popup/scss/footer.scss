@@ -3,7 +3,7 @@ footer {
   @include position-fixed-bottom();
   @include xy-grid();
 
-  height: 10vh;
+  height: 60px;
   background-color: white;
 
   & > div {
