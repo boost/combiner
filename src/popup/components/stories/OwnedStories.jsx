@@ -17,8 +17,9 @@ class OwnedStories extends Component {
   async componentDidMount() {
     const project = await getCurrentProject(this.props.client);
     const stories = await getUserOwnedStories(this.props.client, project);
+    const me = await this.props.client.me();
     this.setState({
-      stories: stories,
+      stories: stories.filter(story => story.owner_ids.includes(me.id)),
       loading: false
     });
   }

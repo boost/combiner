@@ -14,24 +14,24 @@ class Pivotal {
     return new MeRequest(this).request();
   }
 
-  story(id) {
-    return new StoryRequest(this, id).request();
+  story(id, options = {}) {
+    return new StoryRequest(this, id, options).request();
   }
 
   stories(project_id, options = {}) {
     return new StoriesRequest(this, project_id, options).request();
   }
 
-  projects() {
-    return new ProjectsRequest(this).request();
+  projects(options = {}) {
+    return new ProjectsRequest(this, options).request();
   }
 
-  iterations(project_id) {
-    return new IterationsRequest(this, project_id).request();
+  iterations(project_id, options = {}) {
+    return new IterationsRequest(this, project_id, options).request();
   }
 
-  iteration(project_id, iteration_number) {
-    return new IterationsRequest(this, project_id, iteration_number).request();
+  iteration(project_id, iteration_number, options = {}) {
+    return new IterationRequest(this, project_id, iteration_number, options).request();
   }
 
   fetchOwners(story) {

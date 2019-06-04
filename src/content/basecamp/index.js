@@ -1,16 +1,10 @@
-console.log('ready');
-let url_param = name => {
-  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-  return results[1] || 0;
-}
+import browser from 'webextension-polyfill';
+import { buildTitle, buildMessage } from 'utils/basecamp';
 
-const subject = url_param('subject');
-const message = url_param('message');
+browser.runtime.onMessage.addListener(story => {
+  let myFrame = document.getElementsByClassName('wysihtml5-sandbox')[0];
+  let myField = myFrame.contentDocument.getElementsByTagName('body')[0];
 
-console.log('subject:', subject);
-console.log('message:', message);
-console.log('content:')
-
-document.getElementByName('message[subject]')[0].value = subject;
-console.log('content:', document.getElementByName('message[content]')[0].value)
-document.getElementByName('message[content]')[0].value = message;
+  document.getElementById('message_subject').value = buildTitle(story);
+  myField.innerHTML = buildMessage(story);
+});

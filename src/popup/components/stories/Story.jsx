@@ -10,6 +10,7 @@ class Story extends Component {
   handleClick() {
     browser.tabs.query({active: true, currentWindow: true})
     .then(tabs => {
+      console.log(tabs);
       browser.tabs.sendMessage(
         tabs[0].id,
         this.props.data

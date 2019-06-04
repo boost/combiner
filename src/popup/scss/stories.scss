@@ -1,3 +1,8 @@
+.accordion-content {
+	margin: 0;
+	padding: 0;
+}
+
 .story-list {
   border-top: 1px solid grey;
   background-color: white;
@@ -8,7 +13,7 @@
     padding: 10px;
 
     cursor: pointer;
-    height: 50px;
+    // height: 50px;
     width: 100%;
     list-style-type: none;
     border-bottom: 1px solid grey;

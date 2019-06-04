@@ -1,12 +1,12 @@
-browser.runtime.onMessage.addListener(request => {
-  console.log("REQUEST:", request);
-  console.log("NAME:", request.name);
-  // console.log("DESCRIPTION:", request.description);
-  document.getElementById('pull_request_title').value = request.name.split(':')[0];
-  document.getElementById('pull_request_body').value = `Acceptance Criteria
+let buildTitle = story => {
+  return story.name.split(':')[0];
+}
+
+let buildMessage = story => {
+  return `Acceptance Criteria
 ===================
 
-${request.description}
+${story.description}
 
 Background
 ==========
@@ -22,4 +22,6 @@ Checklist
 - [ ] Builds Pass
 - [ ] ‘Yard’ style comments on methods and classes (Where applicable)
 `;
-});
+}
+
+export { buildTitle, buildMessage };

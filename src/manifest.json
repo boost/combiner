@@ -17,12 +17,12 @@
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Alt+Shift+L"
+        "default": "Alt+Shift+M"
       }
     },
     "_execute_sidebar_action": {
       "suggested_key": {
-        "default": "Alt+Shift+J"
+        "default": "Ctrl+Shift+M"
       }
     }
   },
@@ -34,11 +34,20 @@
     {
       "matches": ["https://basecamp.com/*/projects/*/messages/new"],
       "js": ["content/basecamp.js"],
+      "all_frames": true,
       "run_at": "document_end"
     },
     {
       "matches": ["https://github.com/*"],
       "js": ["content/github.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://gitlab.digitalnz.org/*",
+        "https://gitlab.com/*/*/merge_requests/new*"
+      ],
+      "js": ["content/gitlab.js"],
       "run_at": "document_end"
     }
   ],

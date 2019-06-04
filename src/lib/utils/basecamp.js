@@ -1,19 +1,21 @@
 import showdown from 'showdown';
 
-function buildTitle(story) {
+let buildTitle = story => {
   return `R4A: ${story.name.split(':')[0]}`;
 }
 
-function buildR4A(story) {
+let buildMessage = story => {
   const storyId = story.id;
-  const requester = story.requester.name;
+  // const requester = story.requester.name;
+  const requester = '';
   const description = new showdown.Converter().makeHtml(story.description);
-  const owners = story.owners.map((owner) => owner.name).join(', ');
+  // const owners = story.owners.map((owner) => owner.name).join(', ');
+  const owners = '';
 
   return `
     <p>Hi ${requester},</p>
     <p>
-      This <a href={story.url}>story</a> is ready for acceptance.
+      This <a href="{story.url}">story</a> is ready for acceptance.
     </p>
     <br />
     <p>
@@ -50,4 +52,4 @@ function buildR4A(story) {
     <p>${owners}</p>`;
 }
 
-export { buildTitle, buildR4A };
+export { buildTitle, buildMessage };

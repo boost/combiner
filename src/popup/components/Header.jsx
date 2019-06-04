@@ -20,7 +20,7 @@ class Header extends Component {
   }
 
   render() {
-    let title = 'Started stories';
+    let title = 'My stories';
     if (this.props.active == 'pivotal') {
       title = `Iteration ${this.state.iteration ? this.state.iteration.number : ''}`;
     } else if (this.props.active == 'settings') {

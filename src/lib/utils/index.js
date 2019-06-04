@@ -2,9 +2,9 @@ import browser from 'webextension-polyfill';
 
 let getCurrentIteration = async client => {
   const project = await getCurrentProject(client);
-  const iterationValue = await browser.storage.local.get('iteration');
-  if (iterationValue.iteration) {
-    const iteration = iterationValue.iteration;
+  const value = await browser.storage.local.get('currentIteration');
+  if (value.currentIteration) {
+    const iteration = value.currentIteration;
     if (Date.parse(iteration.start) >= Date.now() && Date.parse(iteration.end) <= Date.now()) {
       return Promise.resolve(iteration);
     }
