@@ -1,17 +1,8 @@
 {
-	"insertAC": {
-		"message": "Insert the story template"
+	"storyDescriptionTemplate": {
+		"message": "**Acceptance Criteria**\n- {AC1}\n\n**Notes**\n- {NOTE1}"
 	},
-	"insertR4A": {
-		"message": "Insert r4a message"
-	},
-	"storyDescription": {
-		"message": "**Acceptance Criteria**\n- [AC1]\n\n**Notes**\n- [NOTE1]"
-	},
-	"r4a": {
-		"message": "Hello ..., the story is ready for acceptance."
-	},
-	"storyTitleExample": {
-		"message": "EXAMPLE: As user ..., so that I can ..."
+	"storyTitleTemplate": {
+		"message": "{TITLE}: As {user}, I want {description}, so that I can {benefit}."
 	}
 }

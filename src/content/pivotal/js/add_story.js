@@ -9,7 +9,7 @@ function waitForDescriptionTextarea() {
     setTimeout(waitForDescriptionTextarea, 250);
   }
 
-  snippetInput($textarea, browser.i18n.getMessage('storyDescription'));
+  snippetInput($textarea, browser.i18n.getMessage('storyDescriptionTemplate'));
 }
 
 function waitForNewStory() {
@@ -19,7 +19,7 @@ function waitForNewStory() {
     return setTimeout(waitForNewStory, 250);
   }
   var $titleInput = $story.find('textarea[name="story[name]"]');
-  const titleMessage = '[TITLE]: As [user], I want [description], so that I can [benefit].';
+  const titleMessage = browser.i18n.getMessage('storyTitleTemplate');
   snippetInput($titleInput, titleMessage);
 
   $story.find('div[data-aid="renderedDescription"]').click(waitForDescriptionTextarea);

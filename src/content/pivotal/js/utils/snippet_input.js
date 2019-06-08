@@ -2,20 +2,15 @@ import $ from 'jquery';
 
 export default function snippetInput($input, message, selectAll = true) {
   let nextSelection = $input => {
-    console.log('nextSelection', $input);
-    const start = $input.val().search(/\[\w*\]/);
-    console.log('start:', start);
+    const start = $input.val().search(/\{\w*\}/);
     if (start !== -1) {
-      const end = $input.val().indexOf(']', start) + 1;
-      console.log('end:', end);
-
+      const end = $input.val().indexOf('}', start) + 1;
       $input[0].setSelectionRange(start, end);
     }
   }
 
   function interceptTab(e) {
     if (e.keyCode == 9) {
-      console.log($(this));
       nextSelection($(this));
       e.preventDefault();
     }

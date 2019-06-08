@@ -8,6 +8,7 @@ class Header extends Component {
     this.state = {
       iteration: null
     }
+    this.getTitle = this.getTitle.bind(this);
   }
 
   async componentDidUpdate(prevProps) {
@@ -19,17 +20,22 @@ class Header extends Component {
     }
   }
 
-  render() {
-    let title = 'My stories';
-    if (this.props.active == 'pivotal') {
-      title = `Iteration ${this.state.iteration ? this.state.iteration.number : ''}`;
-    } else if (this.props.active == 'settings') {
-      title = 'Settings';
+  getTitle(active) {
+    switch (this.props.active) {
+      case 'tab': return 'My stories';
+      case 'pivotal':
+        return `Iteration ${this.state.iteration ? this.state.iteration.number : ''}`;
+      case 'utils': return 'Utils';
+      case 'settings': return 'Settings';
     }
+  }
+
+  render() {
+    let title = null;
     return (
       <header>
         <h1>
-          {title}
+          {this.getTitle(this.props.active)}
         </h1>
       </header>
     )

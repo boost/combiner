@@ -9,7 +9,7 @@ class StoryList extends Component {
         <ul className='story-list'>
           {
             this.props.stories.map(story =>
-              <Story key={story.id} data={story} />
+              <Story key={story.id} client={this.props.client} data={story} />
             )
           }
         </ul>

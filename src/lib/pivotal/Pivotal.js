@@ -1,9 +1,11 @@
-import MeRequest       from './request/MeRequest';
-import StoryRequest    from './request/StoryRequest';
-import StoriesRequest  from './request/StoriesRequest';
-import ProjectsRequest from './request/ProjectsRequest';
-import IterationRequest from './request/IterationRequest';
-import IterationsRequest from './request/IterationsRequest';
+import MeRequest                 from './request/MeRequest';
+import StoryRequest              from './request/StoryRequest';
+import StoriesRequest            from './request/StoriesRequest';
+import ProjectsRequest           from './request/ProjectsRequest';
+import IterationRequest          from './request/IterationRequest';
+import IterationsRequest         from './request/IterationsRequest';
+import StoryOwnersRequest        from './request/StoryOwnersRequest';
+import ProjectMembershipsRequest from './request/ProjectMembershipsRequest';
 
 class Pivotal {
   constructor(token = null) {
@@ -34,24 +36,12 @@ class Pivotal {
     return new IterationRequest(this, project_id, iteration_number, options).request();
   }
 
-  fetchOwners(story) {
-    const url = `${PIVOTAL_URL}/projects/${story.project_id}/stories/${story.id}/owners`
-    return fetch(url)
-    .then((response) => { return response.json(); });
+  storyOwners(project_id, story_id) {
+    return new StoryOwnersRequest(this, project_id, story_id).request();
   }
 
-  fetchRequester(story) {
-    return fetchMemberships(story)
-    .then((memberships) => {
-      const membership = memberships.find((u) => u.person.id === story.requested_by_id);
-      return membership.person;
-    });
-  }
-
-  fetchMemberships(story) {
-    const url = `${PIVOTAL_URL}/projects/${story.project_id}/memberships`;
-    return fetch(url)
-    .then((response) => { return response.json(); });
+  projectMemberships(project_id) {
+    return new ProjectMembershipsRequest(this, project_id).request();
   }
 }
 

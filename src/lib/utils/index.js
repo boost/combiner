@@ -40,8 +40,24 @@ let getCurrentProject = async client => {
   if (value.currentProject) {
     return Promise.resolve(value.currentProject);
   }
-  const projectsJSON = await getProjects(client);
-  return Promise.resolve(projectsJSON[0]);
+  const projects = await getProjects(client);
+  return Promise.resolve(projects[0]);
+};
+
+let enrichStory = async (client, story) => {
+  const tabs = await browser.tabs.query({active: true, currentWindow: true});
+  const owners = await client.storyOwners(story.project_id, story.id);
+  const memberships = await client.projectMemberships(story.project_id);
+
+  story.owners = owners;
+  story.requester = memberships.find(u => u.person.id === story.requested_by_id);
+  return Promise.resolve(story);
+}
+
+let sendStoryDetails = async (client, story) => {
+  const enrichedStory = await enrichStory(client, story);
+
+  return browser.tabs.sendMessage(tabs[0].id, story);
 };
 
 export {
@@ -49,5 +65,7 @@ export {
   getIterationStories,
   getProjects,
   getCurrentProject,
-  getUserOwnedStories
+  getUserOwnedStories,
+  enrichStory,
+  sendStoryDetails
 };

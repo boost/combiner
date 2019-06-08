@@ -74,14 +74,7 @@
       "48": "images/icons/48x48.png"
     }
   },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "{23b14177-1ed1-4442-8d70-c085d0cc4bfe}",
-      "strict_min_version": "42.0"
-    }
-  },
   "permissions": [
-    "menus",
     "activeTab",
     "clipboardWrite",
     "storage",

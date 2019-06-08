@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill';
 import React, { Component } from 'react';
 import Header from './Header';
 import Footer from './footer/Footer';
-import Body from './Body';
+import Utils from './utils/Utils';
 import OwnedStories from './stories/OwnedStories';
 import IterationStories from './stories/IterationStories';
 import PivotalTokenForm from './settings/PivotalTokenForm';
@@ -24,6 +24,7 @@ class Root extends Component {
     this.addNotification = this.addNotification.bind(this);
     this.handlePivotalValid = this.handlePivotalValid.bind(this);
     this.handleFooterClick = this.handleFooterClick.bind(this);
+    this.getBody = this.getBody.bind(this);
   }
 
   componentDidMount() {
@@ -70,6 +71,15 @@ class Root extends Component {
     this.setState({activeTab: tab});
   }
 
+  getBody(activeTab) {
+    switch(activeTab) {
+      case 'tab': return <OwnedStories client={this.state.client} />
+      case 'pivotal': return <IterationStories client={this.state.client} />
+      case 'utils': return <Utils client={this.state.client} notification={this.addNotification} />
+      case 'settings': return <Settings client={this.state.client} notification={this.addNotification} />
+    }
+  }
+
   render() {
     if (this.state.hasError) {
       return <h1>Something went wrong.</h1>;
@@ -77,19 +87,11 @@ class Root extends Component {
     if (!this.state.client) {
       return <PivotalTokenForm token='' onValid={this.handlePivotalValid} />
     }
-    let body = null;
-    if (this.state.activeTab == 'tab') {
-      body = <OwnedStories client={this.state.client} />
-    } else if (this.state.activeTab == 'pivotal') {
-      body = <IterationStories client={this.state.client} />
-    } else if (this.state.activeTab == 'settings') {
-      body = <Settings client={this.state.client} notification={this.addNotification} />
-    }
     return (
       <div className='grid-container full'>
         <ReactNotification ref={this.notificationDOMRef} />
         <Header active={this.state.activeTab} client={this.state.client} />
-        {body}
+        {this.getBody(this.state.activeTab)}
         <Footer active={this.state.activeTab} onTabClick={this.handleFooterClick} />
       </div>
     )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import browser from 'webextension-polyfill';
+import { sendStoryDetails } from 'utils';
 
 class Story extends Component {
   constructor(props) {
@@ -8,14 +9,8 @@ class Story extends Component {
   }
 
   handleClick() {
-    browser.tabs.query({active: true, currentWindow: true})
-    .then(tabs => {
-      console.log(tabs);
-      browser.tabs.sendMessage(
-        tabs[0].id,
-        this.props.data
-      ).catch(onError => { console.log(`Error: ${error}`) });
-    });
+    sendStoryDetails(this.props.client, this.props.data)
+    .catch(error => { console.log(`Error: ${error}`); });
   }
 
   render() {

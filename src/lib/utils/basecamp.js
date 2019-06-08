@@ -5,12 +5,9 @@ let buildTitle = story => {
 }
 
 let buildMessage = story => {
-  const storyId = story.id;
-  // const requester = story.requester.name;
-  const requester = '';
+  const requester = story.requester.person.name;
   const description = new showdown.Converter().makeHtml(story.description);
-  // const owners = story.owners.map((owner) => owner.name).join(', ');
-  const owners = '';
+  const owners = story.owners.map(owner => owner.name).join(', ');
 
   return `
     <p>Hi ${requester},</p>
