@@ -45,7 +45,6 @@ let getCurrentProject = async client => {
 };
 
 let enrichStory = async (client, story) => {
-  const tabs = await browser.tabs.query({active: true, currentWindow: true});
   const owners = await client.storyOwners(story.project_id, story.id);
   const memberships = await client.projectMemberships(story.project_id);
 
@@ -57,6 +56,7 @@ let enrichStory = async (client, story) => {
 let sendStoryDetails = async (client, story) => {
   const enrichedStory = await enrichStory(client, story);
 
+  const tabs = await browser.tabs.query({active: true, currentWindow: true});
   return browser.tabs.sendMessage(tabs[0].id, story);
 };
 
