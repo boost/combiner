@@ -1,5 +1,26 @@
 # Changelog
 
+## Version 2.0.0
+
+Features:
+
+- Sidebar and popup
+	- See your started stories
+	- See the story of the current iteration
+	- Choose your project in the settings
+	- Enter your pivotal token in the settings
+	- Copy the clipboard a "Sprint review report" (currently slow)
+	- Autofill pull request in Github and Gitlab
+	- Autofill ready for acceptance in basecamp
+	- Shortcut to open Sidebar (Ctrl+Shift+M) or popup (Alt+Shift+M)
+- Pivotal
+	- Same as version 1 +
+	- Autofill new story with template (title and description)
+	- Pressing tab in these fields will bring you to the next placeholder
+- Basecamp
+	- Removed interpretation of GET parameters
+
+
 ## Version 1.0.0
 
 Features:
