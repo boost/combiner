@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 2.1.0
+
+Features:
+
+- Sidebar and popup
+	- See the story details by clicking on it
+	- Change the state of the story
+	- Manage activity of a story
+
 ## Version 2.0.0
 
 Features:

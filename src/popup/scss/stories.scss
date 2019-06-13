@@ -1,6 +1,6 @@
 .accordion-content {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .story-list {
@@ -8,6 +8,7 @@
   background-color: white;
   margin: 0 0 0 0;
   padding: 0;
+
   .story {
     margin: 0;
     padding: 10px;
@@ -17,5 +18,14 @@
     width: 100%;
     list-style-type: none;
     border-bottom: 1px solid grey;
+  }
+
+  .story-details {
+    background-color: #f3f3f3;
+  }
+
+  .story-description {
+    border: 3px solid #00a8a0;
+    border-radius: 5px;
   }
 }
