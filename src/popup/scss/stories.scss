@@ -13,11 +13,18 @@
     margin: 0;
     padding: 10px;
 
-    cursor: pointer;
     // height: 50px;
     width: 100%;
     list-style-type: none;
     border-bottom: 1px solid grey;
+
+    .blocker-resolved {
+      text-decoration: line-through;
+    }
+  }
+
+  .story-small {
+    cursor: pointer;
   }
 
   .story-details {

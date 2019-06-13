@@ -32,7 +32,7 @@ class Story extends Component {
       );
     } else {
       return (
-        <li className='story grid-x'>
+        <li className='story story-small grid-x'>
           <div className="cell small-9" onClick={this.handleDetailsClick}>
             {this.props.data.name.split(':')[0]}
           </div>

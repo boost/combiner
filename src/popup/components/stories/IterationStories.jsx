@@ -43,35 +43,35 @@ class IterationStories extends Component {
             <a href="#" className="accordion-title">Accepted</a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList stories={stories.accepted} />
+              <StoryList client={this.props.client} stories={stories.accepted} />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
             <a href="#" className="accordion-title">Delivered</a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList stories={stories.delivered} />
+              <StoryList client={this.props.client} stories={stories.delivered} />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
             <a href="#" className="accordion-title">Finished</a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList stories={stories.finished} />
+              <StoryList client={this.props.client} stories={stories.finished} />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
             <a href="#" className="accordion-title">Started</a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList stories={stories.started} />
+              <StoryList client={this.props.client} stories={stories.started} />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
             <a href="#" className="accordion-title">Free</a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList stories={stories.free} />
+              <StoryList client={this.props.client} stories={stories.free} />
             </div>
           </li>
         </ul>
