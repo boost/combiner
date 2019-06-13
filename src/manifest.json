@@ -52,6 +52,8 @@
     }
   ],
   "browser_action": {
+    "default_title": "Boost",
+    "default_popup": "popup/index.html",
     "browser_style": true,
     "default_icon": {
       "16": "images/icons/16x16.png",
@@ -59,9 +61,7 @@
       "20": "images/icons/20x20.png",
       "38": "images/icons/38x38.png",
       "48": "images/icons/48x48.png"
-    },
-    "default_title": "Boost",
-    "default_popup": "popup/index.html"
+    }
   },
   "sidebar_action": {
     "default_title": "Boost",

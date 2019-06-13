@@ -36,3 +36,16 @@
     border-radius: 5px;
   }
 }
+
+.close-modal {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  cursor: pointer;
+}
+
+.harvest-iframe-wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.75rem;
+}
