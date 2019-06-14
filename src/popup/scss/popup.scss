@@ -1,5 +1,7 @@
 @import '../../../node_modules/foundation-sites/scss/foundation.scss';
 
+@import 'overrides.scss';
+
 // Global styles
 @include foundation-global-styles;
 @include foundation-forms;
@@ -10,6 +12,7 @@
 
 // Generic components
 @include foundation-button;
+@include foundation-button-group;
 
 // Containers
 @include foundation-accordion;

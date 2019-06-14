@@ -70,8 +70,14 @@ class Story extends Component {
             {this.props.data.name.split(':')[0]}
           </div>
           <div className="cell shrink">
-            <button onClick={this.openModal}>Harvest</button>
-            <button className="button tiny" onClick={this.handleAutofillClick}>Autofill</button>
+            <div className="button-group">
+              <button className="button" onClick={this.openModal}>
+                <FontAwesomeIcon size="1.5x" icon="clock" />
+              </button>
+              <button className="button" onClick={this.handleAutofillClick}>
+                <FontAwesomeIcon size="1.5x" icon="file-signature" />
+              </button>
+            </div>
           </div>
 
           <Modal
