@@ -30,10 +30,6 @@ class Root extends Component {
   }
 
   async componentDidMount() {
-    window._harvestPlatformConfig = {
-      "applicationName": "PivotalTracker",
-      "permalink": "https://www.pivotaltracker.com/story/show/%ITEM_ID%"
-    };
     const value = await browser.storage.local.get('pivotal_token');
     if (value.pivotal_token !== undefined) {
       this.setState({

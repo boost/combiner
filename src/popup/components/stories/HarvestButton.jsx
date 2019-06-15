@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { buildName } from 'utils/harvest';
+import { buildName, buildStoryUrl } from 'utils/harvest';
 
 class HarvestButton extends Component {
   componentDidMount() {
@@ -10,13 +10,24 @@ class HarvestButton extends Component {
   }
 
   render() {
+    const item = JSON.stringify({
+      id: this.props.data.id,
+      name: buildName(this.props.data)
+    });
+    const group = JSON.stringify({
+      id: this.props.data.project.id,
+      name: this.props.data.project.name
+    });
     return (
-      <div
+      <button
         id={`harvest-button-${this.props.data.id}`}
         className={this.props.className}
-        data-item={`{"id":${this.props.data.id},"name":"${buildName(this.props.data)}"}`}>
+        data-item={item}
+        data-group={group}
+        data-permalink={buildStoryUrl(this.props.data)}
+      >
         {this.props.children}
-      </div>
+      </button>
     );
   }
 }
