@@ -4,31 +4,35 @@
 }
 
 .story-list {
-  border-top: 1px solid grey;
-  background-color: white;
-  margin: 0 0 0 0;
+  border-top: 1px solid $medium-gray;
+  background-color: $white;
+  margin: 0;
   padding: 0;
 
   .story {
     margin: 0;
-    padding: 10px;
+    padding-left: 10px;
 
-    // height: 50px;
     width: 100%;
     list-style-type: none;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid $medium-gray;
 
     .blocker-resolved {
       text-decoration: line-through;
     }
+    :hover {
+      background-color: $light-gray;
+    }
   }
 
   .story-small {
-    cursor: pointer;
+    > .small-9 {
+      cursor: pointer;
+    }
   }
 
   .story-details {
-    background-color: #f3f3f3;
+    background-color: $light-gray;
   }
 
   .story-description {
@@ -48,4 +52,14 @@
   display: flex;
   justify-content: space-around;
   margin-top: 0.75rem;
+}
+.harvest-overlay-modal {
+  @include reveal-overlay();
+  display: block;
+}
+.harvest-modal {
+  @include reveal-modal-base;
+  display: block;
+  background: transparent;
+  border: none;
 }

@@ -8,6 +8,7 @@ Features:
 	- See the story details by clicking on it
 	- Change the state of the story
 	- Manage activity of a story
+	- Start/Stop a harvest timer
 
 ## Version 2.0.0
 

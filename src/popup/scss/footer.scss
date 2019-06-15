@@ -1,10 +1,10 @@
 footer {
-  border-top: 1px solid black;
+  border-top: 1px solid $black;
   @include position-fixed-bottom();
   @include xy-grid();
 
   height: 60px;
-  background-color: white;
+  background-color: $white;
 
   & > div {
     @include xy-cell('auto');
@@ -12,7 +12,7 @@ footer {
     padding: 0.5em;
     cursor: pointer;
     &:hover {
-      background-color: #f7f7f7;
+      background-color: $light-gray;
     }
     &.active p {
       color: $primary-color;
@@ -21,7 +21,7 @@ footer {
 
   p {
     text-align: center;
-    color: #999999;
+    color: $medium-gray;
     margin: 0;
     padding: 0;
     i {

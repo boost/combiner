@@ -14,8 +14,9 @@ class IterationStories extends Component {
   }
 
   async componentDidMount() {
+    const project = await getCurrentProject(this.props.client);
     const iteration = await getCurrentIteration(this.props.client);
-    const stories = await getIterationStories(this.props.client, iteration);
+    const stories = await getIterationStories(this.props.client, iteration, project);
     this.setState({
       loading: false,
       stories: stories

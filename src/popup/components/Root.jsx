@@ -8,8 +8,9 @@ import IterationStories from './stories/IterationStories';
 import PivotalTokenForm from './settings/PivotalTokenForm';
 import Settings from './settings/Settings';
 import Pivotal from 'pivotal';
-import ReactNotification from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import { getCurrentProject } from 'utils';
 
 class Root extends Component {
   constructor(props) {
@@ -24,23 +25,22 @@ class Root extends Component {
     this.addNotification = this.addNotification.bind(this);
     this.handlePivotalValid = this.handlePivotalValid.bind(this);
     this.handleFooterClick = this.handleFooterClick.bind(this);
+    this.handleProjectChange = this.handleProjectChange.bind(this);
     this.getBody = this.getBody.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     window._harvestPlatformConfig = {
       "applicationName": "PivotalTracker",
       "permalink": "https://www.pivotaltracker.com/story/show/%ITEM_ID%"
     };
-    browser.storage.local.get('pivotal_token')
-    .then(value => {
-      if (value.pivotal_token !== undefined) {
-        return this.setState({
-          client: new Pivotal(value.pivotal_token),
-          activeTab: 'tab'
-        });
-      }
-    });
+    const value = await browser.storage.local.get('pivotal_token');
+    if (value.pivotal_token !== undefined) {
+      this.setState({
+        client: new Pivotal(value.pivotal_token),
+        activeTab: 'tab'
+      });
+    }
   }
 
   static getDerivedStateFromError(error) {
@@ -75,6 +75,10 @@ class Root extends Component {
     this.setState({activeTab: tab});
   }
 
+  handleProjectChange(project) {
+    this.setState({project: project});
+  }
+
   getBody(activeTab) {
     switch(activeTab) {
       case 'tab': return <OwnedStories client={this.state.client} />
@@ -96,7 +100,7 @@ class Root extends Component {
         <ReactNotification ref={this.notificationDOMRef} />
         <Header active={this.state.activeTab} client={this.state.client} />
         {this.getBody(this.state.activeTab)}
-        <Footer active={this.state.activeTab} onTabClick={this.handleFooterClick} />
+        <Footer onProjectChange={this.handleProjectChange} active={this.state.activeTab} onTabClick={this.handleFooterClick} />
       </div>
     )
   }

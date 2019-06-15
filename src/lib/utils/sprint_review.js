@@ -1,4 +1,4 @@
-import { enrichStory, getCurrentProject, getCurrentIteration } from 'utils';
+import { getCurrentProject, getCurrentIteration } from 'utils';
 
 let buildReport = async (client) => {
   const iteration = await getCurrentIteration(client);

@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import showdown from 'showdown';
+import { enrichStory } from 'utils';
 
 class StoryDetails extends Component {
   constructor(props) {
     super(props);
-    this.state = {ready: false};
+    this.state = {
+      ready: false
+    };
   }
 
   async componentDidMount() {
-    let client = this.props.client;
-    let story = this.props.data;
-    const memberships = await client.projectMemberships(story.project_id);
-
-    story.tasks = await client.storyTasks(story.project_id, story.id);
-    story.blockers = await client.storyBlockers(story.project_id, story.id);
-    story.owners = await client.storyOwners(story.project_id, story.id);
-    story.requester = memberships.find(u => u.person.id === story.requested_by_id);
+    let story = await enrichStory(
+      this.props.client,
+      this.props.story,
+      ['tasks', 'blockers', 'owners', 'requester']
+    );
 
     this.setState({
       ready: true,
