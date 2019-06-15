@@ -13,7 +13,7 @@ class StoryDetails extends Component {
   async componentDidMount() {
     let story = await enrichStory(
       this.props.client,
-      this.props.story,
+      this.props.data,
       ['tasks', 'blockers', 'owners', 'requester']
     );
 

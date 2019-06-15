@@ -54,25 +54,22 @@ let getCurrentProject = async client => {
 };
 
 let enrichStory = async (client, story, options) => {
-  if (options.include('owners')) {
-    const owners = await client.storyOwners(story.project_id, story.id);
-    story.owners = owners;
+  if (options.includes('owners')) {
+    story.owners = await client.storyOwners(story.project_id, story.id);
   }
-  if (options.include('requester')) {
-    const memberships = await client.projectMemberships(story.project_id);
-    story.requester = memberships.find(u => u.person.id === story.requested_by_id);
+  if (options.includes('blockers')) {
+    story.blockers = await client.storyBlockers(story.project_id, story.id);;
   }
-  if (options.include('blockers')) {
-    const memberships = await client.storyBlockers(story.project_id, story.id);
-    story.requester = memberships.find(u => u.person.id === story.requested_by_id);
+  if (options.includes('tasks')) {
+    story.tasks = await client.storyTasks(story.project_id, story.id);
   }
-  if (options.include('tasks')) {
-    const memberships = await client.projectMemberships(story.project_id);
-    story.requester = memberships.find(u => u.person.id === story.requested_by_id);
-  }
-  if (options.include('project')) {
+  if (options.includes('project')) {
     const projects = await getProjects(client);
     story.project = projects.find(project => project.id == story.project_id);
+  }
+  if (options.includes('requester')) {
+    const memberships = await client.projectMemberships(story.project_id);
+    story.requester = memberships.find(u => u.person.id === story.requested_by_id);
   }
 
   return Promise.resolve(story);
