@@ -191,7 +191,9 @@ let loadHarvestPlatform = () => {
 let setupEventProxy = () => {
   return new Promise((resolve, reject) => {
     let script = document.createElement('script');
-    let fn = [
+    script.type = 'text/javascript';
+    script.async = true;
+    script.textContent = [
       '(function(){',
       '  window.addEventListener("reinitializeTimer", function (evt) {',
       '    var target = document.querySelector("#harvest-messaging");',
@@ -203,9 +205,8 @@ let setupEventProxy = () => {
       '  });',
       '}());'
     ].join('\n');
+    $('head').append(script);
 
-    script.textContent = fn;
-    (document.head || document.documentElement).appendChild(script);
     resolve();
   });
 };
@@ -215,11 +216,18 @@ let setupEventProxy = () => {
  */
 
 let reinitializeTimer = (i, el) => {
-  window.dispatchEvent(new CustomEvent('reinitializeTimer', {
-    detail: {
-      uid: $(el).data('uid')
-    }
-  }));
+  let script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.async = true;
+  console.log(el);
+  script.textContent = [
+    'window.dispatchEvent(new CustomEvent("reinitializeTimer", {',
+    '  detail: {',
+    `    uid: "${el.getAttribute('data-uid')}"`,
+    '  }',
+    '}));',
+  ].join('\n');
+  $('head').append(script);
 };
 
 /**

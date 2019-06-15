@@ -9,6 +9,10 @@ Features:
 	- Change the state of the story
 	- Manage activity of a story
 	- Start/Stop a harvest timer
+- Pivotal
+	- Removed "T" and "R4A" buttons for basecamp as you can now autofill the form
+	- Fixed the harvest button style
+	- Fixed the harvest button in firefox
 
 ## Version 2.0.0
 

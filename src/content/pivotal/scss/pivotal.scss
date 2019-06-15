@@ -1,24 +1,33 @@
 /**
- * Basecamp clipboard buttons
+ * Shrink the "close/save" button in detail view to create space for Harvest
+ * timer alongside other action buttons.
  */
-.copy-title, .copy-r4a {
-  cursor: pointer;
-  border: 1px solid #999;
-  display: block;
-  float: left;
-  padding: 2px;
-  margin-top: 2px;
-  height: 18px;
-  width: 25px;
+
+section.model_details .story .persistence.use_click_to_copy .save,
+section.model_details .story .persistence.use_click_to_copy .close {
+  width: 78px;
 }
 
-.copy-title {
-  margin-left: 33px;
+.story.model.item header.preview {
+  .expander {
+    width: 13px;
+  }
+
+  .meta {
+    margin-left: 34px;
+    &:before {
+      margin-left: -35px;
+    }
+    span {
+      width: 14px;
+    }
+  }
 }
 
 /**
  * Timer-specific styling.
  */
+
 .harvest-timer {
   background: url(../img/harvest-icon.png) no-repeat #eee;
   border: 1px solid #999;
