@@ -11,8 +11,6 @@
 
   .story {
     margin: 0;
-    padding-left: 10px;
-
     width: 100%;
     list-style-type: none;
     border-bottom: 1px solid $medium-gray;
@@ -20,23 +18,21 @@
     .blocker-resolved {
       text-decoration: line-through;
     }
-    :hover {
-      background-color: $light-gray;
+
+    &.collapsed {
+      :hover {
+        background-color: $light-gray;
+      }
+
+      > .auto {
+        cursor: pointer;
+      }
+
+      .harvest-timer {
+        &.running {
+          background-color: $success-color;
+        }
+      }
     }
-  }
-
-  .story-small {
-    > .small-9 {
-      cursor: pointer;
-    }
-  }
-
-  .story-details {
-    background-color: $light-gray;
-  }
-
-  .story-description {
-    border: 3px solid #00a8a0;
-    border-radius: 5px;
   }
 }

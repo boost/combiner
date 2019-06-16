@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import browser from 'webextension-polyfill';
 import { sendStoryDetails } from 'utils';
 import StoryLine from './StoryLine';
-import StoryDetails from './StoryDetails';
+import StoryDetailsEdit from './StoryDetailsEdit';
 
 class Story extends Component {
   constructor(props) {
@@ -31,14 +31,17 @@ class Story extends Component {
   render() {
     if (this.state.details) {
       return (
-        <StoryDetails
+        <StoryDetailsEdit
+          {...this.props.data}
           onCloseClick={this.handleCloseClick}
-          data={this.props.data}
           client={this.props.client} />
       );
     } else {
       return (
-        <StoryLine data={this.props.data} onTitleClicked={this.handleDetailsClick} />
+        <StoryLine
+          data={this.props.data}
+          onAutofillClick={this.handleAutofillClick}
+          onTitleClicked={this.handleDetailsClick} />
       );
     }
   }

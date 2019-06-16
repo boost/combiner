@@ -45,7 +45,7 @@ To contribute to this repository, you should have an account on:
 - Run `npm run watch` to clean, copy, webpack, and watch
 - Use `web-ext` for testing (reloads the extension every time there is a change in `build`:
 	- Run `npm run web-ext` to have a virgin profile in Firefox
-	- Run `npm run web-ext -- --firefox-profile=Extension --keep-profile-changes`
+	- Run `npm run web-ext:run -- --firefox-profile=Extension --keep-profile-changes`
 	  if you want to keep the changes for the next run. *Note:* you need to create the
 	  firefox profile 'Extension' first
 - Navigate to a PivotalTracker project in your browser and voilá!

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import showdown from 'showdown';
 import { enrichStory } from 'utils';
+import TextareaAutosize from 'react-textarea-autosize';
 
 class StoryDetails extends Component {
   constructor(props) {

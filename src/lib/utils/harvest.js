@@ -1,10 +1,10 @@
-let buildStoryUrl = story => {
-  return `https://www.pivotaltracker.com/story/show/${story.id}`
-};
+import { buildStoryUrl } from 'utils/pivotal'
 
 let buildName = story => {
-  const labels = story.labels.map(label => label.name).join(', ');
-  return `${story.name} [${labels}] ${buildStoryUrl(story)}`;
+  const labels = story.labels.map(label => label.name);
+  const labelsStr = labels.length ? ` [${labels.join(', ')}] ` : ' ';
+
+  return `${story.name}${labelsStr}${buildStoryUrl(story)}`;
 };
 
-export { buildStoryUrl, buildName };
+export { buildName };

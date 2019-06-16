@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { buildName, buildStoryUrl } from 'utils/harvest';
+import { buildStoryUrl } from 'utils/pivotal';
+import { buildName } from 'utils/harvest';
 
 class HarvestButton extends Component {
   componentDidMount() {
