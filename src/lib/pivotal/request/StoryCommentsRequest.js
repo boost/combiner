@@ -1,6 +1,6 @@
 import Request from './Request';
 
-class StoryBlockersRequest extends Request {
+class StoryCommentsRequest extends Request {
   constructor(client, project_id, story_id) {
     super(client);
     this.project_id = project_id;
@@ -8,8 +8,8 @@ class StoryBlockersRequest extends Request {
   }
 
   uri() {
-    return `/projects/${this.project_id}/stories/${this.story_id}/blockers`;
+    return `/projects/${this.project_id}/stories/${this.story_id}/comments`;
   }
 }
 
-export default StoryBlockersRequest;
+export default StoryCommentsRequest;

@@ -23,6 +23,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build')
   },
   mode: ENV,
+  devtool: 'source-map',
   module: {
     rules: [{
       test: /\.(css|scss)$/,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pivotal from 'pivotal';
+import browser from 'webextension-polyfill';
 
 class PivotalTokenForm extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class PivotalTokenForm extends Component {
       value: props.token
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleProfileClick = this.handleProfileClick.bind(this);
     this.handleValidate = this.handleValidate.bind(this);
   }
 
@@ -26,6 +28,13 @@ class PivotalTokenForm extends Component {
     .catch(error => { this.setState({token_invalid: true}) });
   }
 
+  handleProfileClick(event) {
+    event.preventDefault();
+    browser.tabs.create({
+      url: event.target.href
+    });
+  }
+
   render() {
     let help = null;
     if (this.state.token_invalid) {
@@ -39,7 +48,7 @@ class PivotalTokenForm extends Component {
           <p>You haven't provided your API token yet.</p>
           <p>
             If you are logged in Pivotal, you can find
-            it <a href='https://www.pivotaltracker.com/profile#api'>here</a>.
+            it <a href='https://www.pivotaltracker.com/profile#api' onClick={this.handleProfileClick}>here</a>.
           </p>
         </div>
       );

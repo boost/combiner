@@ -14,6 +14,7 @@
 @include foundation-button;
 @include foundation-button-group;
 @include foundation-reveal;
+@include foundation-tabs;
 
 // Containers
 @include foundation-accordion;
@@ -26,3 +27,4 @@
 @import 'utils.scss';
 @import 'harvest_modal.scss';
 @import 'pivotal.scss';
+@import 'react-labels.css';

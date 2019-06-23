@@ -1,13 +1,19 @@
 import MeRequest                 from './request/MeRequest';
+
 import StoryRequest              from './request/StoryRequest';
 import StoriesRequest            from './request/StoriesRequest';
-import ProjectsRequest           from './request/ProjectsRequest';
-import IterationRequest          from './request/IterationRequest';
-import IterationsRequest         from './request/IterationsRequest';
 import StoryTasksRequest         from './request/StoryTasksRequest';
 import StoryOwnersRequest        from './request/StoryOwnersRequest';
 import StoryBlockersRequest      from './request/StoryBlockersRequest';
+import StoryCommentsRequest      from './request/StoryCommentsRequest';
+
+import ProjectRequest            from './request/ProjectRequest';
+import ProjectsRequest           from './request/ProjectsRequest';
+import ProjectLabelsRequest      from './request/ProjectLabelsRequest';
 import ProjectMembershipsRequest from './request/ProjectMembershipsRequest';
+
+import IterationRequest          from './request/IterationRequest';
+import IterationsRequest         from './request/IterationsRequest';
 
 class Pivotal {
   constructor(token = null) {
@@ -34,12 +40,24 @@ class Pivotal {
     return new StoryTasksRequest(this, project_id, story_id).request();
   }
 
+  storyComments(project_id, story_id) {
+    return new StoryCommentsRequest(this, project_id, story_id).request();
+  }
+
   stories(project_id, options = {}) {
     return new StoriesRequest(this, project_id, options).request();
   }
 
   projects(options = {}) {
     return new ProjectsRequest(this, options).request();
+  }
+
+  project(project_id, options = {}) {
+    return new ProjectRequest(this, project_id, options).request();
+  }
+
+  projectLabels(project_id, options = {}) {
+    return new ProjectLabelsRequest(this, project_id, options).request();
   }
 
   iterations(project_id, options = {}) {

@@ -2,10 +2,22 @@ $pivotal-background: #f1f0ea;
 
 .story.expanded {
   background-color: $pivotal-background;
+
+  select {
+    margin: 0;
+    padding: 0;
+    height: auto;
+  }
+
+  /**
+   * Includes the story basic informations
+   */
   section.story_details {
 
+    /**
+     * Includes the first line (collapsing arrow, story name, story link)
+     */
     section.story_header {
-
       .collapser {
         background-size: 13px 13px;
         background-repeat: no-repeat;
@@ -13,10 +25,8 @@ $pivotal-background: #f1f0ea;
         background-color: transparent;
         border: none;
         cursor: pointer;
-        -ms-flex: 0 0 13px;
-        flex: 0 0 13px;
-        margin-top: 4px;
-        padding: 4px 0 0;
+        margin-top: 6px;
+        padding: 0;
         position: relative;
         width: 13px;
       }
@@ -31,10 +41,8 @@ $pivotal-background: #f1f0ea;
         background-color: #f6f6f6;
         border-radius: 4px;
         border: 1px solid #ccc;
-        cursor: pointer;
-        -ms-flex: 0 0 22px;
-        flex: 0 0 22px;
-        height: 22px;
+        height: 26px;
+        width: 26px;
 
         &::before {
           content: "";
@@ -46,6 +54,80 @@ $pivotal-background: #f1f0ea;
           width: 100%;
           display: block;
         }
+      }
+    }
+
+    /**
+     * info_box_wrapper: used for the 2 "tables"
+     */
+    .info_box_wrapper {
+      background-color: $white;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      margin: 5px;
+
+      > .row {
+        padding: 3px;
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+
+  .blockers, .tasks {
+    .add-blocker, .add-task {
+      -ms-flex-align: center;
+      align-items: center;
+      background: #e9e8e0;
+      border-radius: 4px;
+      color: #717170;
+      cursor: pointer;
+      display: -ms-flexbox;
+      display: flex;
+      font-size: 12px;
+      margin: 0px 4px 0px 4px;
+
+      &:hover {
+        background: #e3e2d8;
+      }
+
+      svg {
+        margin-left: 8px;
+      }
+
+      .add-blocker-message, .add-task-message {
+        margin: 10px;
+      }
+    }
+  }
+
+  .description {
+    .description-html {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      cursor: text;
+      font-size: 12px;
+      line-height: 18px;
+      margin: 0 4px 0 4px;
+      min-height: 52px;
+      padding: 12px;
+      border-radius: 3px;
+      word-wrap: break-word;
+
+      &:focus {
+        outline: none;
+        border: 1px solid #cde5ff;
+        box-shadow: 0 0 1px 2px #83beff;
+      }
+    }
+  }
+
+  .activity {
+    .comments {
+      border-bottom: 1px solid #ccc;
+
+      .comment-date {
+        margin-left: 5px;
       }
     }
   }

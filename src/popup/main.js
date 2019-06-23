@@ -12,13 +12,21 @@ import {
   faStickyNote,
   faTimes,
   faFileSignature,
-  faClock } from '@fortawesome/free-solid-svg-icons';
+  faClock,
+  faLink,
+  faPlus,
+  faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
-if (window.location.search !== '' && window.location.search.indexOf('uilocation=sidebar') > -1) {
+const search = window.location.search;
+if (search !== '' && (
+    search.indexOf('uilocation=sidebar') > -1 ||
+    search.indexOf('uilocation=tab') > -1 ||
+    search.indexOf('uilocation=popout') > -1)
+  ) {
   window.document.body.classList.add('body-full');
 }
 
 // React
-library.add(faFolder, faBookOpen, faCogs, faStickyNote, faTimes, faFileSignature, faClock);
+library.add(faFolder, faBookOpen, faCogs, faStickyNote, faTimes, faFileSignature, faClock, faLink, faPlus, faExternalLinkAlt);
 const domContainer = document.querySelector('#root');
 ReactDOM.render(React.createElement(Root), domContainer);

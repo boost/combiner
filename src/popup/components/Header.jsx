@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { getCurrentIteration } from 'utils';
+import browser from 'webextension-polyfill';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Header extends Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class Header extends Component {
       iteration: null
     }
     this.getTitle = this.getTitle.bind(this);
+    this.handlePopOut = this.handlePopOut.bind(this);
   }
 
   async componentDidUpdate(prevProps) {
@@ -30,11 +33,32 @@ class Header extends Component {
     }
   }
 
+  handlePopOut() {
+    let href = window.location.href;
+    let replace = 'uilocation=tab';
+    if (href.indexOf('uilocation=tab') > -1 ||
+        href.indexOf('uilocation=popout') > -1) {
+      replace = 'uilocation=popout';
+    }
+    href = href.replace('uilocation=popup',   replace)
+               .replace('uilocation=tab',     replace)
+               .replace('uilocation=sidebar', replace);
+
+    if (replace == 'uilocation=tab') {
+      browser.tabs.create({ url: href });
+    } else {
+      browser.windows.create({ url: href });
+    }
+  }
+
   render() {
     let title = null;
     return (
-      <header>
-        <h1>
+      <header className='grid-x'>
+        <button className='cell shrink button' onClick={this.handlePopOut}>
+          <FontAwesomeIcon icon='external-link-alt' flip='horizontal' inverse />
+        </button>
+        <h1 className='cell auto'>
           {this.getTitle(this.props.active)}
         </h1>
       </header>

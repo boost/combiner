@@ -32,7 +32,7 @@ class Story extends Component {
     if (this.state.details) {
       return (
         <StoryDetailsEdit
-          {...this.props.data}
+          story={this.props.data}
           onCloseClick={this.handleCloseClick}
           client={this.props.client} />
       );

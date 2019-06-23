@@ -12,14 +12,16 @@ class StoryDetails extends Component {
   }
 
   async componentDidMount() {
-    let story = await enrichStory(
+    const story = await enrichStory(
       this.props.client,
       this.props.data,
       ['tasks', 'blockers', 'owners', 'requester']
     );
+    const labels = this.props.client.projectLabels(story.project_id);
 
     this.setState({
       ready: true,
+      labels: labels,
       story: story
     })
   }

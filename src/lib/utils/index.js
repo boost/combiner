@@ -63,6 +63,9 @@ let enrichStory = async (client, story, options) => {
   if (options.includes('tasks')) {
     story.tasks = await client.storyTasks(story.project_id, story.id);
   }
+  if (options.includes('comments')) {
+    story.comments = await client.storyComments(story.project_id, story.id);
+  }
   if (options.includes('project')) {
     const projects = await getProjects(client);
     story.project = projects.find(project => project.id == story.project_id);
