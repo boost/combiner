@@ -262,8 +262,12 @@ class StoryDetailsEdit extends Component {
           </ul>
           <div>
             <ul className="tabs" data-tabs id="add-comment">
-              <li aria-selected={ this.state.writeCommentActive} className={`tabs-title${ this.state.writeCommentActive ? ' is-active' : ''}`} onClick={this.handleWriteCommentClick}><a href="#write-comment" aria-selected="true">Write</a></li>
-              <li aria-selected={!this.state.writeCommentActive} className={`tabs-title${!this.state.writeCommentActive ? ' is-active' : ''}`} onClick={this.handlePreviewCommentClick}><a href="#preview-comment">Preview</a></li>
+              <li className={`tabs-title${ this.state.writeCommentActive ? ' is-active' : ''}`} onClick={this.handleWriteCommentClick}>
+                <a href="#write-comment" aria-selected={ this.state.writeCommentActive} >Write</a>
+              </li>
+              <li className={`tabs-title${!this.state.writeCommentActive ? ' is-active' : ''}`} onClick={this.handlePreviewCommentClick}>
+                <a href="#preview-comment" aria-selected={!this.state.writeCommentActive}>Preview</a>
+              </li>
             </ul>
             <div className="tabs-content" data-tabs-content="add-comment">
               <TextareaAutosize id="write-comment" className={`tabs-panel${ this.state.writeCommentActive ? ' is-active' : ''}`} rows="2" placeholder="Add a comment" onChange={this.handleCommentChange} />
