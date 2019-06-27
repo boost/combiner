@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Root from './components/Root';
-import './scss/popup.scss';
+import './scss/main.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import 'utils/harvest_init'
 import 'utils/harvest_platform'
