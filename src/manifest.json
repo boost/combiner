@@ -53,7 +53,7 @@
   ],
   "browser_action": {
     "default_title": "Boost",
-    "default_popup": "popup/index.html",
+    "default_popup": "popup/index.html?uilocation=popup",
     "browser_style": true,
     "default_icon": {
       "16": "images/icons/16x16.png",

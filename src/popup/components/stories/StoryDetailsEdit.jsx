@@ -68,8 +68,8 @@ class StoryDetailsEdit extends Component {
   }
 
   handleCopyLinkClick() {
-    const copyValue = buildStoryUrl(this.props.story);
     console.log('copyLink', copyValue);
+    const copyValue = buildStoryUrl(this.props.story);
     copyToClipboard(copyValue, copyValue);
     // TODO add animation to validate the copy
   }

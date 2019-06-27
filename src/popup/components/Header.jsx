@@ -12,6 +12,7 @@ class Header extends Component {
     }
     this.getTitle = this.getTitle.bind(this);
     this.handlePopOut = this.handlePopOut.bind(this);
+    this.inPopup = this.inPopup.bind(this);
   }
 
   async componentDidUpdate(prevProps) {
@@ -33,6 +34,12 @@ class Header extends Component {
     }
   }
 
+  inPopup() {
+    return window.location.search === '' ||
+           window.location.search.indexOf('uilocation=') === -1 ||
+           window.location.search.indexOf('uilocation=popup') > -1;
+  }
+
   handlePopOut() {
     let href = window.location.href;
     let replace = 'uilocation=tab';
@@ -48,6 +55,10 @@ class Header extends Component {
       browser.tabs.create({ url: href });
     } else {
       browser.windows.create({ url: href });
+    }
+
+    if (this.inPopup()) {
+      window.close();
     }
   }
 

@@ -32,7 +32,7 @@ class Footer extends Component {
       <footer>
         <div className={this.props.active == 'tab' ? 'active' : ''} onClick={this.handleTabClick}>
           <p><FontAwesomeIcon size='2x' icon="folder" /></p>
-          <p>My stories</p>
+          <p>Started</p>
         </div>
         <div className={this.props.active == 'pivotal' ? 'active' : ''} onClick={this.handlePivotalClick}>
           <p><FontAwesomeIcon size='2x' icon="book-open" /></p>

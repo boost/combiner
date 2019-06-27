@@ -1,13 +1,13 @@
 body {
   width: 375px !important;
   height: 600px !important;
-  margin-bottom: 65px;
+  margin-bottom: 70px;
 
   background: $medium-gray;
 
   &.body-full {
-      width: 100% !important;
-      height: 100% !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
 
