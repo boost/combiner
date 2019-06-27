@@ -9,7 +9,7 @@ class Description extends Component {
       <section className="description">
         <h4>Description</h4>
         <div className="description-html">
-          <ReactMarkdown source={this.props.description} />
+          <ReactMarkdown source={this.props.story.description} />
         </div>
       </section>
     );
