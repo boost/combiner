@@ -1,25 +1,9 @@
 @import '../../../node_modules/foundation-sites/scss/foundation.scss';
 
-@import 'overrides.scss';
+@import 'foundation_overrides.scss';
+@import 'foundation.scss';
 
-// Global styles
-@include foundation-global-styles;
-@include foundation-forms;
-@include foundation-typography;
-
-// Grids
-@include foundation-xy-grid-classes;
-
-// Generic components
-@include foundation-button;
-@include foundation-button-group;
-@include foundation-reveal;
-@include foundation-tabs;
-
-// Containers
-@include foundation-accordion;
-
-// custom files
+// Custom files
 @import 'body.scss';
 @import 'header.scss';
 @import 'footer.scss';
