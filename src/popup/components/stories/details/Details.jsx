@@ -66,69 +66,71 @@ class Details extends Component {
               <button className="button secondary" onClick={this.props.onCloseClick}>Close</button>
             </div>
           </section>
-          <div className="info_box_wrapper">
-            <div className="grid-x row">
-              <label className="cell auto">STATE</label>
-              <button className="button tiny cell shrink">Finish</button>
-              <select className="cell shrink">
-                <option value="started">Started</option>
-                <option value="unstarted">Unstarted</option>
-                <option value="finished">Finished</option>
-                <option value="delivered">Delivered</option>
-                <option value="accepted">Accepted</option>
-                <option value="rejected">Rejected</option>
-              </select>
+          <div className="grid-x align-margin-x">
+            <div className="medium-6 cell info_box_wrapper">
+              <div className="grid-x row">
+                <label className="cell auto">STATE</label>
+                <button className="button tiny cell shrink">Finish</button>
+                <select className="cell shrink">
+                  <option value="started">Started</option>
+                  <option value="unstarted">Unstarted</option>
+                  <option value="finished">Finished</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="accepted">Accepted</option>
+                  <option value="rejected">Rejected</option>
+                </select>
+              </div>
+              <div className="grid-x row">
+                <span className="cell auto">REVIEWS</span>
+                <a type="button cell shrink">+ add review</a>
+              </div>
             </div>
-            <div className="grid-x row">
-              <span className="cell auto">REVIEWS</span>
-              <a type="button cell shrink">+ add review</a>
-            </div>
-          </div>
-          <div className="info_box_wrapper">
-            <div className="grid-x row">
-              <label className="cell auto">STORY TYPE</label>
-              <select className="cell shrink">
-                <option value="feature">Feature</option>
-                <option value="bug">Bug</option>
-                <option value="chore">Chore</option>
-                <option value="release">Release</option>
-              </select>
-            </div>
-            <div className="grid-x row">
-              <label className="cell auto">POINTS</label>
-              <select className="cell shrink" value={this.state.story.estimate} onChange={this.handleEstimateChange}>
-                {
-                  this.props.story.project.point_scale.split(',').map(point =>
-                    <option key={point} value={point}>{point}</option>
-                  )
-                }
-              </select>
-            </div>
-            <div className="grid-x row">
-              <label className="cell auto">REQUESTER</label>
-              <select className="cell shrink">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="5">5</option>
-                <option value="8">8</option>
-              </select>
-            </div>
-            <div className="grid-x row">
-              <label className="cell auto">OWNERS</label>
-              <select className="cell shrink">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="5">5</option>
-                <option value="8">8</option>
-              </select>
-            </div>
-            <div className="grid-x row">
-              <label className="cell auto">FOLLOW THIS STORY</label>
-              <div className="cell shrink">
-                (<span className="followers">2 followers</span>)
-                <input type="checkbox" />
+            <div className="medium-6 cell info_box_wrapper">
+              <div className="grid-x row">
+                <label className="cell auto">STORY TYPE</label>
+                <select className="cell shrink">
+                  <option value="feature">Feature</option>
+                  <option value="bug">Bug</option>
+                  <option value="chore">Chore</option>
+                  <option value="release">Release</option>
+                </select>
+              </div>
+              <div className="grid-x row">
+                <label className="cell auto">POINTS</label>
+                <select className="cell shrink" value={this.state.story.estimate} onChange={this.handleEstimateChange}>
+                  {
+                    this.props.story.project.point_scale.split(',').map(point =>
+                      <option key={point} value={point}>{point}</option>
+                    )
+                  }
+                </select>
+              </div>
+              <div className="grid-x row">
+                <label className="cell auto">REQUESTER</label>
+                <select className="cell shrink">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+              <div className="grid-x row">
+                <label className="cell auto">OWNERS</label>
+                <select className="cell shrink">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="5">5</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+              <div className="grid-x row">
+                <label className="cell auto">FOLLOW THIS STORY</label>
+                <div className="cell shrink">
+                  (<span className="followers">2 followers</span>)
+                  <input type="checkbox" />
+                </div>
               </div>
             </div>
           </div>
