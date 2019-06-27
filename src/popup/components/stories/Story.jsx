@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import browser from 'webextension-polyfill';
 import { sendStoryDetails } from 'utils';
 import StoryLine from './StoryLine';
-import StoryDetailsEdit from './StoryDetailsEdit';
+import StoryDetailsEdit from './details/StoryDetailsEdit';
 
 class Story extends Component {
   constructor(props) {
