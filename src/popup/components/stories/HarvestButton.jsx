@@ -11,7 +11,7 @@ class HarvestButton extends Component {
 
   componentDidMount() {
     var event = new CustomEvent("harvest-event:timers:add", {
-      detail: { element: document.querySelector(`#harvest-button-${this.props.data.id}`) }
+      detail: { element: document.querySelector(`#${this.id}`) }
     });
     document.querySelector("#harvest-messaging").dispatchEvent(event);
   }
