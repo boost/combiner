@@ -1,39 +1,22 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
-import TextareaAutosize from 'react-textarea-autosize';
+import MarkdownEditor from './MarkdownEditor';
 import bindAll from 'lodash/bindAll';
 
 class Activity extends Component {
   constructor(props) {
     super(props);
 
-    this.previewDefaultText = 'Preview your [Markdown formatted](https://www.pivotaltracker.com/help/markdown) text here.';
     this.state = {
-      writeCommentActive: true,
+      previewMode: true,
       previewSource: this.previewDefaultText,
       story: props.story
     };
-    bindAll(this, [
-      'handleCommentChange',
-      'handleWriteCommentClick',
-      'handlePreviewCommentClick'
-    ]);
+    bindAll(this, ['handleValidSubmit']);
   }
 
-  handleWriteCommentClick() {
-    this.setState({writeCommentActive: true});
-  }
+  handleValidSubmit() {
 
-  handlePreviewCommentClick() {
-    this.setState({writeCommentActive: false});
-  }
-
-  handleCommentChange(event) {
-    const value = event.target.value;
-    this.setState({
-      comment: value,
-      previewSource: value == '' ? this.previewDefaultText : value
-    });
   }
 
   render() {
@@ -65,40 +48,10 @@ class Activity extends Component {
         <ul className="comments grid-x">
           {comments}
         </ul>
-        <div>
-          <ul className="tabs" data-tabs id="add-comment">
-            <li
-              className={`tabs-title${ this.state.writeCommentActive ? ' is-active' : ''}`}
-              onClick={this.handleWriteCommentClick}>
-              <a href="#write-comment" aria-selected={this.state.writeCommentActive}>
-                Write
-              </a>
-            </li>
-            <li
-              className={`tabs-title${!this.state.writeCommentActive ? ' is-active' : ''}`}
-              onClick={this.handlePreviewCommentClick}>
-              <a href="#preview-comment" aria-selected={!this.state.writeCommentActive}>
-                Preview
-              </a>
-            </li>
-          </ul>
-          <div className="tabs-content" data-tabs-content="add-comment">
-            <TextareaAutosize
-              id="write-comment"
-              className={`tabs-panel${this.state.writeCommentActive ? ' is-active' : ''}`}
-              rows="2"
-              placeholder="Add a comment"
-              onChange={this.handleCommentChange} />
-
-            <div
-              className={`tabs-panel${!this.state.writeCommentActive ? ' is-active' : ''}`}
-              id="preview-comment">
-              <ReactMarkdown
-                source={this.state.previewSource}
-              />
-            </div>
-          </div>
-        </div>
+        <MarkdownEditor
+          id='comment'
+          onValidSubmit={this.handleValidSubmit}
+        />
       </section>
     );
   }

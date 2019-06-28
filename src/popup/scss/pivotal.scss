@@ -9,6 +9,10 @@ $pivotal-background: #f1f0ea;
     height: auto;
   }
 
+  textarea {
+    margin-bottom: 0;
+  }
+
   /**
    * Includes the story basic informations
    */
@@ -102,6 +106,10 @@ $pivotal-background: #f1f0ea;
 
   .description {
     .description-html {
+      &.edit {
+        background-color: inherit;
+      }
+
       background-color: #fff;
       border: 1px solid #ccc;
       box-sizing: border-box;
