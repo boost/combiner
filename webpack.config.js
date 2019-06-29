@@ -74,23 +74,20 @@ const options = {
     }]
   },
   plugins: [
-  new WebpackNotifierPlugin(),
-  new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
-  new MiniCssExtractPlugin(),
-  new HtmlWebpackPlugin({
-    template: './src/popup/index.html',
-    filename: 'popup/index.html',
-    chunks: ['popup/main'],
-  }),
-  new CopyWebpackPlugin([
-  {
-    from: './src/manifest.json',
-    transform: adjustManifest
-  },
-  { from: './src/_locales', to: '_locales' },
-  { from: './src/images', to: 'images' },
-  { from: './src/popup/images', to: 'popup/images' }
-  ]),
+    new WebpackNotifierPlugin(),
+    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: './src/popup/index.html',
+      filename: 'popup/index.html',
+      chunks: ['popup/main'],
+    }),
+    new CopyWebpackPlugin([
+      { from: './src/manifest.json', transform: adjustManifest },
+      { from: './src/_locales', to: '_locales' },
+      { from: './src/images', to: 'images' },
+      { from: './src/popup/images', to: 'popup/images' }
+    ]),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
