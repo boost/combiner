@@ -1,7 +1,7 @@
 {
   "name": "Boost",
   "version": "2.1.0",
-  "description": "Accelerate your workflow.",
+  "description": "This extension provides harvest-pivotal-basecamp linking.",
   "main": "webpack.config.js",
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -68,6 +68,6 @@
   "bugs": {
     "url": "https://github.com/boost/boost-browser-extension/issues"
   },
-  "homepage": "https://github.com/boost/boost-browser-extension#readme",
+  "homepage": "https://github.com/boost/boost-browser-extension",
   "dependencies": {}
 }

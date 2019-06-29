@@ -4,23 +4,10 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const env = require('./utils/env');
+const adjustManifest = require('./utils/adjust_manifest');
 
-const ENV = process.env.ENV = (process.env.NODE_ENV || 'development');
-const BROWSER = process.env.BROWSER || 'firefox';
-
-const adjustManifest = (content, path) => {
-  const manifest = JSON.parse(content);
-  if (ENV == 'production') {
-    delete manifest.content_security_policy;
-  }
-  if (BROWSER == 'chrome') {
-    delete manifest.sidebar_action;
-    delete manifest.commands._execute_sidebar_action;
-  }
-  return JSON.stringify(manifest, null, 2);
-}
-
-module.exports = {
+const options = {
   entry: {
     'content/pivotal':  './src/content/pivotal/js/index.js',
     'content/basecamp': './src/content/basecamp/index.js',
@@ -32,8 +19,7 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'build')
   },
-  mode: ENV,
-  devtool: 'source-map',
+  mode: env.NODE_ENV,
   module: {
     rules: [{
       test: /\.(css|scss)$/,
@@ -114,3 +100,9 @@ module.exports = {
     }
   },
 };
+
+if (env.NODE_ENV == 'development') {
+  options.devtool = 'source-map';
+}
+
+module.exports = options;
