@@ -1,4 +1,4 @@
-footer {
+footer.body-footer {
   border-top: 1px solid $black;
   @include position-fixed-bottom();
   @include xy-grid();

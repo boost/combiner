@@ -1,0 +1,21 @@
+.markdown-editor {
+  textarea {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    resize: none;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    &:focus {
+      outline: none;
+      box-shadow: none;
+      border: none;
+    }
+  }
+
+  .tabs-content:focus {
+    box-shadow: 0 0 1px 2px #83beff;
+    border: 1px solid #cde5ff;
+  }
+}

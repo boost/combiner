@@ -5,10 +5,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-if (process.env.NODE_ENV == null) {
-    process.env.NODE_ENV = 'development';
+const ENV = process.env.ENV = (process.env.NODE_ENV || 'development');
+const BROWSER = process.env.BROWSER || 'firefox';
+
+const adjustManifest = (content, path) => {
+  const manifest = JSON.parse(content);
+  if (ENV == 'production') {
+    delete manifest.content_security_policy;
+  }
+  if (BROWSER == 'chrome') {
+    delete manifest.sidebar_action;
+    delete manifest.commands._execute_sidebar_action;
+  }
+  return JSON.stringify(manifest, null, 2);
 }
-const ENV = process.env.ENV = process.env.NODE_ENV;
 
 module.exports = {
   entry: {
@@ -36,8 +46,8 @@ module.exports = {
     },{
       test: /\.(css|scss)$/,
       include: [
-        path.resolve(__dirname, 'src/popup'),
-        path.resolve(__dirname, 'node_modules')
+      path.resolve(__dirname, 'src/popup'),
+      path.resolve(__dirname, 'node_modules')
       ],
       loaders: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
     },{
@@ -78,20 +88,23 @@ module.exports = {
     }]
   },
   plugins: [
-    new WebpackNotifierPlugin(),
-    new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: './src/popup/index.html',
-      filename: 'popup/index.html',
-      chunks: ['popup/main'],
-    }),
-    new CopyWebpackPlugin([
-        './src/manifest.json',
-        { from: './src/_locales', to: '_locales' },
-        { from: './src/images', to: 'images' },
-        { from: './src/popup/images', to: 'popup/images' },
-    ]),
+  new WebpackNotifierPlugin(),
+  new CleanWebpackPlugin({cleanStaleWebpackAssets: false}),
+  new MiniCssExtractPlugin(),
+  new HtmlWebpackPlugin({
+    template: './src/popup/index.html',
+    filename: 'popup/index.html',
+    chunks: ['popup/main'],
+  }),
+  new CopyWebpackPlugin([
+  {
+    from: './src/manifest.json',
+    transform: adjustManifest
+  },
+  { from: './src/_locales', to: '_locales' },
+  { from: './src/images', to: 'images' },
+  { from: './src/popup/images', to: 'popup/images' }
+  ]),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],

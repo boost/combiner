@@ -3,6 +3,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import ReactMarkdown from 'react-markdown';
 import { tabsTitleClass, tabsPanelClass } from 'utils/foundation';
 import bindAll from 'lodash/bindAll';
+import browser from 'webextension-polyfill';
 
 class MarkdownEditor extends Component {
   constructor(props) {
@@ -23,11 +24,13 @@ class MarkdownEditor extends Component {
     ]);
   }
 
-  handleWriteTabClick() {
+  handleWriteTabClick(event) {
+    event.preventDefault();
     this.setState({previewMode: false});
   }
 
-  handlePreviewTabClick() {
+  handlePreviewTabClick(event) {
+    event.preventDefault();
     this.setState({previewMode: true});
   }
 
@@ -40,8 +43,16 @@ class MarkdownEditor extends Component {
   }
 
   render() {
+    const footer = (
+      <footer className="grid-x">
+        <div className="cell auto"></div>
+        <button className="button hollow secondary cell shrink">Cancel</button>
+        <button className="button cell shrink">Update</button>
+      </footer>
+    );
+
     return (
-      <div>
+      <div className="markdown-editor">
         <ul className="tabs" data-tabs id={`edit-${this.props.id}`}>
           <li
             className={tabsTitleClass(!this.state.previewMode)}
@@ -59,20 +70,23 @@ class MarkdownEditor extends Component {
           </li>
         </ul>
         <div className="tabs-content" data-tabs-content={`edit-${this.props.id}`}>
-          <TextareaAutosize
+          <div
             id={`write-${this.props.id}`}
-            className={tabsPanelClass(!this.state.previewMode)}
-            rows="2"
-            placeholder={`Add a ${this.props.id}`}
-            value={this.state.content}
-            onChange={this.handleContentChange} />
-
+            className={tabsPanelClass(!this.state.previewMode)}>
+            <TextareaAutosize
+              rows="2"
+              placeholder={`Add a ${this.props.id}`}
+              value={this.state.content}
+              onChange={this.handleContentChange} />
+            {footer}
+          </div>
           <div
             className={tabsPanelClass(this.state.previewMode)}
             id={`preview-${this.props.id}`}>
             <ReactMarkdown
               source={this.state.previewSource}
             />
+            {footer}
           </div>
         </div>
       </div>

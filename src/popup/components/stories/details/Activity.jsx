@@ -21,7 +21,7 @@ class Activity extends Component {
 
   render() {
     const comments = this.state.story.comments.map(comment => {
-      const person = this.props.projectMembers.find(member => member.id == comment.person_id);
+      const person = this.props.memberships.find(membership => membership.person.id == comment.person_id);
       const edited = comment.created_at != comment.updated_at ? ' - Edited' : '';
       const date = new Date(Date.parse(comment.updated_at));
       const dateStr = `${date.toDateString()}, ${date.toTimeString().split(' ')[0]}${edited}`;

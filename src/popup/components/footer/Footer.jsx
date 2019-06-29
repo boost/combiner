@@ -29,7 +29,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <footer>
+      <footer className='body-footer'>
         <div className={this.props.active == 'tab' ? 'active' : ''} onClick={this.handleTabClick}>
           <p><FontAwesomeIcon size='2x' icon="folder" /></p>
           <p>Started</p>

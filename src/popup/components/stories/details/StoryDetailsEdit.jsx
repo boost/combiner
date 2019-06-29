@@ -29,13 +29,12 @@ class StoryDetailsEdit extends Component {
       ['tasks', 'blockers', 'owners', 'requester', 'comments']
     );
     const projectLabels = await this.props.client.projectLabels(this.props.story.project_id);
-    const projectMemberships = await this.props.client.projectMemberships(this.props.story.project_id);
-    const projectMembers = projectMemberships.map(member => member.person);
+    const memberships = await this.props.client.projectMemberships(this.props.story.project_id);
 
     this.setState({
       ready: true,
       projectLabels: projectLabels,
-      projectMembers: projectMembers,
+      memberships: memberships,
       story: story
     });
   }
@@ -45,13 +44,13 @@ class StoryDetailsEdit extends Component {
 
     return (
       <li className="story expanded">
-        <Details     client={this.props.client} story={this.state.story} />
+        <Details     client={this.props.client} story={this.state.story} memberships={this.state.memberships} onCloseClick={this.props.onCloseClick} />
         <Blockers    client={this.props.client} story={this.state.story} />
         <Description client={this.props.client} story={this.state.story} />
         <Labels      client={this.props.client} story={this.state.story} />
         <Code        client={this.props.client} story={this.state.story} />
         <Tasks       client={this.props.client} story={this.state.story} />
-        <Activity    client={this.props.client} story={this.state.story} projectMembers={this.state.projectMembers} />
+        <Activity    client={this.props.client} story={this.state.story} memberships={this.state.memberships} />
       </li>
     );
   }
