@@ -1,6 +1,6 @@
+import Root from './components/Root';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './components/Root';
 import './scss/main.scss';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import 'utils/harvest_init'

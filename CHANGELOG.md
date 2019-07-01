@@ -13,6 +13,8 @@ Features:
 	- Removed "T" and "R4A" buttons for basecamp as you can now autofill the form
 	- Fixed the harvest button style
 	- Fixed the harvest button in firefox
+- Development
+	- Add Hot Module Replacement (HMR) in development mode!
 
 ## Version 2.0.0
 
@@ -33,7 +35,6 @@ Features:
 	- Pressing tab in these fields will bring you to the next placeholder
 - Basecamp
 	- Removed interpretation of GET parameters
-
 
 ## Version 1.0.0
 
