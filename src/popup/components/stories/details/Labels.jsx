@@ -10,21 +10,33 @@ class Labels extends Component {
       story: props.story
     };
 
-    bindAll(this, ['handleLabelAddition', 'handleLabelDeletion']);
+    bindAll(this, [
+      'handleAddition',
+      'handleDeletion',
+      'handleValidate'
+    ]);
   }
 
-  handleLabelAddition(label) {
-    const labels = [].concat(this.state.story.labels, label);
-    this.state.story.labels = labels;
-    this.setState({ story: this.state.story });
+  handleAddition(label) {
+    console.log('handleAddition');
+    const story = this.state.story;
+    const labels = [].concat(story.labels, label);
+    story.labels = labels;
+    this.setState({ story: story });
   }
 
-  handleLabelDeletion(i) {
-    const labels = this.state.story.labels.slice(0);
+  handleDeletion(i) {
+    const story = this.state.story;
+    const labels = story.labels.slice(0);
     labels.splice(i, 1);
-    this.state.story.labels = labels;
+    story.labels = labels;
 
-    this.setState({ story: this.state.story });
+    this.setState({ story: story });
+  }
+
+  handleValidate(tag) {
+    console.log(tag);
+    return true;
   }
 
   render() {
@@ -33,9 +45,11 @@ class Labels extends Component {
         <h4>Labels</h4>
         <ReactTags
           tags={this.state.story.labels}
-          suggestions={this.state.projectLabels}
-          handleDelete={this.handleLabelDeletion}
-          handleAddition={this.handleLabelAddition} />
+          suggestions={this.props.projectLabels}
+          allowNew={true}
+          handleDelete={this.handleDeletion}
+          handleAddition={this.handleAddition}
+          delimiterChars={[',']} />
       </section>
     );
   }

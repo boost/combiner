@@ -10,10 +10,7 @@
 
   /* clicking anywhere will focus the input */
   cursor: text;
-}
-
-.react-tags.is-focused {
-  border-color: #B1B1B1;
+  background: white;
 }
 
 .react-tags__selected {

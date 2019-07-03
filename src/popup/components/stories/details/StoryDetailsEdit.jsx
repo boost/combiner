@@ -47,7 +47,7 @@ class StoryDetailsEdit extends Component {
         <Details     client={this.props.client} story={this.state.story} memberships={this.state.memberships} onCloseClick={this.props.onCloseClick} />
         <Blockers    client={this.props.client} story={this.state.story} />
         <Description client={this.props.client} story={this.state.story} />
-        <Labels      client={this.props.client} story={this.state.story} />
+        <Labels      client={this.props.client} story={this.state.story} projectLabels={this.state.projectLabels} />
         <Code        client={this.props.client} story={this.state.story} />
         <Tasks       client={this.props.client} story={this.state.story} />
         <Activity    client={this.props.client} story={this.state.story} memberships={this.state.memberships} />
