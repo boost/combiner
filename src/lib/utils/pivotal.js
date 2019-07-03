@@ -3,12 +3,12 @@ const buildStoryUrl = story => {
 };
 
 const buildPossibleOwnersList = memberships => {
-  return memberships.sort((m1, m2) =>
-    m1.name < m2.name
-  ).filter(membership =>
+  return memberships.filter(membership =>
     membership.role == 'member'
   ).map(membership =>
     membership.person
+  ).sort((p1, p2) =>
+    p1.name > p2.name
   );
 };
 
