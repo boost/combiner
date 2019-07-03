@@ -1,4 +1,4 @@
-import { getCurrentProject, getCurrentIteration } from 'utils';
+import { getCurrentIteration } from 'utils';
 
 let buildReport = async (client) => {
   const iteration = await getCurrentIteration(client);

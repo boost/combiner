@@ -7,7 +7,7 @@ export default function snippetInput($input, message, selectAll = true) {
       const end = $input.val().indexOf('}', start) + 1;
       $input[0].setSelectionRange(start, end);
     }
-  }
+  };
 
   function interceptTab(e) {
     if (e.keyCode == 9) {
@@ -20,7 +20,7 @@ export default function snippetInput($input, message, selectAll = true) {
     if (!selectedAll) {
       $(this)[0].setSelectionRange(0, $(this).val().length);
     }
-  }
+  };
 
   // init context
   let selectedAll = false;

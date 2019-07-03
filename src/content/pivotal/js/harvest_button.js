@@ -11,7 +11,7 @@ const PLATFORM_CONFIG = JSON.stringify({
 
 let uniqueIdCounter = 0;
 let uniqueId = (prefix) => {
-  return `${prefix}${uniqueIdCounter += 1}`
+  return `${prefix}${uniqueIdCounter += 1}`;
 };
 
 /**
@@ -107,7 +107,7 @@ let findStoryType = ($el) => {
 
 let parseLabelElements = ($labels) => {
   return $labels.map((i, el) => {
-    return $(el).text().replace(/\,\s$/, '');
+    return $(el).text().replace(/,\s$/, '');
   }).get().filter((v, k, arr) => {
     return k === arr.indexOf(v);
   });
@@ -118,7 +118,7 @@ let parseLabelElements = ($labels) => {
  */
 
 let injectHarvestPlatformConfig = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
@@ -135,7 +135,7 @@ let injectHarvestPlatformConfig = () => {
  */
 
 let setupTimers = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let $stories = $('.story.model.item').not(':has(.harvest-timer)');
 
     $stories.each(function(i, el) {
@@ -189,7 +189,7 @@ let loadHarvestPlatform = () => {
  */
 
 let setupEventProxy = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;

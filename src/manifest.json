@@ -28,7 +28,7 @@
       "css": ["content/pivotal.css"]
     },
     {
-      "matches": ["https://basecamp.com/*/projects/*/messages/new"],
+      "matches": ["https://basecamp.com/*"],
       "js": ["content/basecamp.js"],
       "all_frames": true,
       "run_at": "document_end"

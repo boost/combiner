@@ -18,7 +18,7 @@ let getIterationStories = async (client, iteration, project = null) => {
   const cIteration = await client.iteration(iteration.project_id, iteration.number);
   if (project) {
     await cIteration.stories.forEach(story => {
-      story.project = project
+      story.project = project;
     });
   }
   return Promise.resolve(cIteration.stories);
@@ -53,12 +53,13 @@ let getCurrentProject = async client => {
   return Promise.resolve(projects[0]);
 };
 
+/* eslint-disable require-atomic-updates */
 let enrichStory = async (client, story, options) => {
   if (options.includes('owners')) {
     story.owners = await client.storyOwners(story.project_id, story.id);
   }
   if (options.includes('blockers')) {
-    story.blockers = await client.storyBlockers(story.project_id, story.id);;
+    story.blockers = await client.storyBlockers(story.project_id, story.id);
   }
   if (options.includes('tasks')) {
     story.tasks = await client.storyTasks(story.project_id, story.id);
@@ -76,13 +77,14 @@ let enrichStory = async (client, story, options) => {
   }
 
   return Promise.resolve(story);
-}
+};
+/* eslint-enable require-atomic-updates */
 
 let sendStoryDetails = async (client, story) => {
   const enrichedStory = await enrichStory(client, story, ['owners', 'requester']);
 
   const tabs = await browser.tabs.query({active: true, currentWindow: true});
-  return browser.tabs.sendMessage(tabs[0].id, story);
+  return browser.tabs.sendMessage(tabs[0].id, enrichedStory);
 };
 
 let buildGetUrl = (url, params) => {

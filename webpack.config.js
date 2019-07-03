@@ -44,13 +44,11 @@ const modules = {
     loader: 'html-loader',
   },{
     test: /\.(js|jsx)$/,
-    exclude: /(node_modules|bower_components)/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: ['@babel/preset-env']
-      }
-    }
+    exclude: /node_modules/,
+    // Release to support eslint6 soon: https://github.com/webpack-contrib/eslint-loader/issues/264
+    // https://github.com/webpack-contrib/eslint-loader/issues/271
+    // https://github.com/webpack-contrib/eslint-loader/issues/269
+    use: ['babel-loader']
   }]
 };
 

@@ -2,7 +2,7 @@ import showdown from 'showdown';
 
 let buildTitle = story => {
   return `R4A: ${story.name.split(':')[0]}`;
-}
+};
 
 let buildMessage = story => {
   const requester = story.requester.person.name;
@@ -47,6 +47,6 @@ let buildMessage = story => {
     <br />
     <p>Thanks</p>
     <p>${owners}</p>`;
-}
+};
 
 export { buildTitle, buildMessage };

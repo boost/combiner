@@ -1,10 +1,12 @@
-import browser from 'webextension-polyfill';
 import { buildTitle, buildMessage } from 'utils/basecamp';
+import browser from 'webextension-polyfill';
 
 browser.runtime.onMessage.addListener(story => {
-  let myFrame = document.getElementsByClassName('wysihtml5-sandbox')[0];
-  let myField = myFrame.contentDocument.getElementsByTagName('body')[0];
+  let iframe = document.getElementsByClassName('wysihtml5-sandbox')[0];
+  let frameBody = iframe.contentDocument.getElementsByTagName('body')[0];
 
   document.getElementById('message_subject').value = buildTitle(story);
-  myField.innerHTML = buildMessage(story);
+  frameBody.innerHTML = buildMessage(story);
+
+  frameBody.classList.remove('placeholder');
 });

@@ -1,4 +1,4 @@
-const PIVOTAL_URL = `https://www.pivotaltracker.com/services/v5`;
+const PIVOTAL_URL = 'https://www.pivotaltracker.com/services/v5';
 
 class Request {
   constructor(client) {
@@ -11,7 +11,7 @@ class Request {
   }
 
   async request() {
-    const response = await fetch(`${PIVOTAL_URL}${this.uri()}${this.getParams()}`, this.fetchOptions)
+    const response = await fetch(`${PIVOTAL_URL}${this.uri()}${this.getParams()}`, this.fetchOptions);
     if (!response.ok) {
       throw Error(response.statusText);
     }

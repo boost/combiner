@@ -1,6 +1,6 @@
 let buildTitle = story => {
   return story.name.split(':')[0];
-}
+};
 
 let buildMessage = story => {
   return `Acceptance Criteria
@@ -22,6 +22,6 @@ Checklist
 - [ ] Builds Pass
 - [ ] ‘Yard’ style comments on methods and classes (Where applicable)
 `;
-}
+};
 
 export { buildTitle, buildMessage };

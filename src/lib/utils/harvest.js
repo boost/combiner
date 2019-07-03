@@ -1,4 +1,4 @@
-import { buildStoryUrl } from 'utils/pivotal'
+import { buildStoryUrl } from 'utils/pivotal';
 
 let buildName = story => {
   const labels = story.labels.map(label => label.name);

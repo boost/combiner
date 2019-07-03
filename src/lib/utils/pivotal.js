@@ -1,5 +1,5 @@
 const buildStoryUrl = story => {
-  return `https://www.pivotaltracker.com/story/show/${story.id}`
+  return `https://www.pivotaltracker.com/story/show/${story.id}`;
 };
 
 const buildPossibleOwnersList = memberships => {

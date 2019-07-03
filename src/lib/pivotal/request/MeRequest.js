@@ -2,7 +2,7 @@ import Request from './Request';
 
 class MeRequest extends Request {
   uri() {
-    return `/me`;
+    return '/me';
   }
 }
 
