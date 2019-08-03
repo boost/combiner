@@ -59,8 +59,12 @@ $pivotal-background: #f1f0ea;
           display: block;
         }
       }
+
     }
 
+    .focused {
+      background-color: #d8d8d8;
+    }
     /**
      * info_box_wrapper: used for the 2 "tables"
      */
@@ -73,6 +77,23 @@ $pivotal-background: #f1f0ea;
       > .row {
         padding: 3px;
         border-bottom: 1px solid #ccc;
+      }
+
+      .dropdown-pane.owners {
+        ul {
+          width: 100%;
+          margin: 0;
+          li {
+            padding: 5px;
+            list-style-type: none;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            width: 100%;
+            &:hover {
+              background-color: $light-gray;
+            }
+          }
+        }
       }
     }
   }

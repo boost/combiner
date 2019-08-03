@@ -131,12 +131,7 @@ class Details extends Component {
                   }
                 </select>
               </div>
-              <div className="grid-x row">
-                <label className="cell auto">OWNERS</label>
-                <div className="cell shrink">
-                  <Owners memberships={this.props.memberships} client={this.props.client} story={this.state.story} />
-                </div>
-              </div>
+              <Owners memberships={this.props.memberships} client={this.props.client} story={this.state.story} />
               <div className="grid-x row">
                 <label className="cell auto">FOLLOW THIS STORY</label>
                 <div className="cell shrink">

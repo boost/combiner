@@ -25,10 +25,8 @@ let getIterationStories = async (client, iteration, project = null) => {
 };
 
 let getUserOwnedStories = async (client, project) => {
-  const options = {
-    with_state: 'started'
-  };
-  const stories = await client.stories(project.id, options);
+  let stories = await client.stories(project.id, {with_state: 'started'});
+  stories = stories.concat(await client.stories(project.id, {with_state: 'finished'}));
   await stories.forEach(story => {
     story.project = project;
   });
