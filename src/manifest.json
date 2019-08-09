@@ -4,10 +4,10 @@
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "16": "images/icons/16x16.png",
-    "19": "images/icons/19x19.png",
-    "20": "images/icons/20x20.png",
     "38": "images/icons/38x38.png",
-    "48": "images/icons/48x48.png"
+    "48": "images/icons/48x48.png",
+    "96": "images/icons/96x96.png",
+    "128": "images/icons/128x128.png"
   },
   "commands": {
     "_execute_browser_action": {
