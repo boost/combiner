@@ -1,6 +1,6 @@
 {
-  "name": "Boost",
-  "version": "2.1.0",
+  "name": "Combiner",
+  "version": "2.1.1",
   "description": "This extension provides harvest-pivotal-basecamp linking.",
   "main": "webpack.config.js",
   "devDependencies": {
@@ -57,7 +57,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boost/boost-browser-extension.git"
+    "url": "git+https://github.com/boost/combiner"
   },
   "keywords": [
     "harvest",
@@ -67,8 +67,8 @@
   "author": "Paul Mesnilgrente <paul.mesnilgrente@boost.co.nz>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boost/boost-browser-extension/issues"
+    "url": "https://github.com/boost/combiner/issues"
   },
-  "homepage": "https://github.com/boost/boost-browser-extension",
+  "homepage": "https://github.com/boost/combiner",
   "dependencies": {}
 }

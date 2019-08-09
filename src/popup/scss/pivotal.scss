@@ -59,7 +59,6 @@ $pivotal-background: #f1f0ea;
           display: block;
         }
       }
-
     }
 
     .focused {
@@ -72,29 +71,31 @@ $pivotal-background: #f1f0ea;
       background-color: $white;
       border-radius: 3px;
       border: 1px solid #ccc;
-      margin: 5px;
+      margin-top: 4px;
+      margin-bottom: 4px;
 
       > .row {
-        padding: 3px;
+        // padding: 3px;
         border-bottom: 1px solid #ccc;
+        padding-left: 3px;
       }
 
-      .dropdown-pane.owners {
-        ul {
-          width: 100%;
-          margin: 0;
-          li {
-            padding: 5px;
-            list-style-type: none;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-            width: 100%;
-            &:hover {
-              background-color: $light-gray;
-            }
-          }
-        }
-      }
+      // .dropdown-pane.owners {
+      //   ul {
+      //     width: 100%;
+      //     margin: 0;
+      //     li {
+      //       padding: 5px;
+      //       list-style-type: none;
+      //       border-top: 1px solid black;
+      //       border-bottom: 1px solid black;
+      //       width: 100%;
+      //       &:hover {
+      //         background-color: $light-gray;
+      //       }
+      //     }
+      //   }
+      // }
     }
   }
 

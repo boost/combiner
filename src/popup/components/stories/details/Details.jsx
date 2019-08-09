@@ -87,7 +87,8 @@ class Details extends Component {
               <button className="button secondary" onClick={this.props.onCloseClick}>Close</button>
             </div>
           </section>
-          <div className="grid-x align-margin-x">
+          <div className="grid-container fluid">
+          <div className="grid-x grid-margin-x">
             <div className="medium-6 cell info_box_wrapper">
               <div className="grid-x row">
                 <label className="cell auto">STATE</label>
@@ -140,6 +141,7 @@ class Details extends Component {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </aside>
       </section>

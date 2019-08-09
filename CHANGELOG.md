@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 2.1.1
+
+- New name: combiner
+- New logo: `src/images/icons/`
+- New repository URL: https://github.com/boost/combiner
+- New branding images: `images`
+
 ## Version 2.1.0
 
 Features:

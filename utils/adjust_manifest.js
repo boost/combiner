@@ -10,6 +10,7 @@ module.exports = (content, path) => {
     delete manifest.commands._execute_sidebar_action;
   }
   manifest.name = process.env.npm_package_name;
+  manifest.short_name = process.env.npm_package_name;
   manifest.description = process.env.npm_package_description;
   manifest.version = process.env.npm_package_version;
   manifest.author = process.env.npm_package_author;
