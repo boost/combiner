@@ -30,6 +30,11 @@ let buildMessage = story => {
     <p>N/A</p>
     <br />
     <p>
+      <strong>How to deploy</strong>
+    </p>
+    <p>N/A</p>
+    <br />
+    <p>
       <strong>Documentation</strong>
     </p>
     <p>Cloud story? Did you update the spreadsheet? :D</p>
