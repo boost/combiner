@@ -72,11 +72,12 @@ const plugins = [
 
 const options = {
   entry: {
-    'content/pivotal':  './src/content/pivotal/js/index.js',
-    'content/basecamp': './src/content/basecamp/index.js',
-    'content/gitlab':   './src/content/gitlab/index.js',
-    'content/github':   './src/content/github/index.js',
-    'popup/main':      ['./src/popup/main.js']
+    'content/pivotal':       './src/content/pivotal/js/index.js',
+    'content/basecamp':      './src/content/basecamp/index.js',
+    'content/gitlab':        './src/content/gitlab/index.js',
+    'content/github':        './src/content/github/index.js',
+    'background/background': './src/background/background.js',
+    'popup/main': ['./src/popup/main.js']
   },
   output: {
     filename: '[name].js',
