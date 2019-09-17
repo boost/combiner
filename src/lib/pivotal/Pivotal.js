@@ -10,6 +10,7 @@ import StoryCommentsRequest      from './request/StoryCommentsRequest';
 import ProjectRequest            from './request/ProjectRequest';
 import ProjectsRequest           from './request/ProjectsRequest';
 import ProjectLabelsRequest      from './request/ProjectLabelsRequest';
+import ProjectTemplatesRequest   from './request/ProjectTemplatesRequest';
 import ProjectMembershipsRequest from './request/ProjectMembershipsRequest';
 
 import IterationRequest          from './request/IterationRequest';
@@ -54,6 +55,10 @@ class Pivotal {
 
   project(project_id, options = {}) {
     return new ProjectRequest(this, project_id, options).request();
+  }
+
+  projectTemplates(project_id) {
+    return new ProjectTemplatesRequest(this, project_id).request();
   }
 
   projectLabels(project_id, options = {}) {

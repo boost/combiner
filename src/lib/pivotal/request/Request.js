@@ -4,7 +4,7 @@ class Request {
   constructor(client) {
     this.fetchOptions = {
       method: 'GET',
-      headers: new Headers({'X-TrackerToken': client.token }),
+      headers: new Headers(client.token ? {'X-TrackerToken': client.token } : {}),
       mode: 'cors',
       cache: 'default'
     };

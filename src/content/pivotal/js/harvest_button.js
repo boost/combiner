@@ -1,5 +1,6 @@
 import '../scss/pivotal.scss';
 import $ from 'jquery';
+import getProjectData from './utils/getProjectData';
 
 const STORY_PERMALINK = 'https://www.pivotaltracker.com/story/show/%ITEM_ID%';
 
@@ -12,27 +13,6 @@ const PLATFORM_CONFIG = JSON.stringify({
 let uniqueIdCounter = 0;
 let uniqueId = (prefix) => {
   return `${prefix}${uniqueIdCounter += 1}`;
-};
-
-/**
- *
- */
-
-let getProjectData = ($el) => {
-  var $header;
-
-  if (/\/workspaces\/\d+\/?$/.test(window.location.href)) {
-    $header = $el.parents('.panel').find('.panel_header_container');
-    return {
-      id: parseInt($header.find('.panel_header a.velocity').attr('data-project-id')),
-      name: $header.find('.workspace_header h3').text()
-    };
-  } else {
-    return {
-      id: parseInt(window.location.pathname.match(/projects\/(\d+)/)[1]),
-      name: $('.raw_context_name').eq(0).text()
-    };
-  }
 };
 
 /**
@@ -219,7 +199,6 @@ let reinitializeTimer = (i, el) => {
   let script = document.createElement('script');
   script.type = 'text/javascript';
   script.async = true;
-  console.log(el);
   script.textContent = [
     'window.dispatchEvent(new CustomEvent("reinitializeTimer", {',
     '  detail: {',
@@ -246,7 +225,7 @@ let reinitializeTimers = () => {
  *
  */
 
-let run = () => {
+let runHarvestButton = () => {
   // console.log('run!');
   return Promise.resolve()
     // .then(console.log('Injecting Harvest Platform configuration...'))
@@ -263,21 +242,5 @@ let run = () => {
     }).catch(console.error);
 };
 
-/**
- *
- */
 
-$(function() {
-  function waitForStoriesThenRun() {
-    let $stories = $('.story.model');
-
-    if (!$stories.length) {
-      // console.log('Waiting for stories...');
-      return setTimeout(waitForStoriesThenRun, 250);
-    }
-
-    // console.log(`Found ${$stories.length} stories...`, );
-    run();
-  }
-  waitForStoriesThenRun();
-});
+export default runHarvestButton;
