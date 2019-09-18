@@ -29,7 +29,8 @@
   "content_scripts": [
     {
       "matches": ["https://www.pivotaltracker.com/*"],
-      "js": ["content/pivotal.js"]
+      "js": ["content/pivotal.js"],
+      "css": ["content/pivotal.css"]
     },
     {
       "matches": ["https://basecamp.com/*"],

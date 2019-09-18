@@ -5,6 +5,9 @@ module.exports = (content, path) => {
   if (env.NODE_ENV == 'production') {
     delete manifest.content_security_policy;
   }
+  if (env.NODE_ENV == 'development') {
+    delete manifest.content_scripts[0].css;
+  }
   if (env.BROWSER == 'chrome') {
     delete manifest.sidebar_action;
     delete manifest.commands._execute_sidebar_action;
