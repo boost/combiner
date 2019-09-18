@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 2.2.0
+
+Features:
+
+You can now have templates on story comments from the pivotal website. The templates must be
+stored on the project here: https://www.pivotaltracker.com/projects/<your-project-id>/templates
+
+The template name must be of this format `pivotal-r4a <your template name>` (eg: `pivotal-r4a Cloud`).
+
+Bug fixes:
+
+- When autofilling a merge request on GitLab, the textarea is now resizing automatically
+- The button "Add story" in pivotal is now autofilling even when it was not present at first
+- When autofilling the story description in pivotal, the textarea is now resizing
+
 ## Version 2.1.1
 
 - New name: combiner
