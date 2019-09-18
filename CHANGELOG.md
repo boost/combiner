@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 2.2.1
+
+Bug fix:
+
+- The CSS file for the content script on pivotaltracker was not in the `manifest.json`
+
 ## Version 2.2.0
 
 Features:
