@@ -13,7 +13,7 @@ const modules = {
     test: /\.(css|scss)$/,
     loaders: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
   },{
-    test: /\.png$/,
+    test: /\.(png|svg)$/,
     include: [path.resolve(__dirname, 'src/content')],
     loaders: ['url-loader']
   },{

@@ -2,6 +2,27 @@ import '../scss/pivotal.scss';
 import $ from 'jquery';
 import getProjectData from './utils/getProjectData';
 
+// https://fontawesome.com/icons/stopwatch?style=regular
+const clockSvg = `
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    data-prefix="far"
+    data-icon="stopwatch"
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    class="svg-inline--fa fa-stopwatch fa-w-14 fa-9x"
+  >
+    <path
+      fill="currentColor"
+      d="M393.9 184l22.6-22.6c4.7-4.7 4.7-12.3 0-17l-17-17c-4.7-4.7-12.3-4.7-17 0l-20.7 20.7c-31.1-27.5-70.4-45.9-113.8-50.8V48h28c6.6 0 12-5.4 12-12V12c0-6.6-5.4-12-12-12H172c-6.6 0-12 5.4-12 12v24c0 6.6 5.4 12 12 12h28v49.4C96.4 109.3 16 197.2 16 304c0 114.9 93.1 208 208 208s208-93.1 208-208c0-44.7-14.1-86.1-38.1-120zM224 464c-88.4 0-160-71.6-160-160s71.6-160 160-160 160 71.6 160 160-71.6 160-160 160zm12-112h-24c-6.6 0-12-5.4-12-12V204c0-6.6 5.4-12 12-12h24c6.6 0 12 5.4 12 12v136c0 6.6-5.4 12-12 12z"
+      class=""
+    >
+    </path>
+  </svg>
+`
+
 const STORY_PERMALINK = 'https://www.pivotaltracker.com/story/show/%ITEM_ID%';
 
 const PLATFORM_CONFIG = JSON.stringify({
@@ -11,93 +32,113 @@ const PLATFORM_CONFIG = JSON.stringify({
 });
 
 let uniqueIdCounter = 0;
-let uniqueId = (prefix) => {
+const uniqueId = (prefix) => {
   return `${prefix}${uniqueIdCounter += 1}`;
 };
 
-/**
- *
- */
+class Story {
+  constructor($story) {
+    this.$story = $story;
+    this.id = this.findId(this.$story);
+    this.project = JSON.stringify(getProjectData(this.$story));
+    this.labels = this.parseLabelElements(this.getLabels());
+    this.title = this.getTitle();
+  }
 
-let storyTypes = [{
-  name: 'collapsed',
-  check: ($el) => {
+  parseLabelElements($labels) {
+    return $labels.map((i, el) => {
+      return el.innerHTML.replace(/,\s$/, '');
+    }).get().filter((v, k, arr) => {
+      return k === arr.indexOf(v);
+    });
+  }
+
+  harvestNote() {
+    const labels = this.labels.length ? ` [${this.labels.join(', ')}]` : ''
+    const link = ` ${STORY_PERMALINK.replace('%ITEM_ID%', this.id)}`;
+    return this.getTitle() + labels + link;
+  }
+
+  harvestDataItem() {
+    return {
+      id: this.id,
+      name: this.harvestNote()
+    };
+  }
+
+  findId() {
+    const regex = new RegExp(' story_(\\d+) ');
+
+    return parseInt(regex.exec(this.$story.attr('class'))[1])
+  }
+
+  createHarvestElement($element, className) {
+    return $element
+      .attr('data-uid', uniqueId('timer_'))
+      .attr('data-group', JSON.stringify(getProjectData(this.$story)))
+      .attr('data-item', JSON.stringify(this.harvestDataItem()))
+      .addClass(`harvest-timer harvest-timer--${className}`)
+      .append($(clockSvg))
+  }
+}
+
+class CollapsedStory extends Story {
+  getLabels() {
+    return this.$story.find('.label')
+  }
+
+  getTitle() {
+    return this.$story.find('span.story_name').text()
+  }
+
+  insertTimer() {
+    this.$story.find('span.meta').after(
+      this.createHarvestElement($('<span />'), 'collapsed')
+    )
+  }
+}
+
+class ExpandedStory extends Story {
+  getLabels() {
+    return this.$story.find('[data-aid="Label__Name"]')
+  }
+
+  getTitle() {
+    return this.$story.find('[name="story[name]"]').val()
+  }
+
+  insertTimer() {
+    this.$story.find('.actions').append(
+      this.createHarvestElement($('<button />'), 'expanded')
+        .attr('title', 'Harvest timer')
+        .attr('type', 'button')
+        .attr('tab-index', '-1')
+    );
+  }
+}
+
+class StoryFactory {
+  static call($story) {
+    if (StoryFactory.storyIsCollapsed($story)) {
+      return new CollapsedStory($story);
+    } else if (StoryFactory.storyIsExpanded($story)) {
+      return new ExpandedStory($story);
+    }
+  }
+
+  static storyIsCollapsed($story) {
     let href = /\/(projects|workspaces)\/\d+/.test(window.location.href);
-    return href && $el.has('header.preview').length;
-  },
-  fn: ($el, setupTimer) => {
-    setupTimer(
-      $el,
-      parseInt($el.data('id')),
-      $el.find('span.story_name').text(),
-      'harvest-timer-collapsed',
-      $el.find('.label'),
-      $el
-    );
+    return href && $story.has('header.preview').length;
   }
-},{
-  name: 'expanded',
-  check: ($el) => {
+
+  static storyIsExpanded($story) {
     let href = /\/(projects|workspaces)\/\d+/.test(window.location.href);
-    let $details = $el.has('div.edit.details');
-    return href && $el.is(':not(.maximized)') && $details.length;
-  },
-  fn: ($el, setupTimer) => {
-    setupTimer(
-      $el,
-      parseInt($el.data('id')),
-      $el.find('[name="story[name]"]').val(),
-      'harvest-timer-expanded',
-      $el.find('ul.selected.labels a.label'),
-      $el.find('nav.edit div.actions')
-    );
+    let $details = $story.has('div.edit.details');
+    return href && $story.is(':not(.maximized)') && $details.length;
   }
-},{
-  name: 'detail',
-  check: ($el) => {
-    let href = /\/projects\/\d+\/stories\/\d+/.test(window.location.href);
-    let $details = $el.has('div.edit.details');
-    return href && $el.is('.maximized') && $details.length;
-  },
-  fn: ($el, setupTimer) => {
-    setupTimer(
-      $el,
-      parseInt($el.find('.clipboard_button.id').data('clipboard-text').replace('#', '')),
-      $el.find('[name="story[name]"]').val(),
-      'harvest-timer-detail',
-      $el.find('ul.selected.labels a.label.name'),
-      $el.find('nav.edit div.actions')
-    );
-  }
-}];
+}
 
-/**
- *
- */
-
-let findStoryType = ($el) => {
-  return storyTypes.filter((storyType) => {
-    return storyType.check($el);
-  }).shift();
-};
-
-/**
- *
- */
-
-let parseLabelElements = ($labels) => {
-  return $labels.map((i, el) => {
-    return $(el).text().replace(/,\s$/, '');
-  }).get().filter((v, k, arr) => {
-    return k === arr.indexOf(v);
-  });
-};
-
-/**
- *
- */
-
-let injectHarvestPlatformConfig = () => {
+const injectHarvestPlatformConfig = () => {
   return new Promise(resolve => {
     let script = document.createElement('script');
     script.type = 'text/javascript';
@@ -110,65 +151,26 @@ let injectHarvestPlatformConfig = () => {
   });
 };
 
-/**
- *
- */
-
-let setupTimers = () => {
+const setupTimers = () => {
   return new Promise(resolve => {
-    let $stories = $('.story.model.item').not(':has(.harvest-timer)');
+    const $stories = $('.story.model.item')
+      .not(':has(.harvest-timer)')
+      .not(':has(button[type="submit"])');
 
-    $stories.each(function(i, el) {
-      let $el = $(el);
-      let storyType = findStoryType($el);
-
-      if (storyType) {
-        (storyType.fn || $.noop)($el, setupTimer);
-      }
+    $stories.each(function() {
+      StoryFactory.call($(this)).insertTimer();
     });
 
     resolve($stories.find('.harvest-timer'));
   });
 };
 
-/**
- *
- */
-
-let setupTimer = ($el, id, name, className, $labels, $appendTo) => {
-  let data_item = {};
-  let labels = parseLabelElements($labels);
-  let $timer = $el.find('.harvest-timer');
-
-  data_item.id = id;
-  data_item.name = name;
-  data_item.name += labels.length ? ` [${labels.join(', ')}]` : '';
-  data_item.name += ` ${STORY_PERMALINK.replace('%ITEM_ID%', id)}`;
-
-  if (!$timer.length) {
-    $timer = $('<div />')
-      .appendTo($appendTo)
-      .addClass(`harvest-timer ${className}`)
-      .attr('data-uid', uniqueId('timer_'))
-      .attr('data-group', JSON.stringify(getProjectData($el)))
-      .attr('data-item', JSON.stringify(data_item));
-  }
-};
-
-/**
- *
- */
-
-let loadHarvestPlatform = () => {
+const loadHarvestPlatform = () => {
   let url = 'https://platform.harvestapp.com/assets/platform.js';
   return Promise.resolve($.getScript(url));
 };
 
-/**
- *
- */
-
-let setupEventProxy = () => {
+const setupEventProxy = () => {
   return new Promise(resolve => {
     let script = document.createElement('script');
     script.type = 'text/javascript';
@@ -191,11 +193,7 @@ let setupEventProxy = () => {
   });
 };
 
-/**
- *
- */
-
-let reinitializeTimer = (i, el) => {
+const reinitializeTimer = (i, el) => {
   let script = document.createElement('script');
   script.type = 'text/javascript';
   script.async = true;
@@ -209,11 +207,7 @@ let reinitializeTimer = (i, el) => {
   $('head').append(script);
 };
 
-/**
- *
- */
-
-let reinitializeTimers = () => {
+const reinitializeTimers = () => {
   // console.log(`Reinitializing timers...`);
   return setupTimers().then(function ($timers) {
     $timers.each(reinitializeTimer);
@@ -221,12 +215,8 @@ let reinitializeTimers = () => {
   });
 };
 
-/**
- *
- */
-
-let runHarvestButton = () => {
-  // console.log('run!');
+const runHarvestButton = () => {
+  console.log('run!');
   return Promise.resolve()
     // .then(console.log('Injecting Harvest Platform configuration...'))
     .then(injectHarvestPlatformConfig)

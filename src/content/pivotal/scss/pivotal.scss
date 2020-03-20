@@ -1,74 +1,30 @@
-/**
- * Shrink the "close/save" button in detail view to create space for Harvest
- * timer alongside other action buttons.
- */
+section.model_details .actions {
+  // the default width is too small to include the new button
+  width: 310px;
 
-section.model_details .story .persistence.use_click_to_copy .save,
-section.model_details .story .persistence.use_click_to_copy .close {
-  width: 78px;
-}
-
-.story.model.item header.preview {
-  .expander {
-    width: 13px;
-  }
-
-  .meta {
-    margin-left: 34px;
-    &:before {
-      margin-left: -35px;
-    }
-    span {
-      width: 14px;
-    }
+  .harvest-timer--expanded {
+    border-radius: 0px 2px 2px 0px;
+    padding: 3px;
   }
 }
-
-/**
- * Timer-specific styling.
- */
 
 .harvest-timer {
-  background: url(../img/harvest-icon.png) no-repeat #eee;
-  border: 1px solid #999;
   cursor: pointer;
 
   &.running {
-    background-color: #407aa5;
-    border: 1px solid #1e3045;
+    color: #407aa5;
   }
 
   &:hover {
-    background-color: #325276;
-    border: 1px solid #1e3045;
+    color: #325276;
   }
 
-  &.harvest-timer-collapsed {
-    background-position: 2px 1px;
-    border-radius: 2px;
-    height: 16px;
-    left: 30px;
-    position: absolute;
-    top: 4px;
-    width: 16px;
-    &:hover,
-    &.running {
-      background-position-x: -14px;
-    }
-  }
-
-  &.harvest-timer-expanded,
-  &.harvest-timer-detail {
-    background-position: 4px 3px;
-    border-radius: 0px 2px 2px 0px;
+  &.harvest-timer--collapsed {
+    width: 15px;
     float: left;
-    height: 20px;
-    margin-left: -1px;
-    position: relative;
-    width: 19px;
-    &:hover,
-    &.running {
-      background-position-x: -12px;
-    }
+    height: 15px;
+    margin-top: 4px;
+    margin-right: 5px;
+    margin-left: -5px;
   }
 }
