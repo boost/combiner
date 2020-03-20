@@ -26,17 +26,13 @@ const waitForNewStory = () => {
   $story.find('div[data-aid="renderedDescription"]').click(waitForDescriptionTextarea);
 };
 
-const initAddStory = () => {
-  $('a[title="Add Story"]').each(function() {
+const runAddStory = () => {
+  $('[title="Add Story"]').each(function() {
     if ($(this).data('eventset') == undefined) {
       $(this).data('eventset', 'true');
       $(this).click(waitForNewStory);
     }
   });
-};
-
-const runAddStory = () => {
-  setInterval(initAddStory, 1000);
 }
 
 export default runAddStory;
