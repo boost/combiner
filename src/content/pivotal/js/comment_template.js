@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import browser from 'webextension-polyfill';
 import Pivotal from 'pivotal';
-import getProjectData from './utils/getProjectData';
+import getTemplates from './utils/getTemplates';
 
 let templates = [];
 
@@ -33,7 +33,7 @@ const setupDropdown = ($dropdown, $textarea) => {
   $dropdown.find('li').last().remove();
 
   for (let i = 0; i < templates.length; i++) {
-    const templateName = templates[i].name.replace('pivotal-r4a', '').trim();
+    const templateName = templates[i].name.replace('[pivotal-r4a] ', '').trim();
     const $currentTemplateElement = $templateElement.clone();
     $currentTemplateElement.find('span').text(templateName);
     $currentTemplateElement.find('span').attr('data-index', i);
@@ -74,10 +74,7 @@ const initCommentTemplate = () => {
 };
 
 const runCommentTemplate = async () => {
-  const client = new Pivotal();
-  const projectId = getProjectData().id;
-  const json = await client.projectTemplates(projectId);
-  templates = json.story_templates.filter((template) => { return template.name.match(/pivotal-r4a/) });
+  templates = await getTemplates('pivotal-r4a');
   setInterval(initCommentTemplate, 1000);
 };
 
