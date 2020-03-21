@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader/root';
 import browser from 'webextension-polyfill';
 import React, { Component } from 'react';
 import Header from './Header';
@@ -103,4 +102,4 @@ class Root extends Component {
   }
 }
 
-export default hot(Root);
+export default Root;
