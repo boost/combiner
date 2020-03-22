@@ -1,6 +1,6 @@
 import '../scss/pivotal.scss';
 import $ from 'jquery';
-import getProjectData from './utils/getProjectData';
+import scrapProjectData from 'utils/scrap_project_data';
 
 // https://fontawesome.com/icons/stopwatch?style=regular
 const clockSvg = `
@@ -40,7 +40,7 @@ class Story {
   constructor($story) {
     this.$story = $story;
     this.id = this.findId(this.$story);
-    this.project = JSON.stringify(getProjectData(this.$story));
+    this.project = JSON.stringify(scrapProjectData(this.$story));
     this.labels = this.parseLabelElements(this.getLabels());
     this.title = this.getTitle();
   }
@@ -75,7 +75,7 @@ class Story {
   createHarvestElement($element, className) {
     return $element
       .attr('data-uid', uniqueId('timer_'))
-      .attr('data-group', JSON.stringify(getProjectData(this.$story)))
+      .attr('data-group', JSON.stringify(scrapProjectData(this.$story)))
       .attr('data-item', JSON.stringify(this.harvestDataItem()))
       .addClass(`harvest-timer harvest-timer--${className}`)
       .append($(clockSvg))

@@ -1,7 +1,8 @@
 import $ from 'jquery';
 import browser from 'webextension-polyfill';
 import Pivotal from 'pivotal';
-import getTemplates from './utils/getTemplates';
+import scrapProjectData from 'utils/scrap_project_data';
+import getTemplates from 'utils/get_templates';
 
 let templates = [];
 
@@ -74,7 +75,8 @@ const initCommentTemplate = () => {
 };
 
 const runCommentTemplate = async () => {
-  templates = await getTemplates('pivotal-r4a');
+  const projectId = scrapProjectData().id;
+  templates = await getTemplates(new Pivotal(), 'pivotal-r4a', projectId, '', false);
   setInterval(initCommentTemplate, 1000);
 };
 

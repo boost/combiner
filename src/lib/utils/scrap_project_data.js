@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const getProjectData = ($el = null) => {
+const scrapProjectData = ($el = null) => {
   var $header;
 
   if (/\/workspaces\/\d+\/?$/.test(window.location.href)) {
@@ -17,4 +17,4 @@ const getProjectData = ($el = null) => {
   }
 };
 
-export default getProjectData;
+export default scrapProjectData;

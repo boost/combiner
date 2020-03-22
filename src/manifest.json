@@ -39,16 +39,12 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["https://github.com/*"],
-      "js": ["content/github.js"],
-      "run_at": "document_end"
-    },
-    {
       "matches": [
         "https://gitlab.digitalnz.org/*",
-        "https://gitlab.com/*/*/merge_requests/new*"
+        "https://gitlab.com/*/*/merge_requests/new*",
+        "https://github.com/*"
       ],
-      "js": ["content/gitlab.js"],
+      "js": ["content/pull_request.js"],
       "run_at": "document_end"
     }
   ],

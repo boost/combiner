@@ -47,8 +47,8 @@
     "webpack-notifier": "^1.8.0"
   },
   "scripts": {
-    "watch:firefox": "NODE_ENV=development BROWSER=firefox webpack-dev-server",
-    "watch:chrome": " NODE_ENV=development BROWSER=chrome  webpack-dev-server",
+    "watch:firefox": "NODE_ENV=development BROWSER=firefox webpack --watch",
+    "watch:chrome": " NODE_ENV=development BROWSER=chrome  webpack --watch",
     "build:firefox": "NODE_ENV=production  BROWSER=firefox webpack",
     "build:chrome": " NODE_ENV=production  BROWSER=chrome  webpack",
     "web-ext:lint": "./node_modules/.bin/web-ext -s build lint"

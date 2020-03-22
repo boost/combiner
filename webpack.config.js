@@ -67,8 +67,7 @@ const options = {
   entry: {
     'content/pivotal':       './src/content/pivotal/js/index.js',
     'content/basecamp':      './src/content/basecamp/index.js',
-    'content/gitlab':        './src/content/gitlab/index.js',
-    'content/github':        './src/content/github/index.js',
+    'content/pull_request':  './src/content/pull_request/index.js',
     'background/background': './src/background/background.js',
     'popup/main': ['./src/popup/main.js']
   },

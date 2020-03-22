@@ -1,4 +1,6 @@
 import browser from 'webextension-polyfill';
+import getTemplates from 'utils/get_templates';
+import evalTemplate from 'utils/eval_template';
 
 let getCurrentIteration = async client => {
   const project = await getCurrentProject(client);
@@ -80,9 +82,17 @@ let enrichStory = async (client, story, options) => {
 
 let sendStoryDetails = async (client, story) => {
   const enrichedStory = await enrichStory(client, story, ['owners', 'requester']);
+  const templates = await client.projectTemplates(story.project_id);
+
+  const titleTemplate = await getTemplates(client, 'pr-title', story.project_id, browser.i18n.getMessage('prTitleTemplate'));
+  const descriptionTemplate = await getTemplates(client, 'pr-description', story.project_id, browser.i18n.getMessage('prDescriptionTemplate'));
 
   const tabs = await browser.tabs.query({active: true, currentWindow: true});
-  return browser.tabs.sendMessage(tabs[0].id, enrichedStory);
+  const tab = tabs[0];
+  return browser.tabs.sendMessage(tab.id, {
+    title: evalTemplate(story, titleTemplate.description),
+    description: evalTemplate(story, descriptionTemplate.description)
+  });
 };
 
 let buildGetUrl = (url, params) => {

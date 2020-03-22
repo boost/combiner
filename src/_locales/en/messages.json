@@ -1,9 +1,15 @@
 {
 	"storyDescriptionTemplate": {
-		"message": "**Acceptance Criteria**\n- {AC1}\n\n**Notes**\n- {NOTE1}"
+		"message": "**Acceptance Criteria**\n- <AC1>\n\n**Notes**\n- <NOTE1>"
 	},
 	"storyTitleTemplate": {
-		"message": "{TITLE}: As {user}, I want {description}, so that I can {benefit}."
+		"message": "<TITLE>: As <user>, I want <description>, so that <benefit>"
+	},
+	"prTitleTemplate": {
+		"message": "{story.title}"
+	},
+	"prDescriptionTemplate": {
+		"message": "[{story.title}]({story.url})\n\nSTORY\n=====\n\n{story.description}\n\nWHAT WAS DONE\n==============\n\n- \n\nSCREENSHOTS\n============\n"
 	},
 	"previewDefaultText" : {
 		"message": "Preview your [Markdown formatted](https://www.pivotaltracker.com/help/markdown) text here."
