@@ -40,3 +40,31 @@ Optionally, for testing some features, you will need an account on:
   "load unpacked extension..." button and select the `build/` directory within
   the location where you cloned this repository
 - Navigate to a PivotalTracker project in your browser and voilá!
+
+## III. Deployment
+
+1. Update the CHANGELOG.md
+2. Update the version in `package.json`
+
+### III.1 Firefox
+
+1. Build it: `npm run build:firefox`
+1. Verify that everything is ok: `npm run web-ext:lint`
+2. Zip it: `cd build; zip -r ../dist/firefox.zip *; cd ..`
+  - Chrome:
+3. Zip the source code: `zip -r $(git ls-files)`
+4. Build the firefox source code: `npm run build:firefox`
+5. Go to the add-on admin page: https://addons.mozilla.org/en-US/developers/addons
+6. Click on Upload New Version and follow the steps
+7. Wait for the new version to be validated and deployed
+
+### III.1 Chrome
+
+1. Build it: `npm run build:chrome`
+1. Verify that everything is ok: `npm run web-ext:lint`
+2. Zip it: `zip -r dist/chrome.zip build`
+3. Zip the source code: `zip -r $(git ls-files)`
+4. Build the firefox source code: `npm run build:firefox`
+5. Go to the developer dashboard: https://chrome.google.com/webstore/developer/dashboard
+6. Click on the application
+7. Click on Upload new package
