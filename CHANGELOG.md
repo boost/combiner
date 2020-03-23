@@ -1,5 +1,43 @@
 # Changelog
 
+## Version 2.3.1
+
+Feature:
+
+Comments in pivotaltracker.com can now have snippets.
+
+Bug fixes:
+
+Basecamp can be filled with a ready for acceptance message again. This message can be templated
+with a pivotal tracker template with a name starting with `[pivotal-r4a] `.
+
+## Version 2.3.0
+
+Features:
+
+- Nicer clock icon in the pivotal tracker website
+- It's now possible to cycle through snippets in the title and description
+  of pivotaltracker.com using `tab` or `shift+tab`
+- Changed the placeholders to be `<TITLE>` instead of `{TITLE}`
+- A story title/description can now be templated using pivotal tracker templates
+  - create a template with a name starting with `[pivotal-title] ` for a title template
+  - create a template with a name starting with `[pivotal-descr] ` for a title template
+- Pull requests can now be templated in pivotal tracker's templates:
+	- create a template with a name starting with `[pr-title] ` for a title template
+	- create a template with a name starting with `[pr-description] ` for a title description
+	- in the templates description you can do `{story.title}` and it will replaced automotically
+	- it's working with:
+		- `{story.id}`
+    - `{story.title}`
+    - `{story.description}`
+    - `{story.project_id}`
+    - `{story.url}`
+
+Bug fixes:
+
+- "Add Story" working again. A JQuery selector was changed
+	to work with the new DOM in pivotaltracker.com
+
 ## Version 2.2.1
 
 Bug fix:

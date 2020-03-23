@@ -13,10 +13,6 @@ const modules = {
     test: /\.(css|scss)$/,
     loaders: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
   },{
-    test: /\.png$/,
-    include: [path.resolve(__dirname, 'src/content')],
-    loaders: ['url-loader']
-  },{
     test: /\.(ttf|otf|eot|svg|woff(2)?)$/,
     include: [path.resolve(__dirname, 'src/popup')],
     use: [{
@@ -45,10 +41,7 @@ const modules = {
   },{
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
-    // Release to support eslint6 soon: https://github.com/webpack-contrib/eslint-loader/issues/264
-    // https://github.com/webpack-contrib/eslint-loader/issues/271
-    // https://github.com/webpack-contrib/eslint-loader/issues/269
-    use: ['babel-loader']
+    loader: 'babel-loader'
   }]
 };
 
@@ -74,8 +67,7 @@ const options = {
   entry: {
     'content/pivotal':       './src/content/pivotal/js/index.js',
     'content/basecamp':      './src/content/basecamp/index.js',
-    'content/gitlab':        './src/content/gitlab/index.js',
-    'content/github':        './src/content/github/index.js',
+    'content/pull_request':  './src/content/pull_request/index.js',
     'background/background': './src/background/background.js',
     'popup/main': ['./src/popup/main.js']
   },
@@ -86,6 +78,7 @@ const options = {
   },
   mode: env.NODE_ENV,
   devServer: {
+    contentBase: 'build',
     disableHostCheck: true,
     // https://github.com/webpack/webpack-dev-server/issues/416#issuecomment-287797086
     port: env.PORT,
@@ -107,10 +100,6 @@ const options = {
 
 if (env.NODE_ENV == 'development') {
   options.devtool = 'cheap-module-eval-source-map';
-  // MiniCssExtractPlugin does not support HMR well yet
-  modules.rules[0].loaders[0] = 'style-loader';
-  options.entry['popup/main'].push(`webpack-dev-server/client?http://localhost:${env.PORT}`);
-  options.entry['popup/main'].push('webpack/hot/dev-server');
 }
 
 module.exports = options;

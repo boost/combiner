@@ -1,4 +1,6 @@
 import browser from 'webextension-polyfill';
+import getTemplates from 'utils/get_templates';
+import evalTemplate from 'utils/eval_template';
 
 let getCurrentIteration = async client => {
   const project = await getCurrentProject(client);
@@ -78,12 +80,28 @@ let enrichStory = async (client, story, options) => {
 };
 /* eslint-enable require-atomic-updates */
 
-let sendStoryDetails = async (client, story) => {
+let sendDetails = async (client, story, tab, title, description) => {
   const enrichedStory = await enrichStory(client, story, ['owners', 'requester']);
 
-  const tabs = await browser.tabs.query({active: true, currentWindow: true});
-  return browser.tabs.sendMessage(tabs[0].id, enrichedStory);
+  return browser.tabs.sendMessage(tab.id, {
+    title: evalTemplate(story, title),
+    description: evalTemplate(story, description)
+  });
+}
+
+let sendR4ADetails = async (client, story, tab) => {
+  const titleTemplate = await getTemplates(client, 'r4a-title', story.project_id, browser.i18n.getMessage('readyForAcceptanceTitleTemplate'));
+  const descriptionTemplate = await getTemplates(client, 'r4a-description', story.project_id, browser.i18n.getMessage('readyForAcceptanceDescriptionTemplate'));
+
+  return await sendDetails(client, story, tab, titleTemplate.description, descriptionTemplate.description)
 };
+
+let sendPrDetails = async (client, story, tab) => {
+  const titleTemplate = await getTemplates(client, titleTemplate, story.project_id, browser.i18n.getMessage('prTitleTemplate'));
+  const descriptionTemplate = await getTemplates(client, descriptionTemplate, story.project_id, browser.i18n.getMessage('prDescriptionTemplate'));
+
+  return await sendDetails(client, story, tab, titleTemplate.description, descriptionTemplate.description);
+}
 
 let buildGetUrl = (url, params) => {
   const urlParams = '?' + Object.keys(params).map(key => key + '=' + params[key]).join('&');
@@ -97,6 +115,7 @@ export {
   getCurrentProject,
   getUserOwnedStories,
   enrichStory,
-  sendStoryDetails,
+  sendR4ADetails,
+  sendPrDetails,
   buildGetUrl
 };

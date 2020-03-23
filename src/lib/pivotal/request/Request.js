@@ -11,9 +11,10 @@ class Request {
   }
 
   async request() {
-    const response = await fetch(`${PIVOTAL_URL}${this.uri()}${this.getParams()}`, this.fetchOptions);
+    const url = `${PIVOTAL_URL}${this.uri()}${this.getParams()}`;
+    const response = await fetch(url, this.fetchOptions);
     if (!response.ok) {
-      throw Error(response.statusText);
+      throw Error(`${url}: ${response.statusText}`);
     }
     return response.json();
   }

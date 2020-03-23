@@ -1,7 +1,9 @@
 import $ from 'jquery';
 import browser from 'webextension-polyfill';
 import Pivotal from 'pivotal';
-import getProjectData from './utils/getProjectData';
+import scrapProjectData from 'utils/scrap_project_data';
+import getTemplates from 'utils/get_templates';
+import snippetInput from 'utils/snippet_input';
 
 let templates = [];
 
@@ -33,7 +35,7 @@ const setupDropdown = ($dropdown, $textarea) => {
   $dropdown.find('li').last().remove();
 
   for (let i = 0; i < templates.length; i++) {
-    const templateName = templates[i].name.replace('pivotal-r4a', '').trim();
+    const templateName = templates[i].name.replace('[pivotal-r4a] ', '').trim();
     const $currentTemplateElement = $templateElement.clone();
     $currentTemplateElement.find('span').text(templateName);
     $currentTemplateElement.find('span').attr('data-index', i);
@@ -45,7 +47,7 @@ const setupDropdown = ($dropdown, $textarea) => {
       event.preventDefault();
 
       const templateIndex = parseInt(event.target.getAttribute('data-index'));
-      $textarea.val(templates[templateIndex].description);
+      snippetInput($textarea, templates[templateIndex].description)
       $textarea.focus();
     });
   }
@@ -74,10 +76,8 @@ const initCommentTemplate = () => {
 };
 
 const runCommentTemplate = async () => {
-  const client = new Pivotal();
-  const projectId = getProjectData().id;
-  const json = await client.projectTemplates(projectId);
-  templates = json.story_templates.filter((template) => { return template.name.match(/pivotal-r4a/) });
+  const projectId = scrapProjectData().id;
+  templates = await getTemplates(new Pivotal(), 'pivotal-r4a', projectId, '', false);
   setInterval(initCommentTemplate, 1000);
 };
 
