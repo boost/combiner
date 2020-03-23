@@ -5,7 +5,7 @@ export default function snippetInput($_input, message, selectFirst = true) {
 
   const buildSelections = (text, caret) => {
     const delimiters = ['<', '>'];
-    const regex = new RegExp(`${delimiters[0]}\\w*${delimiters[1]}`, 'g');
+    const regex = new RegExp(`${delimiters[0]}[^${delimiters[1]}]*${delimiters[1]}`, 'g');
 
     return [...text.matchAll(regex)].map((match) => {
       return {
