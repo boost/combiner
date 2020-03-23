@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import browser from 'webextension-polyfill';
-import { sendStoryDetails } from 'utils';
+import { sendPrDetails, sendR4ADetails } from 'utils';
 import StoryLine from './StoryLine';
 import StoryDetailsEdit from './details/StoryDetailsEdit';
 
@@ -19,9 +19,15 @@ class Story extends Component {
     this.setState({details: true});
   }
 
-  handleAutofillClick() {
-    sendStoryDetails(this.props.client, this.props.data)
-    .catch(error => { console.log(`Error: ${error}`); });
+  async handleAutofillClick() {
+    const tabs = await browser.tabs.query({active: true, currentWindow: true});
+    const tab = tabs[0];
+    if (tab.url.match(/basecamp\.com/)) {
+      sendR4ADetails(this.props.client, this.props.data, tab)
+    } else {
+      sendPrDetails(this.props.client, this.props.data, tab)
+      .catch(error => { console.log(`Error: ${error}`); });
+    }
   }
 
   handleCloseClick() {
