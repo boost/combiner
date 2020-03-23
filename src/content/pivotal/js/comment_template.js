@@ -3,6 +3,7 @@ import browser from 'webextension-polyfill';
 import Pivotal from 'pivotal';
 import scrapProjectData from 'utils/scrap_project_data';
 import getTemplates from 'utils/get_templates';
+import snippetInput from 'utils/snippet_input';
 
 let templates = [];
 
@@ -46,7 +47,7 @@ const setupDropdown = ($dropdown, $textarea) => {
       event.preventDefault();
 
       const templateIndex = parseInt(event.target.getAttribute('data-index'));
-      $textarea.val(templates[templateIndex].description);
+      snippetInput($textarea, templates[templateIndex].description)
       $textarea.focus();
     });
   }
