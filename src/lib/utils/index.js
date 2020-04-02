@@ -97,8 +97,8 @@ let sendR4ADetails = async (client, story, tab) => {
 };
 
 let sendPrDetails = async (client, story, tab) => {
-  const titleTemplate = await getTemplates(client, titleTemplate, story.project_id, browser.i18n.getMessage('prTitleTemplate'));
-  const descriptionTemplate = await getTemplates(client, descriptionTemplate, story.project_id, browser.i18n.getMessage('prDescriptionTemplate'));
+  const titleTemplate = await getTemplates(client, 'pr-title', story.project_id, browser.i18n.getMessage('prTitleTemplate'));
+  const descriptionTemplate = await getTemplates(client, 'pr-description', story.project_id, browser.i18n.getMessage('prDescriptionTemplate'));
 
   return await sendDetails(client, story, tab, titleTemplate.description, descriptionTemplate.description);
 }
