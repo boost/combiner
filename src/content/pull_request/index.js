@@ -15,7 +15,7 @@ browser.runtime.onMessage.addListener(pull_request => {
     let script = document.createElement('script');
     script.type = 'text/javascript';
     script.async = true;
-    script.textContent = `$('${description_selector}').trigger('change');`;
+    script.textContent = `$('#merge_request_description').trigger('change');`;
     $('head').append(script);
   }
 });
