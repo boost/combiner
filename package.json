@@ -1,6 +1,6 @@
 {
   "name": "Combiner",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "This extension provides harvest-pivotal-basecamp linking.",
   "main": "webpack.config.js",
   "devDependencies": {
@@ -51,7 +51,10 @@
     "watch:chrome": " NODE_ENV=development BROWSER=chrome  webpack --watch",
     "build:firefox": "NODE_ENV=production  BROWSER=firefox webpack",
     "build:chrome": " NODE_ENV=production  BROWSER=chrome  webpack",
-    "web-ext:lint": "./node_modules/.bin/web-ext -s build lint"
+    "web-ext:lint": "./node_modules/.bin/web-ext lint --source-dir=build",
+    "web-ext:run": "./node_modules/.bin/web-ext run --source-dir=build",
+    "lint": "./node_modules/.bin/eslint 'src/**/*'",
+    "lint-fix": "./node_modules/.bin/eslint --fix 'src/**/*'"
   },
   "repository": {
     "type": "git",

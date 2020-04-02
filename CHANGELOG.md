@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 2.3.2
+
+Bug fix:
+
+- The first selection on snippet was not exactly selecting the placeholder
+- The textarea description in pivotal is now resizing on click
+- Merge/Pull requests were not using the template in pivotal
+- Merge requests description in GitLab were not scrollable after fill
+
 ## Version 2.3.1
 
 Feature:

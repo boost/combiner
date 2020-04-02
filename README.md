@@ -50,7 +50,6 @@ Optionally, for testing some features, you will need an account on:
 3. Build it: `npm run build:firefox`
 4. Verify that everything is ok: `npm run web-ext:lint`
 5. Zip it: `cd build; zip -r ../dist/firefox.zip *; cd ..`
-  - Chrome:
 6. Zip the source code: `zip -r source_code.zip $(git ls-files)`
 7. Go to the add-on admin page: https://addons.mozilla.org/en-US/developers/addons
 8. Click on Upload New Version and follow the steps
