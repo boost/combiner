@@ -11,3 +11,14 @@ Table of Content
     <a href="{{ doc.url }}">{{ doc.number }}. {{ doc.name }}</a>
   </h2>
 {% endfor %}
+
+Blogs
+=====
+
+{% for post in site.posts %}
+  <h2>
+    <a href="{{ post.url }}">
+      {{ post.date | date: '%y/%m/%d' }} {{ post.title }}
+    </a>
+  </h2>
+{% endfor %}

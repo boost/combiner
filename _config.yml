@@ -41,6 +41,10 @@ defaults:
       type: docs
     values:
       layout: docs
+  - scope:
+      type: posts
+    values:
+      layout: posts
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
