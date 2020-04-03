@@ -13,7 +13,7 @@ const waitForDescriptionTextarea = () => {
 
   if (!$textarea.length) return setTimeout(waitForDescriptionTextarea, 250);
 
-  snippetInput($textarea, descriptionTemplate.description, false);
+  snippetInput($textarea, descriptionTemplate.description, 'keyup');
 };
 
 const waitForNewStory = () => {
@@ -30,11 +30,11 @@ const waitForNewStory = () => {
 const runAddStory = async () => {
   const projectId = scrapProjectData().id;
   titleTemplate = await getTemplates(
-    new Pivotal(), 'pivotal-title', projectId,
+    new Pivotal(), 'story-title', projectId,
     browser.i18n.getMessage('storyTitleTemplate')
   )
   descriptionTemplate = await getTemplates(
-    new Pivotal(), 'pivotal-default-descr', projectId,
+    new Pivotal(), 'story-descr', projectId,
     browser.i18n.getMessage('storyDescriptionTemplate')
   )
   $('[title="Add Story"]').each(function() {

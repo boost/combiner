@@ -17,7 +17,6 @@ const extractDropdown = () => {
   const $dropdown = $attachment.parent('a').find('[data-aid="attachmentDropdownButton--dropDownMenuWrapper"]').clone();
   $attachment.trigger('click');
 
-
   $attachment.parents('span[data-aid="CommentEditToolbar__container"]').toggle();
   return $dropdown;
 }

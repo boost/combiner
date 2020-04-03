@@ -1,13 +1,14 @@
 import $ from 'jquery';
 
-export default function snippetInput($_input, message, selectFirst = true) {
+export default function snippetInput($_input, message, eventName = null) {
   const $input = $_input;
 
   const buildSelections = (text, caret) => {
     const delimiters = ['<', '>'];
     const regex = new RegExp(`${delimiters[0]}[^${delimiters[1]}]*${delimiters[1]}`, 'g');
 
-    return [...text.matchAll(regex)].map((match) => {
+    // new lines are breaking the indexes
+    return [...text.replace(/(?:\r\n|\r|\n)/g, ' ').matchAll(regex)].map((match) => {
       return {
         start: match.index,
         end: match.index + match[0].length
@@ -24,12 +25,15 @@ export default function snippetInput($_input, message, selectFirst = true) {
 
       if (s1.start < s2.start && s2.start < caret) return -1;
       if (s2.start < s1.start && s1.start < caret) return 1;
+
       return 0;
     });
   }
 
   const selectNext = (selections) => {
-    $input[0].setSelectionRange(selections[0].start, selections[0].end);
+    if (selections) {
+      $input[0].setSelectionRange(selections[0].start, selections[0].end);
+    }
   };
 
   const selectPrevious = (selections) => {
@@ -54,10 +58,14 @@ export default function snippetInput($_input, message, selectFirst = true) {
 
   // init context
   $input.val(message);
-  if (selectFirst) {
-    const selections = buildSelections(message, -1);
-    selectNext(selections);
+  if (eventName) {
+    event = document.createEvent('HTMLEvents');
+    event.initEvent(eventName, true, true);
+    $input[0].dispatchEvent(event)
   }
+
+  const selections = buildSelections(message, -1);
+  selectNext(selections);
 
   // handle tab key default action
   $input.keydown(handleSelections);
