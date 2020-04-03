@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import TextareaAutosize from 'react-textarea-autosize';
-import ReactMarkdown from 'react-markdown';
-import { tabsTitleClass, tabsPanelClass } from 'utils/foundation';
-import bindAll from 'lodash/bindAll';
-import browser from 'webextension-polyfill';
+import React, { Component } from 'react'
+import TextareaAutosize from 'react-textarea-autosize'
+import ReactMarkdown from 'react-markdown'
+import { tabsTitleClass, tabsPanelClass } from 'utils/foundation'
+import bindAll from 'lodash/bindAll'
+import browser from 'webextension-polyfill'
 
 class MarkdownEditor extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.previewDefaultText = browser.i18n.getMessage('previewDefaultText');
+    this.previewDefaultText = browser.i18n.getMessage('previewDefaultText')
 
     this.state = {
       previewMode: props.previewMode || false,
@@ -21,25 +21,25 @@ class MarkdownEditor extends Component {
       'handleWriteTabClick',
       'handlePreviewTabClick',
       'handleContentChange'
-    ]);
+    ])
   }
 
   handleWriteTabClick(event) {
-    event.preventDefault();
-    this.setState({previewMode: false});
+    event.preventDefault()
+    this.setState({previewMode: false})
   }
 
   handlePreviewTabClick(event) {
-    event.preventDefault();
-    this.setState({previewMode: true});
+    event.preventDefault()
+    this.setState({previewMode: true})
   }
 
   handleContentChange(event) {
-    const value = event.target.value;
+    const value = event.target.value
     this.setState({
       content: value,
       previewSource: value || this.previewDefaultText
-    });
+    })
   }
 
   render() {
@@ -49,7 +49,7 @@ class MarkdownEditor extends Component {
         <button className="button hollow secondary cell shrink">Cancel</button>
         <button className="button cell shrink">Update</button>
       </footer>
-    );
+    )
 
     return (
       <div className="markdown-editor">
@@ -90,8 +90,8 @@ class MarkdownEditor extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default MarkdownEditor;
+export default MarkdownEditor

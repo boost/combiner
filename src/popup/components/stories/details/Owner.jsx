@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import bindAll from 'lodash/bindAll';
-import Select from 'react-select';
+import React, { Component } from 'react'
+import bindAll from 'lodash/bindAll'
+import Select from 'react-select'
 
 class Owner extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       dropdownOpened: false
@@ -12,28 +12,28 @@ class Owner extends Component {
 
     bindAll(this, [
       'handleSelect'
-    ]);
+    ])
   }
 
   handleSelect(event) {
-    console.log('handleSelect');
+    console.log('handleSelect')
   }
 
   render() {
-    const { id, name, initials } = this.props.owner;
-    const isOpened = this.state.dropdownOpened ? ' is-open' : '';
+    const { id, name, initials } = this.props.owner
+    const isOpened = this.state.dropdownOpened ? ' is-open' : ''
 
     return (
       <Select
-    defaultValue={[colourOptions[2], colourOptions[3]]}
-    isMulti
-    name="colors"
-    options={colourOptions}
-    className="basic-multi-select"
-    classNamePrefix="select"
-  />
-    );
+        defaultValue={[colourOptions[2], colourOptions[3]]}
+        isMulti
+        name="colors"
+        options={colourOptions}
+        className="basic-multi-select"
+        classNamePrefix="select"
+      />
+    )
   }
 }
 
-export default Owner;
+export default Owner

@@ -1,41 +1,41 @@
-import React, { Component } from 'react';
-import StoryList from './StoryList';
-import { getCurrentProject, getCurrentIteration, getIterationStories } from 'utils';
-import { Accordion } from 'foundation-sites';
-import $ from 'jquery';
+import React, { Component } from 'react'
+import StoryList from './StoryList'
+import { getCurrentProject, getCurrentIteration, getIterationStories } from 'utils'
+import { Accordion } from 'foundation-sites'
+import $ from 'jquery'
 
 class IterationStories extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       loading: true,
       stories: null
-    };
+    }
   }
 
   async componentDidMount() {
-    const project = await getCurrentProject(this.props.client);
-    const iteration = await getCurrentIteration(this.props.client);
-    const stories = await getIterationStories(this.props.client, iteration, project);
+    const project = await getCurrentProject(this.props.client)
+    const iteration = await getCurrentIteration(this.props.client)
+    const stories = await getIterationStories(this.props.client, iteration, project)
     this.setState({
       loading: false,
       stories: stories
-    });
-    new Accordion($('#stories-accordion'));
+    })
+    new Accordion($('#stories-accordion'))
   }
 
   render() {
-    if (this.state.loading) return (<p>Loading...</p>);
+    if (this.state.loading) return (<p>Loading...</p>)
 
-    let allStories = this.state.stories;
-    const freeState = ['unstarted', 'unplanned', 'planned', 'unscheduled'];
+    let allStories = this.state.stories
+    const freeState = ['unstarted', 'unplanned', 'planned', 'unscheduled']
     const stories = {
       accepted:  allStories.filter(story => story.current_state == 'accepted'),
       delivered: allStories.filter(story => story.current_state == 'delivered'),
       finished:  allStories.filter(story => story.current_state == 'finished'),
       started:   allStories.filter(story => story.current_state == 'started'),
       free:      allStories.filter(story => freeState.includes(story.current_state))
-    };
+    }
 
     return (
       <section>
@@ -77,8 +77,8 @@ class IterationStories extends Component {
           </li>
         </ul>
       </section>
-    );
+    )
   }
 }
 
-export default IterationStories;
+export default IterationStories

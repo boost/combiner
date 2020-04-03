@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { Component } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Tasks extends Component {
 
@@ -12,8 +12,8 @@ class Tasks extends Component {
           <span className="add-task-message">Add a task</span>
         </div>
       </section>
-    );
+    )
   }
 }
 
-export default Tasks;
+export default Tasks

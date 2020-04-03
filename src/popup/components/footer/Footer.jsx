@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { Component } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Footer extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.handleTabClick = this.handleTabClick.bind(this);
-    this.handlePivotalClick = this.handlePivotalClick.bind(this);
-    this.handleUtilsClick = this.handleUtilsClick.bind(this);
-    this.handleSettingsClick = this.handleSettingsClick.bind(this);
+    this.handleTabClick = this.handleTabClick.bind(this)
+    this.handlePivotalClick = this.handlePivotalClick.bind(this)
+    this.handleUtilsClick = this.handleUtilsClick.bind(this)
+    this.handleSettingsClick = this.handleSettingsClick.bind(this)
   }
 
   handleTabClick() {
-    this.props.onTabClick('tab');
+    this.props.onTabClick('tab')
   }
 
   handlePivotalClick() {
-    this.props.onTabClick('pivotal');
+    this.props.onTabClick('pivotal')
   }
 
   handleUtilsClick() {
-    this.props.onTabClick('utils');
+    this.props.onTabClick('utils')
   }
 
   handleSettingsClick() {
-    this.props.onTabClick('settings');
+    this.props.onTabClick('settings')
   }
 
   render() {
@@ -47,8 +47,8 @@ class Footer extends Component {
           <p>Settings</p>
         </div>
       </footer>
-    );
+    )
   }
 }
 
-export default Footer;
+export default Footer

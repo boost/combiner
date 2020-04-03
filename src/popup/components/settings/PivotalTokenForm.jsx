@@ -1,47 +1,47 @@
-import React, { Component } from 'react';
-import Pivotal from 'pivotal';
-import browser from 'webextension-polyfill';
+import React, { Component } from 'react'
+import Pivotal from 'pivotal'
+import browser from 'webextension-polyfill'
 
 class PivotalTokenForm extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       token_invalid: null,
       value: props.token
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleProfileClick = this.handleProfileClick.bind(this);
-    this.handleValidate = this.handleValidate.bind(this);
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleProfileClick = this.handleProfileClick.bind(this)
+    this.handleValidate = this.handleValidate.bind(this)
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({value: event.target.value})
   }
 
   handleValidate() {
-    let client = new Pivotal(this.state.value);
+    let client = new Pivotal(this.state.value)
     client.me()
-    .then(meJSON => {
-      browser.storage.local.set({pivotal_token: client.token});
-      this.props.onValid(client);
-    })
-    .catch(error => { this.setState({token_invalid: true}) });
+      .then(meJSON => {
+        browser.storage.local.set({pivotal_token: client.token})
+        this.props.onValid(client)
+      })
+      .catch(error => { this.setState({token_invalid: true}) })
   }
 
   handleProfileClick(event) {
-    event.preventDefault();
+    event.preventDefault()
     browser.tabs.create({
       url: event.target.href
-    });
+    })
   }
 
   render() {
-    let help = null;
+    let help = null
     if (this.state.token_invalid) {
-      help = (<small className='help-text' id='token-invalid'>Token invalid</small>);
+      help = (<small className='help-text' id='token-invalid'>Token invalid</small>)
     }
 
-    let explanations = (<label htmlFor='token'>Pivotal token</label>);
+    let explanations = (<label htmlFor='token'>Pivotal token</label>)
     if (!this.props.token) {
       explanations = (
         <div className='explanation'>
@@ -51,7 +51,7 @@ class PivotalTokenForm extends Component {
             it <a href='https://www.pivotaltracker.com/profile#api' onClick={this.handleProfileClick}>here</a>.
           </p>
         </div>
-      );
+      )
     }
 
     return (
@@ -69,4 +69,4 @@ class PivotalTokenForm extends Component {
   }
 }
 
-export default PivotalTokenForm;
+export default PivotalTokenForm

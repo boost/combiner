@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import browser from 'webextension-polyfill';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import HarvestButton from './HarvestButton';
+import React, { Component } from 'react'
+import browser from 'webextension-polyfill'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import HarvestButton from './HarvestButton'
 
 class StoryLine extends Component {
   render() {
@@ -21,8 +21,8 @@ class StoryLine extends Component {
           </div>
         </div>
       </li>
-    );
+    )
   }
 }
 
-export default StoryLine;
+export default StoryLine

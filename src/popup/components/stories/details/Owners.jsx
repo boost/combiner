@@ -1,37 +1,37 @@
-import React, { Component } from 'react';
-import { buildOwnersList, buildPossibleOwnersList } from 'utils/pivotal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Owner from './Owner';
-import bindAll from 'lodash/bindAll';
-import Select, { components } from 'react-select';
+import React, { Component } from 'react'
+import { buildOwnersList, buildPossibleOwnersList } from 'utils/pivotal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Owner from './Owner'
+import bindAll from 'lodash/bindAll'
+import Select, { components } from 'react-select'
 
 class Owners extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       people: buildPossibleOwnersList(props.memberships),
       owners: buildOwnersList(props.memberships, props.story.owner_ids),
-    };
+    }
 
     // bindAll(this, [
     // ]);
   }
 
   render() {
-    const { people, owners } = this.state;
+    const { people, owners } = this.state
     const options = people.map(person => {
       return {value: person.id, label: person.name, initials: person.initials.toUpperCase()}
-    });
+    })
     const defaultOptions = owners.map(owner => {
       return {value: owner.id, label: owner.name, initials: owner.initials.toUpperCase()}
-    });
+    })
 
     const MultiValue = props => (
       <components.MultiValue {...props}>
         {props.data.initials}
       </components.MultiValue>
-    );
+    )
 
     return (
       <div className='grid-x row'>
@@ -48,8 +48,8 @@ class Owners extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Owners;
+export default Owners

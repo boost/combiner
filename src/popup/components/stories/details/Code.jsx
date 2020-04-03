@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import bindAll from 'lodash/bindAll';
+import React, { Component } from 'react'
+import bindAll from 'lodash/bindAll'
 
 class Code extends Component {
   constructor(props) {
-    super(props);
-    bindAll(this, ['handleCodeChange']);
+    super(props)
+    bindAll(this, ['handleCodeChange'])
   }
 
   handleCodeChange() {}
@@ -22,8 +22,8 @@ class Code extends Component {
           value=""
           onChange={this.handleCodeChange} />
       </section>
-    );
+    )
   }
 }
 
-export default Code;
+export default Code

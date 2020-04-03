@@ -53,8 +53,8 @@
     "build:chrome": " NODE_ENV=production  BROWSER=chrome  webpack",
     "web-ext:lint": "./node_modules/.bin/web-ext lint --source-dir=build",
     "web-ext:run": "./node_modules/.bin/web-ext run --source-dir=build",
-    "lint": "./node_modules/.bin/eslint 'src/**/*'",
-    "lint-fix": "./node_modules/.bin/eslint --fix 'src/**/*'"
+    "lint": "    ./node_modules/.bin/eslint       'src/**/*.jsx'",
+    "lint-fix": "./node_modules/.bin/eslint --fix 'src/**/*.jsx'"
   },
   "repository": {
     "type": "git",

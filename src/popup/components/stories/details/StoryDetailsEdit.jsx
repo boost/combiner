@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { enrichStory } from 'utils';
-import bindAll from 'lodash/bindAll';
-import Details from './Details';
-import Activity from './Activity';
-import Code from './Code';
-import Tasks from './Tasks';
-import Labels from './Labels';
-import Description from './Description';
-import Blockers from './Blockers';
+import React, { Component } from 'react'
+import { enrichStory } from 'utils'
+import bindAll from 'lodash/bindAll'
+import Details from './Details'
+import Activity from './Activity'
+import Code from './Code'
+import Tasks from './Tasks'
+import Labels from './Labels'
+import Description from './Description'
+import Blockers from './Blockers'
 
 class StoryDetailsEdit extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       ready: false,
@@ -19,7 +19,7 @@ class StoryDetailsEdit extends Component {
       story: null,
       writeCommentActive: true,
       comment: ''
-    };
+    }
   }
 
   async componentDidMount() {
@@ -27,20 +27,20 @@ class StoryDetailsEdit extends Component {
       this.props.client,
       this.props.story,
       ['tasks', 'blockers', 'owners', 'requester', 'comments']
-    );
-    const projectLabels = await this.props.client.projectLabels(this.props.story.project_id);
-    const memberships = await this.props.client.projectMemberships(this.props.story.project_id);
+    )
+    const projectLabels = await this.props.client.projectLabels(this.props.story.project_id)
+    const memberships = await this.props.client.projectMemberships(this.props.story.project_id)
 
     this.setState({
       ready: true,
       projectLabels: projectLabels,
       memberships: memberships,
       story: story
-    });
+    })
   }
 
   render() {
-    if (!this.state.ready) return (<p>Loading...</p>);
+    if (!this.state.ready) return (<p>Loading...</p>)
 
     return (
       <li className="story expanded">
@@ -52,8 +52,8 @@ class StoryDetailsEdit extends Component {
         <Tasks       client={this.props.client} story={this.state.story} />
         <Activity    client={this.props.client} story={this.state.story} memberships={this.state.memberships} />
       </li>
-    );
+    )
   }
 }
 
-export default StoryDetailsEdit;
+export default StoryDetailsEdit

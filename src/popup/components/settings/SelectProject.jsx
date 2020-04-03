@@ -1,36 +1,36 @@
-import React, { Component } from 'react';
-import { getProjects, getCurrentProject } from 'utils';
+import React, { Component } from 'react'
+import { getProjects, getCurrentProject } from 'utils'
 
 class SelectProject extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       currentProject: {id: 0, name: '...'},
       projects: [{id: 0, name: '...'}]
-    };
+    }
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this)
   }
 
   async componentDidMount() {
-    const projects = await getProjects(this.props.client);
-    const project = await getCurrentProject(this.props.client);
+    const projects = await getProjects(this.props.client)
+    const project = await getCurrentProject(this.props.client)
 
     this.setState({
       projects: projects,
       currentProject: project
-    });
+    })
   }
 
   handleChange(event) {
-    const id = event.target.value;
-    const project = this.state.projects.find(project => project.id == id);
+    const id = event.target.value
+    const project = this.state.projects.find(project => project.id == id)
 
-    browser.storage.local.set({'currentProject': project});
-    this.props.onProjectChange(project);
+    browser.storage.local.set({'currentProject': project})
+    this.props.onProjectChange(project)
     this.setState({
       currentProject: project
-    });
+    })
   }
 
   render() {
@@ -48,4 +48,4 @@ class SelectProject extends Component {
   }
 }
 
-export default SelectProject;
+export default SelectProject

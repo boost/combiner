@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { getCurrentProject, getUserOwnedStories } from 'utils';
-import Story from './Story';
+import React, { Component } from 'react'
+import { getCurrentProject, getUserOwnedStories } from 'utils'
+import Story from './Story'
 
 class StoryList extends Component {
   render() {
@@ -14,8 +14,8 @@ class StoryList extends Component {
           }
         </ul>
       </section>
-    );
+    )
   }
 }
 
-export default StoryList;
+export default StoryList

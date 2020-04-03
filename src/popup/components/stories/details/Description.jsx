@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import ReactMarkdown from 'react-markdown';
-import MarkdownEditor from './MarkdownEditor';
-import bindAll from 'lodash/bindAll';
+import React, { Component } from 'react'
+import ReactMarkdown from 'react-markdown'
+import MarkdownEditor from './MarkdownEditor'
+import bindAll from 'lodash/bindAll'
 
 class Description extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       description: props.story.description,
       editMode: false
-    };
+    }
 
-    bindAll(this, ['handleSubmit']);
+    bindAll(this, ['handleSubmit'])
   }
 
   handleSubmit(description) {
     this.setState({
       editMode: false,
       description: description
-    });
+    })
   }
 
   render() {
 
     const content = this.state.editMode ?
       <MarkdownEditor id='description' content={this.state.description} onValidSubmit={this.handleSubmit} /> :
-      <ReactMarkdown source={this.state.description} />;
+      <ReactMarkdown source={this.state.description} />
 
     return (
       <section className="description">
@@ -37,8 +37,8 @@ class Description extends Component {
           {content}
         </div>
       </section>
-    );
+    )
   }
 }
 
-export default Description;
+export default Description
