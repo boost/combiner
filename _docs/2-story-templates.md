@@ -1,14 +1,19 @@
 ---
 number: 2
-name: Story templates
+title: Story templates
 ---
+Default story template
+======================
 
-Chrome
-------
+With Combiner, you have a default story title and description when clicking on
+"Add Story" in pivotaltracker.com. You can cycle through placeholders by typing
+<kbd>Tab</kbd> or <kbd>Tab+Shift</kbd>.
 
-- test
+{% include video.html url='https://www.youtube.com/embed/EaRbQvPfMHs' %}
 
-Firefox
--------
+Overwrite the template
+======================
 
-- test
+You can change this template (to remove it for example) like so:
+
+{% include video.html url='https://www.youtube.com/embed/8jPyKtsapJ4' %}

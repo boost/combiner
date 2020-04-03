@@ -18,7 +18,7 @@ email: info@boost.co.nz
 description: >-
   Your are on the documentation of the browser extension Combiner.
   You can install it on Chrome or Firefox.
-baseurl: '' # the subpath of your site, e.g. /blog
+baseurl: '/combiner' # the subpath of your site, e.g. /blog
 origin: https://github.com/boost/combiner
 repository: boost/combiner
 url: '' # the base hostname & protocol for your site, e.g. http://example.com

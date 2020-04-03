@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+bundle exec jekyll build
+bundle exec htmlproofer ./_site --check-html --check-sri --url-swap ^/combiner:
+bundle exec rubocop -D
+bundle exec scripts/validate-html

@@ -1,6 +1,6 @@
 ---
 number: 1
-name: Get Started
+title: Get Started
 ---
 
 Chrome
