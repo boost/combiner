@@ -31,6 +31,17 @@ theme: jekyll-theme-time-machine
 plugins:
   - jekyll-feed
 
+collections:
+  docs:
+    output: true
+    layout: docs
+
+defaults:
+  - scope:
+      type: docs
+    values:
+      layout: docs
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

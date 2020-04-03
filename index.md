@@ -6,3 +6,8 @@
 Table of Content
 ================
 
+{% for doc in site.docs %}
+  <h2>
+    <a href="{{ doc.url }}">{{ doc.number }}. {{ doc.name }}</a>
+  </h2>
+{% endfor %}
