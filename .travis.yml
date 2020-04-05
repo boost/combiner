@@ -1,0 +1,26 @@
+language: node_js
+
+stages:
+  - name: deploy
+    if: branch = master
+
+jobs:
+  include:
+    - stage: test
+      name: lint
+      script:
+        - npm run lint
+    - stage: deploy
+      name: Deploy Chrome
+      script:
+        - npm run build:chrome
+        - zip -r chrome.zip build
+        - zip -r source_code.zip $(git ls-files)
+    - stage: deploy
+      name: Deploy Firefox
+      script:
+        - npm run build:firefox
+        - cd build
+        - zip -r ../firefox.zip *
+        - cd ..
+        - zip -r source_code.zip $(git ls-files)
