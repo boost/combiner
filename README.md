@@ -43,7 +43,9 @@ Optionally, for testing some features, you will need an account on:
 
 ## III. Deployment
 
-### III.1 Firefox
+### III.1 Manual process
+
+#### III.1.a Firefox
 
 1. Update the CHANGELOG.md
 2. Update the version in `package.json`
@@ -55,7 +57,7 @@ Optionally, for testing some features, you will need an account on:
 8. Click on Upload New Version and follow the steps
 9. Wait for the new version to be validated and deployed
 
-### III.1 Chrome
+#### III.1.b Chrome
 
 1. Update the CHANGELOG.md
 2. Update the version in `package.json`
@@ -67,3 +69,11 @@ Optionally, for testing some features, you will need an account on:
 8. Click on the application
 8. Click on "Package" on the left menu
 9. Click on "Upload new package"
+
+### III.2 Automatic process
+
+- Create a pull request
+- Get it reviewed
+- Update the CHANGELOG.md and the version in package.json
+- Merge to master
+- Make sure the deploy jobs are successful in Travis
