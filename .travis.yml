@@ -1,6 +1,7 @@
 language: node_js
 
 stages:
+  - name: test
   - name: deploy
     if: branch = master
 
@@ -14,13 +15,19 @@ jobs:
       name: Deploy Chrome
       script:
         - npm run build:chrome
-        - zip -r chrome.zip build
-        - zip -r source_code.zip $(git ls-files)
+        - ./node_modules/.bin/webstore upload \
+            --source=build \
+            --extension-id=
+            --client-id=
+            --client-secret=
+            --refresh-token
+            --auto-publish
+            --trusted-testers
     - stage: deploy
       name: Deploy Firefox
       script:
         - npm run build:firefox
-        - cd build
-        - zip -r ../firefox.zip *
-        - cd ..
-        - zip -r source_code.zip $(git ls-files)
+        - npm run web-ext:lint
+        - ./node_modules/.bin/web-ext sign \
+            --api-key= \
+            --api-secret= \
