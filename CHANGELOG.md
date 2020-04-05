@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 2.3.3
+
+Bug fix:
+
+- the clock icon is now fixed size in pivotal
+
+Improvements:
+
+- Use of Travis for continuous integration and delivery
+
 ## Version 2.3.2
 
 Bug fix:
