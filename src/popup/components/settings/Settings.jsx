@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import PivotalTokenForm from './PivotalTokenForm'
 import SelectProject from './SelectProject'
+import bindAll from 'lodash/bindAll'
 
 class Settings extends Component {
   constructor(props) {
     super(props)
-    this.handlePivotalValid = this.handlePivotalValid.bind(this)
-    this.handleProjectChange = this.handleProjectChange.bind(this)
+
+    bindAll(this, ['handlePivotalValid', 'handleProjectChange'])
   }
 
-  handlePivotalValid(client) {
+  handlePivotalValid() {
     // print a popup indicating it was updated
     this.props.notification('Update', 'Your pivotal token has been updated.')
   }
@@ -28,6 +31,12 @@ class Settings extends Component {
       </section>
     )
   }
+}
+
+Settings.propTypes = {
+  client: PropTypes.instanceOf(Pivotal),
+  notification: PropTypes.func,
+  onProjectChange: PropTypes.func
 }
 
 export default Settings

@@ -1,4 +1,3 @@
-import browser from 'webextension-polyfill'
 import React, { Component } from 'react'
 import Header from './Header'
 import Footer from './footer/Footer'
@@ -10,7 +9,7 @@ import Settings from './settings/Settings'
 import Pivotal from 'pivotal'
 import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
-import { getCurrentProject } from 'utils'
+import browser from 'webextension-polyfill'
 
 class Root extends Component {
   constructor(props) {
@@ -39,7 +38,7 @@ class Root extends Component {
     }
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI.
     return { hasError: true }
   }

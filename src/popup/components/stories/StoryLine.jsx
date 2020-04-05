@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import browser from 'webextension-polyfill'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import HarvestButton from './HarvestButton'
 
@@ -23,6 +24,13 @@ class StoryLine extends Component {
       </li>
     )
   }
+}
+
+StoryLine.propTypes = {
+  data: PropTypes.object,
+  client: PropTypes.instanceOf(Pivotal),
+  onTitleClicked: PropTypes.func,
+  onAutofillClick: PropTypes.func
 }
 
 export default StoryLine

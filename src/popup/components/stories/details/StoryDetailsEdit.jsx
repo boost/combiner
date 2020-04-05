@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import { enrichStory } from 'utils'
-import bindAll from 'lodash/bindAll'
 import Details from './Details'
 import Activity from './Activity'
 import Code from './Code'
@@ -54,6 +55,12 @@ class StoryDetailsEdit extends Component {
       </li>
     )
   }
+}
+
+StoryDetailsEdit.propTypes = {
+  client: PropTypes.instanceOf(Pivotal),
+  story: PropTypes.object,
+  onCloseClick: PropTypes.func
 }
 
 export default StoryDetailsEdit

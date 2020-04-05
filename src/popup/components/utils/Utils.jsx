@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import { buildReport } from 'utils/sprint_review'
 import { copyToClipboard } from 'utils/clipboard'
 
@@ -26,6 +28,11 @@ class Utils extends Component {
       </section>
     )
   }
+}
+
+Utils.propTypes = {
+  client: PropTypes.instanceOf(Pivotal),
+  notification: PropTypes.func
 }
 
 export default Utils

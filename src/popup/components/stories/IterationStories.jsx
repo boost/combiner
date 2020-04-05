@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import StoryList from './StoryList'
 import { getCurrentProject, getCurrentIteration, getIterationStories } from 'utils'
-import { Accordion } from 'foundation-sites'
 import $ from 'jquery'
+import { Accordion } from 'foundation-sites'
 
 class IterationStories extends Component {
   constructor(props) {
@@ -79,6 +81,10 @@ class IterationStories extends Component {
       </section>
     )
   }
+}
+
+IterationStories.propTypes = {
+  client: PropTypes.instanceOf(Pivotal)
 }
 
 export default IterationStories

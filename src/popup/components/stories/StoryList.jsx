@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { getCurrentProject, getUserOwnedStories } from 'utils'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import Story from './Story'
 
 class StoryList extends Component {
@@ -16,6 +17,11 @@ class StoryList extends Component {
       </section>
     )
   }
+}
+
+StoryList.propTypes = {
+  stories: PropTypes.array,
+  client: PropTypes.instanceOf(Pivotal)
 }
 
 export default StoryList

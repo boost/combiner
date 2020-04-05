@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import { getCurrentIteration } from 'utils'
-import browser from 'webextension-polyfill'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import browser from 'webextension-polyfill'
 
 class Header extends Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class Header extends Component {
     }
   }
 
-  getTitle(active) {
+  getTitle() {
     switch (this.props.active) {
     case 'tab': return 'My stories'
     case 'pivotal':
@@ -63,7 +65,6 @@ class Header extends Component {
   }
 
   render() {
-    let title = null
     return (
       <header className='grid-x'>
         <button className='cell shrink button' onClick={this.handlePopOut}>
@@ -75,6 +76,12 @@ class Header extends Component {
       </header>
     )
   }
+}
+
+Header.propTypes = {
+  active: PropTypes.bool,
+  client: PropTypes.instanceOf(Pivotal),
+  title: PropTypes.string
 }
 
 export default Header

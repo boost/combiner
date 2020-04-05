@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react'
 import bindAll from 'lodash/bindAll'
 import Select from 'react-select'

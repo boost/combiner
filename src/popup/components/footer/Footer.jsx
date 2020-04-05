@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Footer extends Component {
@@ -49,6 +50,11 @@ class Footer extends Component {
       </footer>
     )
   }
+}
+
+Footer.propTypes = {
+  onTabClick: PropTypes.func,
+  active: PropTypes.bool
 }
 
 export default Footer

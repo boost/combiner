@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ReactTags from 'react-tag-autocomplete'
 import bindAll from 'lodash/bindAll'
 
@@ -53,6 +54,11 @@ class Labels extends Component {
       </section>
     )
   }
+}
+
+Labels.propTypes = {
+  story: PropTypes.object,
+  projectLabels: PropTypes.array
 }
 
 export default Labels

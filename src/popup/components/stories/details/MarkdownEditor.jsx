@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import TextareaAutosize from 'react-textarea-autosize'
 import ReactMarkdown from 'react-markdown'
 import { tabsTitleClass, tabsPanelClass } from 'utils/foundation'
@@ -92,6 +93,12 @@ class MarkdownEditor extends Component {
       </div>
     )
   }
+}
+
+MarkdownEditor.propTypes = {
+  previewMode: PropTypes.bool,
+  content: PropTypes.string,
+  id: PropTypes.number
 }
 
 export default MarkdownEditor

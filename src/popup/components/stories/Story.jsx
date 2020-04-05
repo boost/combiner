@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import browser from 'webextension-polyfill'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import { sendPrDetails, sendR4ADetails } from 'utils'
 import StoryLine from './StoryLine'
 import StoryDetailsEdit from './details/StoryDetailsEdit'
+import browser from 'webextension-polyfill'
 
 class Story extends Component {
   constructor(props) {
@@ -51,6 +53,11 @@ class Story extends Component {
       )
     }
   }
+}
+
+Story.propTypes = {
+  client: PropTypes.instanceOf(Pivotal),
+  data: PropTypes.object
 }
 
 export default Story

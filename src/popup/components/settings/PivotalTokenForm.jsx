@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Pivotal from 'pivotal'
 import browser from 'webextension-polyfill'
 
@@ -21,11 +22,11 @@ class PivotalTokenForm extends Component {
   handleValidate() {
     let client = new Pivotal(this.state.value)
     client.me()
-      .then(meJSON => {
+      .then(() => {
         browser.storage.local.set({pivotal_token: client.token})
         this.props.onValid(client)
       })
-      .catch(error => { this.setState({token_invalid: true}) })
+      .catch(() => { this.setState({token_invalid: true}) })
   }
 
   handleProfileClick(event) {
@@ -45,7 +46,7 @@ class PivotalTokenForm extends Component {
     if (!this.props.token) {
       explanations = (
         <div className='explanation'>
-          <p>You haven't provided your API token yet.</p>
+          <p>You haven&apos;t provided your API token yet.</p>
           <p>
             If you are logged in Pivotal, you can find
             it <a href='https://www.pivotaltracker.com/profile#api' onClick={this.handleProfileClick}>here</a>.
@@ -67,6 +68,13 @@ class PivotalTokenForm extends Component {
       </section>
     )
   }
+}
+
+PivotalTokenForm.propTypes = {
+  client: PropTypes.instanceOf(Pivotal),
+  onProjectChange: PropTypes.func,
+  token: PropTypes.string,
+  onValid: PropTypes.func
 }
 
 export default PivotalTokenForm

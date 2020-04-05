@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import TextareaAutosize from 'react-textarea-autosize'
 import HarvestButton from '../HarvestButton'
 import { copyToClipboard } from 'utils/clipboard'
@@ -44,8 +46,9 @@ class Details extends Component {
 
   handleEstimateChange(event) {
     console.log('ESTIMATE:', event.target.value)
-    this.state.story.estimate = event.target.value
-    this.setState({story: this.state.story})
+    let story = this.state
+    story.estimate = event.target.value
+    this.setState({story: story})
   }
 
   handleKindChange(event) {
@@ -147,6 +150,13 @@ class Details extends Component {
       </section>
     )
   }
+}
+
+Details.propTypes = {
+  story: PropTypes.object,
+  memberships: PropTypes.array,
+  onCloseClick: PropTypes.func,
+  client: PropTypes.instanceOf(Pivotal)
 }
 
 export default Details

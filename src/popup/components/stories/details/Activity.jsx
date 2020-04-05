@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from './MarkdownEditor'
 import bindAll from 'lodash/bindAll'
@@ -55,6 +56,11 @@ class Activity extends Component {
       </section>
     )
   }
+}
+
+Activity.propTypes = {
+  story: PropTypes.object,
+  memberships: PropTypes.array
 }
 
 export default Activity

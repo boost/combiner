@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from './MarkdownEditor'
 import bindAll from 'lodash/bindAll'
@@ -39,6 +40,11 @@ class Description extends Component {
       </section>
     )
   }
+}
+
+Description.propTypes = {
+  story: PropTypes.object,
+  memberships: PropTypes.array
 }
 
 export default Description

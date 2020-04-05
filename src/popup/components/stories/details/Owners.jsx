@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { buildOwnersList, buildPossibleOwnersList } from 'utils/pivotal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Owner from './Owner'
-import bindAll from 'lodash/bindAll'
 import Select, { components } from 'react-select'
 
 class Owners extends Component {
@@ -13,9 +11,6 @@ class Owners extends Component {
       people: buildPossibleOwnersList(props.memberships),
       owners: buildOwnersList(props.memberships, props.story.owner_ids),
     }
-
-    // bindAll(this, [
-    // ]);
   }
 
   render() {
@@ -50,6 +45,11 @@ class Owners extends Component {
       </div>
     )
   }
+}
+
+Owners.propTypes = {
+  memberships: PropTypes.array,
+  story: PropTypes.object
 }
 
 export default Owners

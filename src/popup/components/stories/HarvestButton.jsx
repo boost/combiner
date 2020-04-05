@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import { buildStoryUrl } from 'utils/pivotal'
 import { buildName } from 'utils/harvest'
 import uniqueId from 'lodash/uniqueId'
@@ -37,6 +39,13 @@ class HarvestButton extends Component {
       </button>
     )
   }
+}
+
+HarvestButton.propTypes = {
+  client: PropTypes.instanceOf(Pivotal),
+  data: PropTypes.object,
+  className: PropTypes.string,
+  children: PropTypes.element
 }
 
 export default HarvestButton

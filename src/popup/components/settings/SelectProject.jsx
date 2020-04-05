@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import Pivotal from 'pivotal'
 import { getProjects, getCurrentProject } from 'utils'
+import browser from 'webextension-polyfill'
 
 class SelectProject extends Component {
   constructor(props) {
@@ -46,6 +49,11 @@ class SelectProject extends Component {
       </div>
     )
   }
+}
+
+SelectProject.propTypes = {
+  client: PropTypes.instanceOf(Pivotal),
+  onProjectChange: PropTypes.func
 }
 
 export default SelectProject

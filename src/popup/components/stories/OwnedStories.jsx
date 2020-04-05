@@ -1,5 +1,5 @@
-import browser from 'webextension-polyfill'
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Pivotal from 'pivotal'
 import StoryList from './StoryList'
 import { getCurrentProject, getUserOwnedStories } from 'utils'
@@ -32,6 +32,10 @@ class OwnedStories extends Component {
       </section>
     )
   }
+}
+
+OwnedStories.propTypes = {
+  client: PropTypes.object(Pivotal)
 }
 
 export default OwnedStories
