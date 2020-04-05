@@ -9,4 +9,4 @@ const evalTemplate = (story, text) => {
     .replace('{story.owners}', story.owners.map(owner => owner.name).join(', '))
 }
 
-export default evalTemplate;
+export default evalTemplate

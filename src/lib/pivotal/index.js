@@ -1,3 +1,3 @@
-import Pivotal from './Pivotal';
+import Pivotal from './Pivotal'
 
-export default Pivotal;
+export default Pivotal

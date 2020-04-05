@@ -1,14 +1,14 @@
-import Request from './Request';
+import Request from './Request'
 
 class StoryRequest extends Request {
   constructor(client, id) {
-    super(client);
-    this.id = id;
+    super(client)
+    this.id = id
   }
 
   uri() {
-    return `/stories/${this.id}`;
+    return `/stories/${this.id}`
   }
 }
 
-export default StoryRequest;
+export default StoryRequest

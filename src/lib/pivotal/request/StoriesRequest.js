@@ -1,4 +1,4 @@
-import Request from './Request';
+import Request from './Request'
 
 const OPTIONAL_PARAMETERS = new Set([
   'with_label',
@@ -17,20 +17,20 @@ const OPTIONAL_PARAMETERS = new Set([
   'limit',
   'offset',
   'filter'
-]);
+])
 
 class StoriesRequest extends Request {
   constructor(client, project_id, options = {}) {
-    super(client);
-    this.validateOptions(OPTIONAL_PARAMETERS, options);
+    super(client)
+    this.validateOptions(OPTIONAL_PARAMETERS, options)
 
-    this.project_id = project_id;
-    this.options = options;
+    this.project_id = project_id
+    this.options = options
   }
 
   uri() {
-    return `/projects/${this.project_id}/stories`;
+    return `/projects/${this.project_id}/stories`
   }
 }
 
-export default StoriesRequest;
+export default StoriesRequest

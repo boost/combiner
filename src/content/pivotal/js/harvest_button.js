@@ -1,6 +1,6 @@
-import '../scss/pivotal.scss';
-import $ from 'jquery';
-import scrapProjectData from 'utils/scrap_project_data';
+import '../scss/pivotal.scss'
+import $ from 'jquery'
+import scrapProjectData from 'utils/scrap_project_data'
 
 // https://fontawesome.com/icons/stopwatch?style=regular
 const clockSvg = `
@@ -23,51 +23,51 @@ const clockSvg = `
   </svg>
 `
 
-const STORY_PERMALINK = 'https://www.pivotaltracker.com/story/show/%ITEM_ID%';
+const STORY_PERMALINK = 'https://www.pivotaltracker.com/story/show/%ITEM_ID%'
 
 const PLATFORM_CONFIG = JSON.stringify({
   applicationName: 'PivotalTracker',
   permalink: STORY_PERMALINK,
   skipStyling: true
-});
+})
 
-let uniqueIdCounter = 0;
+let uniqueIdCounter = 0
 const uniqueId = (prefix) => {
-  return `${prefix}${uniqueIdCounter += 1}`;
-};
+  return `${prefix}${uniqueIdCounter += 1}`
+}
 
 class Story {
   constructor($story) {
-    this.$story = $story;
-    this.id = this.findId(this.$story);
-    this.project = JSON.stringify(scrapProjectData(this.$story));
-    this.labels = this.parseLabelElements(this.getLabels());
-    this.title = this.getTitle();
+    this.$story = $story
+    this.id = this.findId(this.$story)
+    this.project = JSON.stringify(scrapProjectData(this.$story))
+    this.labels = this.parseLabelElements(this.getLabels())
+    this.title = this.getTitle()
   }
 
   parseLabelElements($labels) {
     return $labels.map((i, el) => {
-      return el.innerHTML.replace(/,\s$/, '');
+      return el.innerHTML.replace(/,\s$/, '')
     }).get().filter((v, k, arr) => {
-      return k === arr.indexOf(v);
-    });
+      return k === arr.indexOf(v)
+    })
   }
 
   harvestNote() {
     const labels = this.labels.length ? ` [${this.labels.join(', ')}]` : ''
-    const link = ` ${STORY_PERMALINK.replace('%ITEM_ID%', this.id)}`;
-    return this.getTitle() + labels + link;
+    const link = ` ${STORY_PERMALINK.replace('%ITEM_ID%', this.id)}`
+    return this.getTitle() + labels + link
   }
 
   harvestDataItem() {
     return {
       id: this.id,
       name: this.harvestNote()
-    };
+    }
   }
 
   findId() {
-    const regex = new RegExp(' story_(\\d+) ');
+    const regex = new RegExp(' story_(\\d+) ')
 
     return parseInt(regex.exec(this.$story.attr('class'))[1])
   }
@@ -113,68 +113,68 @@ class ExpandedStory extends Story {
         .attr('title', 'Harvest timer')
         .attr('type', 'button')
         .attr('tab-index', '-1')
-    );
+    )
   }
 }
 
 class StoryFactory {
   static call($story) {
     if (StoryFactory.storyIsCollapsed($story)) {
-      return new CollapsedStory($story);
+      return new CollapsedStory($story)
     } else if (StoryFactory.storyIsExpanded($story)) {
-      return new ExpandedStory($story);
+      return new ExpandedStory($story)
     }
   }
 
   static storyIsCollapsed($story) {
-    let href = /\/(projects|workspaces)\/\d+/.test(window.location.href);
-    return href && $story.has('header.preview').length;
+    let href = /\/(projects|workspaces)\/\d+/.test(window.location.href)
+    return href && $story.has('header.preview').length
   }
 
   static storyIsExpanded($story) {
-    let href = /\/(projects|workspaces)\/\d+/.test(window.location.href);
-    let $details = $story.has('div.edit.details');
-    return href && $story.is(':not(.maximized)') && $details.length;
+    let href = /\/(projects|workspaces)\/\d+/.test(window.location.href)
+    let $details = $story.has('div.edit.details')
+    return href && $story.is(':not(.maximized)') && $details.length
   }
 }
 
 const injectHarvestPlatformConfig = () => {
   return new Promise(resolve => {
-    let script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
-    script.textContent = `window._harvestPlatformConfig = ${PLATFORM_CONFIG}`;
+    let script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.async = true
+    script.textContent = `window._harvestPlatformConfig = ${PLATFORM_CONFIG}`
 
-    $('head').append(script);
+    $('head').append(script)
 
-    resolve();
-  });
-};
+    resolve()
+  })
+}
 
 const setupTimers = () => {
   return new Promise(resolve => {
     const $stories = $('.story.model.item')
       .not(':has(.harvest-timer)')
-      .not(':has(button[type="submit"])');
+      .not(':has(button[type="submit"])')
 
     $stories.each(function() {
-      StoryFactory.call($(this)).insertTimer();
-    });
+      StoryFactory.call($(this)).insertTimer()
+    })
 
-    resolve($stories.find('.harvest-timer'));
-  });
-};
+    resolve($stories.find('.harvest-timer'))
+  })
+}
 
 const loadHarvestPlatform = () => {
-  let url = 'https://platform.harvestapp.com/assets/platform.js';
-  return Promise.resolve($.getScript(url));
-};
+  let url = 'https://platform.harvestapp.com/assets/platform.js'
+  return Promise.resolve($.getScript(url))
+}
 
 const setupEventProxy = () => {
   return new Promise(resolve => {
-    let script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.async = true;
+    let script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.async = true
     script.textContent = [
       '(function(){',
       '  window.addEventListener("reinitializeTimer", function (evt) {',
@@ -186,37 +186,37 @@ const setupEventProxy = () => {
       '    harvest.dispatchEvent(new CustomEvent("harvest-event:timers:add", data));',
       '  });',
       '}());'
-    ].join('\n');
-    $('head').append(script);
+    ].join('\n')
+    $('head').append(script)
 
-    resolve();
-  });
-};
+    resolve()
+  })
+}
 
 const reinitializeTimer = (i, el) => {
-  let script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.async = true;
+  let script = document.createElement('script')
+  script.type = 'text/javascript'
+  script.async = true
   script.textContent = [
     'window.dispatchEvent(new CustomEvent("reinitializeTimer", {',
     '  detail: {',
     `    uid: "${el.getAttribute('data-uid')}"`,
     '  }',
     '}));',
-  ].join('\n');
-  $('head').append(script);
-};
+  ].join('\n')
+  $('head').append(script)
+}
 
 const reinitializeTimers = () => {
   // console.log(`Reinitializing timers...`);
   return setupTimers().then(function ($timers) {
-    $timers.each(reinitializeTimer);
+    $timers.each(reinitializeTimer)
     // console.log(`Reinitialized (${$timers.length}) timers`);
-  });
-};
+  })
+}
 
 const runHarvestButton = () => {
-  console.log('run!');
+  console.log('run!')
   return Promise.resolve()
     // .then(console.log('Injecting Harvest Platform configuration...'))
     .then(injectHarvestPlatformConfig)
@@ -228,9 +228,9 @@ const runHarvestButton = () => {
     .then(setupEventProxy)
     // .then(console.log('Setting up reinitialization loop...'))
     .then(function reinitializationLoop() {
-      setInterval(reinitializeTimers, 1000);
-    }).catch(console.error);
-};
+      setInterval(reinitializeTimers, 1000)
+    }).catch(console.error)
+}
 
 
-export default runHarvestButton;
+export default runHarvestButton
