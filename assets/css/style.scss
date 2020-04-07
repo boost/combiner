@@ -16,3 +16,11 @@
     height: 100%;
   }
 }
+
+.pagination {
+  padding: 2rem 0;
+
+  a[rel="next"] {
+    float: right;
+  }
+}
