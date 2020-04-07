@@ -12,6 +12,14 @@ a single button in Combiner. Here is how:
 
 **Description**
 
+You can fill your pull request title and description with your pivotal tracker
+story information like so:
+
+1. Go to your pull request creation form
+2. Click on the Combiner extension
+3. Click on the document icon
+4. See the title and description filled in
+
 Overwrite the template
 ======================
 
