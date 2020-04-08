@@ -8,9 +8,9 @@ layout: default
 
 <div class="pagination">
 {% if page.previous %}
-  <a rel="prev" href="{{ site.baseurl }}{{ page.previous.url }}">&larr; Previous</a>
+  <a rel="prev" href="{{ site.baseurl }}{{ page.previous.url }}">&larr; {{ page.previous.title }}</a>
 {% endif %}
 {% if page.next %}
-  <a rel="next" href="{{ site.baseurl }}{{ page.next.url }}">Next &rarr;</a>
+  <a rel="next" href="{{ site.baseurl }}{{ page.next.url }}">{{ page.next.title }} &rarr;</a>
 {% endif %}
 </div>
