@@ -25,7 +25,7 @@ Overwrite the template
 
 You can customise the default template (to remove it for example) like so:
 
-{% include video.html url='https://www.youtube.com/embed/EaRbQvPfMHs' %}
+{% include video.html url='' %}
 
 **Description**
 
