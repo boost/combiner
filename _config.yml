@@ -16,7 +16,7 @@
 title: Combiner
 email: info@boost.co.nz
 description: >-
-  Your are on the documentation of the browser extension Combiner.
+  You are on the documentation of the browser extension Combiner.
   You can install it on Chrome or Firefox.
 baseurl: '/combiner' # the subpath of your site, e.g. /blog
 origin: https://github.com/boost/combiner
@@ -29,6 +29,8 @@ github_username:  ''
 markdown: kramdown
 theme: jekyll-theme-time-machine
 plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
   - jekyll-feed
 
 collections:
@@ -47,13 +49,13 @@ defaults:
       layout: posts
 
 # Exclude from processing.
-# The following items will not be processed, by default. Create a custom list
-# to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - build
+  - dist

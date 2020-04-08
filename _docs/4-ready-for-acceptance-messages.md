@@ -35,7 +35,7 @@ Default template
 
 **Description**
 
-1. Go to your project on [basecamp.com](basecamp.com)
+1. Go to your project on [basecamp.com](https://basecamp.com)
 2. Click on "New message"
 3. Click on the Combiner extension
 4. Choose a story and click on the "document" icon
@@ -50,7 +50,7 @@ The default message description is:
 > Hi {story.requester},
 >
 > <br />
-> The story [{story.title}]({story.url}) is ready for acceptance.
+> The story \[{story.title}\]({story.url}) is ready for acceptance.
 >
 > <br />
 > **What was done**
