@@ -20,6 +20,30 @@ story information like so:
 3. Click on the document icon
 4. See the title and description filled in
 
+The default pull request title template is only the story title.
+
+The default pull request description template is:
+
+```
+[{story.title}]({story.url})
+
+STORY
+=====
+
+{story.description}
+
+WHAT WAS DONE
+==============
+
+-
+
+SCREENSHOTS
+============
+
+```
+
+To customize this templates, see the following section.
+
 Overwrite the template
 ======================
 
