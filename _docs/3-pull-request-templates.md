@@ -44,7 +44,7 @@ SCREENSHOTS
 
 To customize this templates, see the following section.
 
-Overwrite the template
+Customise the template
 ======================
 
 You can customise the default template (to remove it for example) like so:

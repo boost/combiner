@@ -31,7 +31,7 @@ The default description template is:
 
 If you want to overwrite the template, see the next section.
 
-Overwrite the template
+Customise the template
 ======================
 
 You can change this template (to remove it for example) like so:
