@@ -8,6 +8,11 @@ section.model_details .actions {
   }
 }
 
+// The default width is too small by default
+header.preview > div {
+  width: 50px;
+}
+
 .harvest-timer {
   cursor: pointer;
 
@@ -20,13 +25,10 @@ section.model_details .actions {
   }
 
   &.harvest-timer--collapsed {
+    // sizing
     width: 15px;
     height: 15px;
     min-width: 15px;
     min-height: 15px;
-    float: left;
-    margin-top: 4px;
-    margin-right: 5px;
-    margin-left: -5px;
   }
 }

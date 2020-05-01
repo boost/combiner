@@ -92,9 +92,15 @@ class CollapsedStory extends Story {
   }
 
   insertTimer() {
-    this.$story.find('span.meta').after(
-      this.createHarvestElement($('<span />'), 'collapsed')
-    )
+    const $element = this.$story.find('div').filter(function() {
+      return $(this).attr('class').match(/StoryPreviewItem__meta__top__/)
+    })
+    if (!$element.length) {
+      console.log('[Combiner] div./StoryPreviewItem__meta__top__/ not found', this.$story)
+      return
+    }
+
+    $element.append(this.createHarvestElement($('<span />'), 'collapsed'))
   }
 }
 
@@ -108,7 +114,13 @@ class ExpandedStory extends Story {
   }
 
   insertTimer() {
-    this.$story.find('.actions').append(
+    const $element = this.$story.find('.actions')
+    if (!$element.length) {
+      console.log('[Combiner] .actions not found in the story', this.$story)
+      return
+    }
+
+    $element.append(
       this.createHarvestElement($('<button />'), 'expanded')
         .attr('title', 'Harvest timer')
         .attr('type', 'button')
@@ -123,24 +135,27 @@ class StoryFactory {
       return new CollapsedStory($story)
     } else if (StoryFactory.storyIsExpanded($story)) {
       return new ExpandedStory($story)
+    } else {
+      console.log('[Combiner] story is not collapsed nor expanded', $story)
     }
   }
 
+  static pageHasStory() {
+    return /\/(projects|workspaces)\/\d+/.test(window.location.href)
+  }
+
   static storyIsCollapsed($story) {
-    let href = /\/(projects|workspaces)\/\d+/.test(window.location.href)
-    return href && $story.has('header.preview').length
+    return StoryFactory.pageHasStory() && $story.has('header.preview').length
   }
 
   static storyIsExpanded($story) {
-    let href = /\/(projects|workspaces)\/\d+/.test(window.location.href)
-    let $details = $story.has('div.edit.details')
-    return href && $story.is(':not(.maximized)') && $details.length
+    return StoryFactory.pageHasStory() && $story.has('.actions')
   }
 }
 
 const injectHarvestPlatformConfig = () => {
   return new Promise(resolve => {
-    let script = document.createElement('script')
+    const script = document.createElement('script')
     script.type = 'text/javascript'
     script.async = true
     script.textContent = `window._harvestPlatformConfig = ${PLATFORM_CONFIG}`
@@ -155,7 +170,6 @@ const setupTimers = () => {
   return new Promise(resolve => {
     const $stories = $('.story.model.item')
       .not(':has(.harvest-timer)')
-      .not(':has(button[type="submit"])')
 
     $stories.each(function() {
       StoryFactory.call($(this)).insertTimer()
