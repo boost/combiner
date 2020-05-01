@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 2.3.4
+
+Bug fix:
+
+- The clock in pivotaltracker.com wasn't appearing anymore due to a DOM update
+- The projects list in the "Settings" was never updating
+
 ## Version 2.3.3
 
 Bug fix:
