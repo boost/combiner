@@ -36,9 +36,6 @@ let getUserOwnedStories = async (client, project) => {
 }
 
 let getProjects = async client => {
-  const value = await browser.storage.local.get('projects')
-  if (value.projects) return value.projects
-
   const projects = await client.projects()
   browser.storage.local.set({'projects': projects})
   return Promise.resolve(projects)
