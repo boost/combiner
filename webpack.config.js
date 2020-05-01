@@ -78,7 +78,7 @@ const options = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, env.OUTPUT_DIR),
     publicPath: '/'
   },
   mode: env.NODE_ENV,

@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.3.5
+
+- Improved the release pipeline
+
 ## Version 2.3.4
 
 Bug fix:

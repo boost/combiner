@@ -1,6 +1,6 @@
 .DS_Store
 *.zip
 dist*
-build/
+build*
 node_modules/
 _site

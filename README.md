@@ -56,7 +56,7 @@ Optionally, for testing some features, you will need an account on:
 3. Build it: `npm run build:firefox`
 4. Verify that everything is ok: `npm run web-ext:lint`
 5. Zip it: `rm -f dist/firefox.zip; cd build; zip -r ../dist/firefox.zip *; cd ..`
-6. Zip the source code: `rm -f dist/source_code.zip; zip -r source_code.zip $(git ls-files)`
+6. Zip the source code: `rm -f dist/source_code.zip; zip -r dist/source_code.zip $(git ls-files)`
 7. Go to the add-on admin page: https://addons.mozilla.org/en-US/developers/addons
 8. Click on Upload New Version and follow the steps
 9. Wait for the new version to be validated and deployed
@@ -76,8 +76,24 @@ Optionally, for testing some features, you will need an account on:
 
 ### III.2 Automatic process
 
-- Create a pull request
-- Get it reviewed
 - Update the CHANGELOG.md and the version in package.json
-- Merge to master
-- Make sure the deploy jobs are successful in Travis
+- Create a release in GitHub
+- Make sure the deploy jobs are successful in the GitHub Actions
+
+- This will actually trigger (in the pipeline) for:
+  - firefox:
+    - `npm run build:firefox`
+    - `npx web-ext-submit --source-dir="build"`
+  - chrome:
+    - `npm run build:chrome`
+    - `npx web-ext-submit --source="build"`
+
+**Notes**
+
+This part of the pipeline is following this blog post
+[here](https://www.cnwangjie.com/blog/post/Publish-browser-extension-automatically/)
+
+This will be where you can find the credentials (if you have access):
+
+- [Firefox](https://addons.mozilla.org/en-US/developers/addon/api/key/)
+- [Chrome](https://github.com/DrewML/chrome-webstore-upload/blob/master/How%20to%20generate%20Google%20API%20keys.md)

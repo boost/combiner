@@ -1,6 +1,6 @@
 {
   "name": "Combiner",
-  "version": "2.3.4",
+  "version": "v2.3.5",
   "description": "This extension provides harvest-pivotal-basecamp linking.",
   "main": "webpack.config.js",
   "dependencies": {
@@ -43,6 +43,7 @@
     "showdown": "^1.9.1",
     "style-loader": "^1.1.3",
     "web-ext": "^4.1.0",
+    "web-ext-submit": "^4.1.0",
     "webextension-polyfill": "^0.6.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
@@ -54,10 +55,13 @@
     "watch:chrome": " NODE_ENV=development BROWSER=chrome  webpack --watch",
     "build:firefox": "NODE_ENV=production  BROWSER=firefox webpack",
     "build:chrome": " NODE_ENV=production  BROWSER=chrome  webpack",
-    "web-ext:lint": "./node_modules/.bin/web-ext lint --source-dir=build",
-    "web-ext:run": " ./node_modules/.bin/web-ext run  --source-dir=build",
-    "lint": "    ./node_modules/.bin/eslint       'src/**/*.js' 'src/**/*.jsx'",
-    "lint-fix": "./node_modules/.bin/eslint --fix 'src/**/*.js' 'src/**/*.jsx'"
+    "deploy:firefox": "npx web-ext-submit --source-dir='build-firefox'",
+    "deploy:chrome": " npx chrome-webstore-upload-cli --source='build-chrome' upload --auto-publish",
+    "web-ext:lint:firefox": "npx web-ext lint --source-dir=build-firefox",
+    "web-ext:lint:chrome": " npx web-ext lint --source-dir=build-chrome",
+    "web-ext:run": " npx web-ext run  --source-dir=build",
+    "lint": "        npx eslint       'src/**/*.js' 'src/**/*.jsx'",
+    "lint-fix": "    npx eslint --fix 'src/**/*.js' 'src/**/*.jsx'"
   },
   "repository": {
     "type": "git",
