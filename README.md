@@ -36,9 +36,13 @@ Optionally, for testing some features, you will need an account on:
 
 - Clone this repository and `cd` into it
 - Run `npm run watch:firefox` or `npm run watch:chrome` to get the HMR
-- In your Chrome extensions tab, enable "developer mode", then click the
-  "load unpacked extension..." button and select the `build/` directory within
-  the location where you cloned this repository
+- For chrome:
+  - In your Chrome extensions tab, enable "developer mode", then click the
+    "load unpacked extension..." button and select the `build/` directory within
+    the location where you cloned this repository
+- For firefox:
+  - Run `npm run web-ext:run`
+  - Wait for firefox to open with the extension loaded
 - Navigate to a PivotalTracker project in your browser and voilá!
 
 ## III. Deployment
