@@ -20,7 +20,6 @@ class Settings extends Component {
   handleProjectChange(project) {
     // print a popup indicating it was updated
     this.props.notification('Update', `Project is now "${project.name}"`)
-    this.props.onProjectChange(project)
   }
 
   render() {
