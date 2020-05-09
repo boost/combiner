@@ -55,11 +55,11 @@
     "watch:chrome": " NODE_ENV=development BROWSER=chrome  webpack --watch",
     "build:firefox": "NODE_ENV=production  BROWSER=firefox webpack",
     "build:chrome": " NODE_ENV=production  BROWSER=chrome  webpack",
-    "deploy:firefox": "npx web-ext-submit --source-dir='build-firefox'",
+    "deploy:firefox": "npx web-ext-submit -v --source-dir='build-firefox'",
     "deploy:chrome": " npx chrome-webstore-upload-cli --source='build-chrome' upload --auto-publish",
     "web-ext:lint:firefox": "npx web-ext lint --source-dir=build-firefox",
     "web-ext:lint:chrome": " npx web-ext lint --source-dir=build-chrome",
-    "web-ext:run": " npx web-ext run  --source-dir=build",
+    "web-ext:run": " npx web-ext run  --source-dir=build-firefox",
     "lint": "        npx eslint       'src/**/*.js' 'src/**/*.jsx'",
     "lint-fix": "    npx eslint --fix 'src/**/*.js' 'src/**/*.jsx'"
   },

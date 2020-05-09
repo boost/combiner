@@ -77,16 +77,15 @@ Optionally, for testing some features, you will need an account on:
 ### III.2 Automatic process
 
 - Update the CHANGELOG.md and the version in package.json
-- Create a release in GitHub
-- Make sure the deploy jobs are successful in the GitHub Actions
+- Create a new tag: `git tag vX.X.X`
+- Push it to GitHub: `git push origin vX.X.X`
+- Make sure the deployment jobs are successful in the GitHub Actions
 
-- This will actually trigger (in the pipeline) for:
-  - firefox:
-    - `npm run build:firefox`
-    - `npx web-ext-submit --source-dir="build"`
-  - chrome:
-    - `npm run build:chrome`
-    - `npx web-ext-submit --source="build"`
+
+- To summarize the pipeline:
+  - Build the compiled code: `npm run build:[firefox|chrome]`
+  - Creates a GitHub release with the compiled code as asset
+  - Deploy the code to firefox and chrome: `npm run deploy:[firefox|chrome]`
 
 **Notes**
 
