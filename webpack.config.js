@@ -9,45 +9,46 @@ const env                    = require('./utils/env');
 const adjustManifest         = require('./utils/adjust_manifest');
 
 const modules = {
-  rules: [{
-    test: /\.(css|scss)$/,
-    loaders: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
-  },{
-    test: /\.(ttf|otf|eot|svg|woff(2)?)$/,
-    include: [path.resolve(__dirname, 'src/popup')],
-    use: [{
-      loader: 'file-loader',
-      options: {
-        name: '[name].[ext]',
-        outputPath: 'popup/fonts/',
-        publicPath: 'fonts/',
-      },
-    }],
-  },
-  {
-    test: /\.(jpe?g|png|gif|svg)$/,
-    include: [path.resolve(__dirname, 'src/popup')],
-    use: [{
-      loader: 'file-loader',
-      options: {
-        name: '[name].[ext]',
-        outputPath: 'popup/images/',
-        publicPath: 'images/',
-      },
-    }],
-  },{
-    test: /\.(html)$/,
-    loader: 'html-loader',
-  },{
-    enforce: 'pre',
-    test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
-    loader: 'eslint-loader',
-  },{
-    test: /\.(js|jsx)$/,
-    exclude: /node_modules/,
-    loader: 'babel-loader'
-  }]
+  rules: [
+    {
+      test: /\.(css|scss)$/,
+      use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+    }, {
+      test: /\.(ttf|otf|eot|svg|woff(2)?)$/,
+      include: [path.resolve(__dirname, 'src/popup')],
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'popup/fonts/',
+          publicPath: 'fonts/',
+        },
+      }],
+    }, {
+      test: /\.(jpe?g|png|gif|svg)$/,
+      include: [path.resolve(__dirname, 'src/popup')],
+      use: [{
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'popup/images/',
+          publicPath: 'images/',
+        },
+      }],
+    }, {
+      test: /\.(html)$/,
+      loader: 'html-loader',
+    }, {
+      enforce: 'pre',
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader',
+    }, {
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader'
+    }
+  ]
 };
 
 const plugins = [
@@ -59,12 +60,14 @@ const plugins = [
     filename: 'popup/index.html',
     chunks: ['popup/main'],
   }),
-  new CopyWebpackPlugin([
-    { from: './src/manifest.json', transform: adjustManifest },
-    { from: './src/_locales', to: '_locales' },
-    { from: './src/images', to: 'images' },
-    { from: './src/popup/images', to: 'popup/images' }
-  ]),
+  new CopyWebpackPlugin({
+    patterns: [
+      { from: './src/manifest.json', transform: adjustManifest },
+      { from: './src/_locales', to: '_locales' },
+      { from: './src/images', to: 'images' },
+      { from: './src/popup/images', to: 'popup/images' }
+    ]
+  }),
   new webpack.HotModuleReplacementPlugin()
 ];
 
@@ -104,7 +107,7 @@ const options = {
 };
 
 if (env.NODE_ENV == 'development') {
-  options.devtool = 'cheap-module-eval-source-map';
+  options.devtool = 'eval-cheap-module-source-map';
 }
 
 module.exports = options;

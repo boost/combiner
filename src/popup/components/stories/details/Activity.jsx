@@ -29,7 +29,7 @@ class Activity extends Component {
       return (
         <li key={`comment-${comment.id}`} className="cell">
           <h5>@{person.name}</h5>
-          <ReactMarkdown source={comment.text} />
+          <ReactMarkdown>{comment.text}</ReactMarkdown>
           <a role="button">Copy Link</a>
           <span className="comment-date">{dateStr}</span>
         </li>
