@@ -1,46 +1,46 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import TextareaAutosize from 'react-textarea-autosize'
-import ReactMarkdown from 'react-markdown'
-import { tabsTitleClass, tabsPanelClass } from 'utils/foundation'
-import bindAll from 'lodash/bindAll'
-import browser from 'webextension-polyfill'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import TextareaAutosize from "react-textarea-autosize";
+import ReactMarkdown from "react-markdown";
+import { tabsTitleClass, tabsPanelClass } from "utils/foundation";
+import bindAll from "lodash/bindAll";
+import browser from "webextension-polyfill";
 
 class MarkdownEditor extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.previewDefaultText = browser.i18n.getMessage('previewDefaultText')
+    this.previewDefaultText = browser.i18n.getMessage("previewDefaultText");
 
     this.state = {
       previewMode: props.previewMode || false,
-      content: props.content || '',
-      previewSource: props.content || this.previewDefaultText
-    }
+      content: props.content || "",
+      previewSource: props.content || this.previewDefaultText,
+    };
 
     bindAll(this, [
-      'handleWriteTabClick',
-      'handlePreviewTabClick',
-      'handleContentChange'
-    ])
+      "handleWriteTabClick",
+      "handlePreviewTabClick",
+      "handleContentChange",
+    ]);
   }
 
   handleWriteTabClick(event) {
-    event.preventDefault()
-    this.setState({previewMode: false})
+    event.preventDefault();
+    this.setState({ previewMode: false });
   }
 
   handlePreviewTabClick(event) {
-    event.preventDefault()
-    this.setState({previewMode: true})
+    event.preventDefault();
+    this.setState({ previewMode: true });
   }
 
   handleContentChange(event) {
-    const value = event.target.value
+    const value = event.target.value;
     this.setState({
       content: value,
-      previewSource: value || this.previewDefaultText
-    })
+      previewSource: value || this.previewDefaultText,
+    });
   }
 
   render() {
@@ -50,55 +50,67 @@ class MarkdownEditor extends Component {
         <button className="button hollow secondary cell shrink">Cancel</button>
         <button className="button cell shrink">Update</button>
       </footer>
-    )
+    );
 
     return (
       <div className="markdown-editor">
         <ul className="tabs" data-tabs id={`edit-${this.props.id}`}>
           <li
             className={tabsTitleClass(!this.state.previewMode)}
-            onClick={this.handleWriteTabClick}>
-            <a href={`#write-${this.props.id}`} aria-selected={!this.state.previewMode}>
+            onClick={this.handleWriteTabClick}
+          >
+            <a
+              href={`#write-${this.props.id}`}
+              aria-selected={!this.state.previewMode}
+            >
               Write
             </a>
           </li>
           <li
             className={tabsTitleClass(this.state.previewMode)}
-            onClick={this.handlePreviewTabClick}>
-            <a href={`#preview-${this.props.id}`} aria-selected={this.state.previewMode}>
+            onClick={this.handlePreviewTabClick}
+          >
+            <a
+              href={`#preview-${this.props.id}`}
+              aria-selected={this.state.previewMode}
+            >
               Preview
             </a>
           </li>
         </ul>
-        <div className="tabs-content" data-tabs-content={`edit-${this.props.id}`}>
+        <div
+          className="tabs-content"
+          data-tabs-content={`edit-${this.props.id}`}
+        >
           <div
             id={`write-${this.props.id}`}
-            className={tabsPanelClass(!this.state.previewMode)}>
+            className={tabsPanelClass(!this.state.previewMode)}
+          >
             <TextareaAutosize
               rows="2"
               placeholder={`Add a ${this.props.id}`}
               value={this.state.content}
-              onChange={this.handleContentChange} />
+              onChange={this.handleContentChange}
+            />
             {footer}
           </div>
           <div
             className={tabsPanelClass(this.state.previewMode)}
-            id={`preview-${this.props.id}`}>
-            <ReactMarkdown>
-              {this.state.previewSource}
-            </ReactMarkdown>
+            id={`preview-${this.props.id}`}
+          >
+            <ReactMarkdown>{this.state.previewSource}</ReactMarkdown>
             {footer}
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 MarkdownEditor.propTypes = {
   previewMode: PropTypes.bool,
   content: PropTypes.string,
-  id: PropTypes.number
-}
+  id: PropTypes.number,
+};
 
-export default MarkdownEditor
+export default MarkdownEditor;

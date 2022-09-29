@@ -1,9 +1,9 @@
-import Request from './Request'
+import Request from "./Request";
 
 class MeRequest extends Request {
   uri() {
-    return '/me'
+    return "/me";
   }
 }
 
-export default MeRequest
+export default MeRequest;

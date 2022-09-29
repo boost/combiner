@@ -1,28 +1,26 @@
 /* eslint-disable */
-import React, { Component } from 'react'
-import bindAll from 'lodash/bindAll'
-import Select from 'react-select'
+import React, { Component } from "react";
+import bindAll from "lodash/bindAll";
+import Select from "react-select";
 
 class Owner extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      dropdownOpened: false
-    }
+      dropdownOpened: false,
+    };
 
-    bindAll(this, [
-      'handleSelect'
-    ])
+    bindAll(this, ["handleSelect"]);
   }
 
   handleSelect(event) {
-    console.log('handleSelect')
+    console.log("handleSelect");
   }
 
   render() {
-    const { id, name, initials } = this.props.owner
-    const isOpened = this.state.dropdownOpened ? ' is-open' : ''
+    const { id, name, initials } = this.props.owner;
+    const isOpened = this.state.dropdownOpened ? " is-open" : "";
 
     return (
       <Select
@@ -33,8 +31,8 @@ class Owner extends Component {
         className="basic-multi-select"
         classNamePrefix="select"
       />
-    )
+    );
   }
 }
 
-export default Owner
+export default Owner;

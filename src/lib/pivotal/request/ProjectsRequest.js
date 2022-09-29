@@ -1,9 +1,9 @@
-import Request from './Request'
+import Request from "./Request";
 
 class ProjectsRequest extends Request {
   uri() {
-    return '/projects'
+    return "/projects";
   }
 }
 
-export default ProjectsRequest
+export default ProjectsRequest;

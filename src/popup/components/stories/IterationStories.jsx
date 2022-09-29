@@ -1,77 +1,113 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import Pivotal from 'pivotal'
-import StoryList from './StoryList'
-import { getCurrentProject, getCurrentIteration, getIterationStories } from 'utils'
-import $ from 'jquery'
-import { Accordion } from 'foundation-sites'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Pivotal from "pivotal";
+import StoryList from "./StoryList";
+import {
+  getCurrentProject,
+  getCurrentIteration,
+  getIterationStories,
+} from "utils";
+import $ from "jquery";
+import { Accordion } from "foundation-sites";
 
 class IterationStories extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       loading: true,
-      stories: null
-    }
+      stories: null,
+    };
   }
 
   async componentDidMount() {
-    const project = await getCurrentProject(this.props.client)
-    const iteration = await getCurrentIteration(this.props.client)
-    const stories = await getIterationStories(this.props.client, iteration, project)
+    const project = await getCurrentProject(this.props.client);
+    const iteration = await getCurrentIteration(this.props.client);
+    const stories = await getIterationStories(
+      this.props.client,
+      iteration,
+      project
+    );
     this.setState({
       loading: false,
-      stories: stories
-    })
-    new Accordion($('#stories-accordion'))
+      stories: stories,
+    });
+    new Accordion($("#stories-accordion"));
   }
 
   render() {
-    if (this.state.loading) return (<p>Loading...</p>)
+    if (this.state.loading) return <p>Loading...</p>;
 
-    let allStories = this.state.stories
-    const freeState = ['unstarted', 'unplanned', 'planned', 'unscheduled']
+    let allStories = this.state.stories;
+    const freeState = ["unstarted", "unplanned", "planned", "unscheduled"];
     const stories = {
-      accepted:  allStories.filter(story => story.current_state == 'accepted'),
-      delivered: allStories.filter(story => story.current_state == 'delivered'),
-      finished:  allStories.filter(story => story.current_state == 'finished'),
-      started:   allStories.filter(story => story.current_state == 'started'),
-      free:      allStories.filter(story => freeState.includes(story.current_state))
-    }
+      accepted: allStories.filter((story) => story.current_state == "accepted"),
+      delivered: allStories.filter(
+        (story) => story.current_state == "delivered"
+      ),
+      finished: allStories.filter((story) => story.current_state == "finished"),
+      started: allStories.filter((story) => story.current_state == "started"),
+      free: allStories.filter((story) =>
+        freeState.includes(story.current_state)
+      ),
+    };
 
     return (
       <section>
-        <ul id='stories-accordion' className="accordion" data-accordion data-allow-all-closed="true">
+        <ul
+          id="stories-accordion"
+          className="accordion"
+          data-accordion
+          data-allow-all-closed="true"
+        >
           <li className="accordion-item" data-accordion-item>
-            <a href="#" className="accordion-title">Accepted</a>
+            <a href="#" className="accordion-title">
+              Accepted
+            </a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList client={this.props.client} stories={stories.accepted} />
+              <StoryList
+                client={this.props.client}
+                stories={stories.accepted}
+              />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
-            <a href="#" className="accordion-title">Delivered</a>
+            <a href="#" className="accordion-title">
+              Delivered
+            </a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList client={this.props.client} stories={stories.delivered} />
+              <StoryList
+                client={this.props.client}
+                stories={stories.delivered}
+              />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
-            <a href="#" className="accordion-title">Finished</a>
+            <a href="#" className="accordion-title">
+              Finished
+            </a>
 
             <div className="accordion-content" data-tab-content>
-              <StoryList client={this.props.client} stories={stories.finished} />
+              <StoryList
+                client={this.props.client}
+                stories={stories.finished}
+              />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
-            <a href="#" className="accordion-title">Started</a>
+            <a href="#" className="accordion-title">
+              Started
+            </a>
 
             <div className="accordion-content" data-tab-content>
               <StoryList client={this.props.client} stories={stories.started} />
             </div>
           </li>
           <li className="accordion-item" data-accordion-item>
-            <a href="#" className="accordion-title">Free</a>
+            <a href="#" className="accordion-title">
+              Free
+            </a>
 
             <div className="accordion-content" data-tab-content>
               <StoryList client={this.props.client} stories={stories.free} />
@@ -79,12 +115,12 @@ class IterationStories extends Component {
           </li>
         </ul>
       </section>
-    )
+    );
   }
 }
 
 IterationStories.propTypes = {
-  client: PropTypes.instanceOf(Pivotal)
-}
+  client: PropTypes.instanceOf(Pivotal),
+};
 
-export default IterationStories
+export default IterationStories;
