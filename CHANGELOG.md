@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 2.3.6
+
+Features:
+
+- Removed the sidebar which wasn't used
+
+Configuration:
+
+- Upgraded all packages
+- Fixed all CVEs
+- Added prettier
+- Attempted to migrate to v3 but it didn't work: https://github.com/boost/combiner/pull/43
+
 ## Version 2.3.5
 
 - Improved the release pipeline
