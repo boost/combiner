@@ -23,7 +23,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm install
+      - run: npm install --force
 
       - name: Build Firefox
         run: npm run build:firefox && npm run web-ext:lint:firefox

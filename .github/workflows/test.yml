@@ -32,7 +32,7 @@ jobs:
             ${{ runner.os }}-node-
 
       - name: npm install
-        run: npm install
+        run: npm install --force
 
       - name: Linting
         run: |
