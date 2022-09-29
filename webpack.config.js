@@ -105,7 +105,6 @@ const options = {
     alias: {
       pivotal: path.resolve(__dirname, "src/lib/pivotal"),
       utils: path.resolve(__dirname, "src/lib/utils"),
-      "react-dom": "@hot-loader/react-dom",
     },
   },
 };
