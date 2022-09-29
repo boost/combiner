@@ -44,8 +44,8 @@ class Labels extends Component {
           tags={this.state.story.labels}
           suggestions={this.props.projectLabels}
           allowNew={true}
-          handleDelete={this.handleDeletion}
-          handleAddition={this.handleAddition}
+          onDelete={this.handleDeletion}
+          onAddition={this.handleAddition}
           delimiterChars={[","]}
         />
       </section>

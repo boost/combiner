@@ -37,7 +37,7 @@
     "react-markdown": "^8.0.3",
     "react-notifications-component": "^4.0.1",
     "react-select": "^5.4.0",
-    "react-tag-autocomplete": "^5.12.1",
+    "react-tag-autocomplete": "^6.3.0",
     "react-textarea-autosize": "^8.3.4",
     "run-sequence": "^2.2.1",
     "sass": "^1.55.0",
