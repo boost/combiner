@@ -27,7 +27,7 @@ class Description extends Component {
 
     const content = this.state.editMode ?
       <MarkdownEditor id='description' content={this.state.description} onValidSubmit={this.handleSubmit} /> :
-      <ReactMarkdown source={this.state.description} />
+      <ReactMarkdown>{this.state.description}</ReactMarkdown>
 
     return (
       <section className="description">

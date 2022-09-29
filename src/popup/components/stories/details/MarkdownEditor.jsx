@@ -84,9 +84,9 @@ class MarkdownEditor extends Component {
           <div
             className={tabsPanelClass(this.state.previewMode)}
             id={`preview-${this.props.id}`}>
-            <ReactMarkdown
-              source={this.state.previewSource}
-            />
+            <ReactMarkdown>
+              {this.state.previewSource}
+            </ReactMarkdown>
             {footer}
           </div>
         </div>

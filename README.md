@@ -1,13 +1,13 @@
 # Boost browser extension
 
-The missing link between Harvest - PivotalTracker - Basecamp track your time
+The missing link between Harvest - PivotalTracker - Basecamp. Track your time
 directly from the PivotalTracker interface and generate acceptance messages from your stories.
 
-We use Harvest, we use PivotalTracker, we use Basecamp. We thought it would be cool to link up
+We use Harvest, we use PivotalTracker, we use Basecamp. We thought it would be cool to link
 our Harvest timesheets directly to our PivotalTracker stories to simplify
 tracking and review, and also generate ready for acceptance messages for basecamp from pivotal.
 
-> Google Chrome and Firefox are currently the only supported browsers.
+**Google Chrome and Firefox are currently the only supported browsers.**
 
 ## I. Installation
 
@@ -37,9 +37,9 @@ Optionally, for testing some features, you will need an account on:
 - Clone this repository and `cd` into it
 - Run `npm run watch:firefox` or `npm run watch:chrome` to get the HMR
 - For chrome:
-  - In your Chrome extensions tab, enable "developer mode", then click the
-    "load unpacked extension..." button and select the `build/` directory within
-    the location where you cloned this repository
+  - In your [Chrome extensions tab](chrome://extensions/), enable "developer mode",
+    then click the "load unpacked extension..." button and select the `build/`
+    directory within the location where you cloned this repository
 - For firefox:
   - Run `npm run web-ext:run`
   - Wait for firefox to open with the extension loaded
@@ -81,11 +81,11 @@ Optionally, for testing some features, you will need an account on:
 - Push it to GitHub: `git push origin vX.X.X`
 - Make sure the deployment jobs are successful in the GitHub Actions
 
+A pipeline summary:
 
-- To summarize the pipeline:
-  - Build the compiled code: `npm run build:[firefox|chrome]`
-  - Creates a GitHub release with the compiled code as asset
-  - Deploy the code to firefox and chrome: `npm run deploy:[firefox|chrome]`
+- Compiles the code: `npm run build:[firefox|chrome]`
+- Creates a GitHub release with the compiled code as asset
+- Deploys the code to firefox and chrome: `npm run deploy:[firefox|chrome]`
 
 **Notes**
 
