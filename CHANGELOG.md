@@ -1,5 +1,15 @@
 # Changelog
 
+## Version 2.3.6
+
+Compatibility:
+
+- Moved to manifest v3: https://developer.chrome.com/blog/mv2-transition/
+
+Bug fixes:
+
+- Fixed the story history view in pivotal tracker
+
 ## Version 2.3.5
 
 - Improved the release pipeline
