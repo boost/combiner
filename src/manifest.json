@@ -14,11 +14,6 @@
       "suggested_key": {
         "default": "Alt+Shift+E"
       }
-    },
-    "_execute_sidebar_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+E"
-      }
     }
   },
   "content_scripts": [
@@ -47,17 +42,6 @@
     "default_title": "Boost",
     "default_popup": "popup/index.html?uilocation=popup",
     "browser_style": true,
-    "default_icon": {
-      "16": "images/icons/16x16.png",
-      "38": "images/icons/38x38.png",
-      "48": "images/icons/48x48.png",
-      "96": "images/icons/96x96.png",
-      "128": "images/icons/128x128.png"
-    }
-  },
-  "sidebar_action": {
-    "default_title": "Boost",
-    "default_panel": "popup/index.html?uilocation=sidebar",
     "default_icon": {
       "16": "images/icons/16x16.png",
       "38": "images/icons/38x38.png",

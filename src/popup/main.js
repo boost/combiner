@@ -19,8 +19,7 @@ import {
 
 const search = window.location.search
 if (search !== '' && (
-  search.indexOf('uilocation=sidebar') > -1 ||
-    search.indexOf('uilocation=tab') > -1 ||
+  search.indexOf('uilocation=tab') > -1 ||
     search.indexOf('uilocation=popout') > -1)
 ) {
   window.document.body.classList.add('body-full')

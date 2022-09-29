@@ -5,10 +5,6 @@ module.exports = (content) => {
   if (env.NODE_ENV == 'production') {
     delete manifest.content_security_policy;
   }
-  if (env.BROWSER == 'chrome') {
-    delete manifest.sidebar_action;
-    delete manifest.commands._execute_sidebar_action;
-  }
 
   const name = process.env.npm_package_name.charAt(0).toUpperCase() +
                process.env.npm_package_name.slice(1);
