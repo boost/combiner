@@ -1,16 +1,11 @@
 section.model_details .actions {
   // the default width is too small to include the new button
-  width: 310px;
+  width: 310px !important;
 
   .harvest-timer--expanded {
     border-radius: 0px 2px 2px 0px;
     padding: 3px;
   }
-}
-
-// The default width is too small by default
-header.preview > div {
-  width: 50px;
 }
 
 .harvest-timer {
