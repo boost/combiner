@@ -21,11 +21,6 @@
       }
     }
   },
-  "background": {
-    "scripts": [
-      "background/background.js"
-    ]
-  },
   "content_scripts": [
     {
       "matches": ["https://www.pivotaltracker.com/*"],

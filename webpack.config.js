@@ -76,7 +76,6 @@ const options = {
     'content/pivotal':       './src/content/pivotal/js/index.js',
     'content/basecamp':      './src/content/basecamp/index.js',
     'content/pull_request':  './src/content/pull_request/index.js',
-    'background/background': './src/background/background.js',
     'popup/main': ['./src/popup/main.js']
   },
   output: {
