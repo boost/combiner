@@ -11,6 +11,7 @@ class Labels extends Component {
       story: props.story,
     };
 
+    this.reactTags = React.createRef();
     bindAll(this, ["handleAddition", "handleDeletion", "handleValidate"]);
   }
 
@@ -41,12 +42,13 @@ class Labels extends Component {
       <section className="labels">
         <h4>Labels</h4>
         <ReactTags
+          ref={this.reactTags}
           tags={this.state.story.labels}
           suggestions={this.props.projectLabels}
           allowNew={true}
-          handleDelete={this.handleDeletion}
-          handleAddition={this.handleAddition}
-          delimiterChars={[","]}
+          onDelete={this.handleDeletion}
+          onAddition={this.handleAddition}
+          delimiters={[","]}
         />
       </section>
     );
