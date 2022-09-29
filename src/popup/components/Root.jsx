@@ -7,9 +7,11 @@ import IterationStories from "./stories/IterationStories";
 import PivotalTokenForm from "./settings/PivotalTokenForm";
 import Settings from "./settings/Settings";
 import Pivotal from "pivotal";
-import ReactNotification, { store } from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
 import browser from "webextension-polyfill";
+// notifications
+import { ReactNotifications, Store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
 
 class Root extends Component {
   constructor(props) {
@@ -43,14 +45,14 @@ class Root extends Component {
   }
 
   addNotification(title, message, type = "success") {
-    store.addNotification({
+    Store.addNotification({
       title: title,
       message: message,
       type: type,
       insert: "top",
       container: "bottom-right",
-      animationIn: ["animated", "fadeIn"],
-      animationOut: ["animated", "fadeOut"],
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOut"],
       dismiss: { duration: 2000 },
       dismissable: { click: true },
     });
@@ -105,7 +107,7 @@ class Root extends Component {
     }
     return (
       <div className="grid-container full">
-        <ReactNotification />
+        <ReactNotifications />
         <Header active={this.state.activeTab} client={this.state.client} />
         {this.getBody(this.state.activeTab)}
         <Footer
