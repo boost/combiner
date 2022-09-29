@@ -1,7 +1,6 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "default_locale": "en",
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "icons": {
     "16": "images/icons/16x16.png",
     "38": "images/icons/38x38.png",
@@ -38,7 +37,7 @@
       "run_at": "document_end"
     }
   ],
-  "browser_action": {
+  "action": {
     "default_title": "Boost",
     "default_popup": "popup/index.html?uilocation=popup",
     "browser_style": true,
