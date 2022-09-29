@@ -1,9 +1,9 @@
 const tabsTitleClass = (active) => {
-  return `tabs-title${active ? ' is-active' : ''}`
-}
+  return `tabs-title${active ? " is-active" : ""}`;
+};
 
 const tabsPanelClass = (active) => {
-  return `tabs-panel${active ? ' is-active' : ''}`
-}
+  return `tabs-panel${active ? " is-active" : ""}`;
+};
 
-export { tabsTitleClass, tabsPanelClass }
+export { tabsTitleClass, tabsPanelClass };

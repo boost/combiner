@@ -71,8 +71,8 @@ Optionally, for testing some features, you will need an account on:
 6. Zip the source code: `rm -f dist/source_code.zip; zip -r dist/source_code.zip $(git ls-files)`
 7. Go to the developer dashboard: https://chrome.google.com/webstore/developer/dashboard
 8. Click on the application
-8. Click on "Package" on the left menu
-9. Click on "Upload new package"
+9. Click on "Package" on the left menu
+10. Click on "Upload new package"
 
 ### III.2 Automatic process
 

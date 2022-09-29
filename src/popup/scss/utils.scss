@@ -1,7 +1,8 @@
 .copy-review {
-	@include button(
-		$expand: true,
-		$background: $success-color,
-		$background-hover: auto,
-		$color: auto);
+  @include button(
+    $expand: true,
+    $background: $success-color,
+    $background-hover: auto,
+    $color: auto
+  );
 }

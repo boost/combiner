@@ -17,7 +17,6 @@ $pivotal-background: #f1f0ea;
    * Includes the story basic informations
    */
   section.story_details {
-
     /**
      * Includes the first line (collapsing arrow, story name, story link)
      */
@@ -51,9 +50,10 @@ $pivotal-background: #f1f0ea;
         &::before {
           content: "";
           float: left;
-          background: url(https://assets.pivotaltracker.com/next/assets/next/69f61d42-maximize-arrow.svg) no-repeat 50%;
-          opacity: .5;
-          transition: .25s;
+          background: url(https://assets.pivotaltracker.com/next/assets/next/69f61d42-maximize-arrow.svg)
+            no-repeat 50%;
+          opacity: 0.5;
+          transition: 0.25s;
           height: 100%;
           width: 100%;
           display: block;
@@ -99,8 +99,10 @@ $pivotal-background: #f1f0ea;
     }
   }
 
-  .blockers, .tasks {
-    .add-blocker, .add-task {
+  .blockers,
+  .tasks {
+    .add-blocker,
+    .add-task {
       -ms-flex-align: center;
       align-items: center;
       background: #e9e8e0;
@@ -120,7 +122,8 @@ $pivotal-background: #f1f0ea;
         margin-left: 8px;
       }
 
-      .add-blocker-message, .add-task-message {
+      .add-blocker-message,
+      .add-task-message {
         margin: 10px;
       }
     }

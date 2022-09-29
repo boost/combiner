@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Blockers extends Component {
-
   render() {
     return (
       <section className="blockers">
@@ -12,8 +11,8 @@ class Blockers extends Component {
           <span className="add-blocker-message">Add blocker or impediment</span>
         </div>
       </section>
-    )
+    );
   }
 }
 
-export default Blockers
+export default Blockers;
