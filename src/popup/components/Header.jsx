@@ -51,7 +51,6 @@ class Header extends Component {
     }
     href = href.replace('uilocation=popup',   replace)
       .replace('uilocation=tab',     replace)
-      .replace('uilocation=sidebar', replace)
 
     if (replace == 'uilocation=tab') {
       browser.tabs.create({ url: href })
