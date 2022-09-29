@@ -1,5 +1,5 @@
 {
-  "name": "Combiner",
+  "name": "combiner",
   "version": "2.3.5",
   "description": "This extension provides harvest-pivotal-basecamp linking.",
   "main": "webpack.config.js",
