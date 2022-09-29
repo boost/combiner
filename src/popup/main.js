@@ -1,6 +1,6 @@
 import Root from "./components/Root";
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "./scss/main.scss";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import "utils/harvest_init";
@@ -40,5 +40,6 @@ library.add(
   faPlus,
   faExternalLinkAlt
 );
-const domContainer = document.querySelector("#root");
-ReactDOM.render(React.createElement(Root), domContainer);
+const domContainer = document.getElementById("root");
+const root = createRoot(domContainer);
+root.render(<Root />);
