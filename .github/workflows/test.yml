@@ -36,5 +36,5 @@ jobs:
 
       - name: Linting
         run: |
-          ./node_modules/.bin/eslint --color './src/**/*.{js,jsx}'
-          ./node_modules/.bin/prettier -c .
+          npm run lint
+          npm run prettier

@@ -63,7 +63,9 @@
     "web-ext:lint:chrome": " npx web-ext lint --source-dir=build-chrome",
     "web-ext:run": " npx web-ext run  --source-dir=build-firefox",
     "lint": "        npx eslint       'src/**/*.js' 'src/**/*.jsx'",
-    "lint-fix": "    npx eslint --fix 'src/**/*.js' 'src/**/*.jsx'"
+    "lint-fix": "    npx eslint --fix 'src/**/*.js' 'src/**/*.jsx'",
+    "prettier": "    npx prettier -c .",
+    "prettier-fix": "npx prettier -w ."
   },
   "repository": {
     "type": "git",
