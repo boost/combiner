@@ -54,9 +54,9 @@ Optionally, for testing some features, you will need an account on:
 1. Update the CHANGELOG.md
 2. Update the version in `package.json`
 3. Build it: `npm run build:firefox`
-4. Verify that everything is ok: `npm run web-ext:lint`
-5. Zip it: `rm -f dist/firefox.zip; cd build; zip -r ../dist/firefox.zip *; cd ..`
-6. Zip the source code: `rm -f dist/source_code.zip; zip -r dist/source_code.zip $(git ls-files)`
+4. Verify that everything is ok: `npm run web-ext:lint:firefox`
+5. Zip it: `rm -f build-firefox/firefox.zip; cd build-firefox; zip -r ../build-firefox/firefox.zip *; cd ..`
+6. Zip the source code: `rm -f build-firefox/source_code.zip; zip -r build-firefox/source_code.zip $(git ls-files)`
 7. Go to the add-on admin page: https://addons.mozilla.org/en-US/developers/addons
 8. Click on Upload New Version and follow the steps
 9. Wait for the new version to be validated and deployed
@@ -66,9 +66,9 @@ Optionally, for testing some features, you will need an account on:
 1. Update the CHANGELOG.md
 2. Update the version in `package.json`
 3. Build it: `npm run build:chrome`
-4. Verify that everything is ok: `npm run web-ext:lint`
-5. Zip it: `rm -f dist/chrome.zip; zip -r dist/chrome.zip build`
-6. Zip the source code: `rm -f dist/source_code.zip; zip -r dist/source_code.zip $(git ls-files)`
+4. Verify that everything is ok: `npm run web-ext:lint:chrome`
+5. Zip it: `rm -f build-chrome/chrome.zip; zip -r build-chrome/chrome.zip build`
+6. Zip the source code: `rm -f build-chrome/source_code.zip; zip -r build-chrome/source_code.zip $(git ls-files)`
 7. Go to the developer dashboard: https://chrome.google.com/webstore/developer/dashboard
 8. Click on the application
 9. Click on "Package" on the left menu
