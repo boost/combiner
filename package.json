@@ -44,7 +44,7 @@
     "sass-loader": "^13.0.2",
     "showdown": "^2.1.0",
     "style-loader": "^3.3.1",
-    "web-ext": "^7.2.0",
+    "web-ext": "^7.5.0",
     "web-ext-submit": "^7.2.0",
     "webextension-polyfill": "^0.10.0",
     "webpack": "^5.74.0",
