@@ -31,7 +31,13 @@ class IterationStories extends Component {
       loading: false,
       stories: stories,
     });
-    new Accordion($("#stories-accordion"));
+  }
+
+  componentDidUpdate() {
+    const $accordion = $("#stories-accordion");
+    if ($accordion.length) {
+      new Accordion($accordion);
+    }
   }
 
   render() {
