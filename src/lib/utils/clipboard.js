@@ -1,4 +1,4 @@
-// This function must be called in a visible page, such as a browserAction popup
+// This function must be called in a visible page, such as a action popup
 // or a content script. Calling it in a background page has no effect!
 let copyToClipboard = (text, html) => {
   let oncopy = (event) => {
