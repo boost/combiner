@@ -1,3 +1,5 @@
+Documentation: https://boost.github.io/combiner/
+
 # Boost browser extension
 
 The missing link between Harvest - PivotalTracker - Basecamp. Track your time
@@ -67,7 +69,7 @@ Optionally, for testing some features, you will need an account on:
 2. Update the version in `package.json`
 3. Build it: `npm run build:chrome`
 4. Verify that everything is ok: `npm run web-ext:lint:chrome`
-5. Zip it: `rm -f build-chrome/chrome.zip; zip -r build-chrome/chrome.zip build`
+5. Zip it: `rm -f build-chrome/chrome.zip; zip -r build-chrome/chrome.zip build-chrome`
 6. Zip the source code: `rm -f build-chrome/source_code.zip; zip -r build-chrome/source_code.zip $(git ls-files)`
 7. Go to the developer dashboard: https://chrome.google.com/webstore/developer/dashboard
 8. Click on the application
