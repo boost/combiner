@@ -2,9 +2,6 @@ const env = require("./env");
 
 module.exports = (content) => {
   const manifest = JSON.parse(content);
-  if (env.NODE_ENV == "production") {
-    delete manifest.content_security_policy;
-  }
 
   const name =
     process.env.npm_package_name.charAt(0).toUpperCase() +
