@@ -29,45 +29,44 @@ class Footer extends Component {
   }
 
   render() {
+    const active = this.props.active;
     return (
-      <footer className="body-footer">
-        <div
-          className={this.props.active == "tab" ? "active" : ""}
-          onClick={this.handleTabClick}
-        >
-          <p>
+      <nav className="bottom-nav">
+        <ul className="bottom-nav__list no-bullet">
+          <li
+            className={`bottom-nav__item ${active == "tab" ? "active" : ""}`}
+            onClick={this.handleTabClick}
+          >
             <FontAwesomeIcon size="2x" icon="folder" />
-          </p>
-          <p>Started</p>
-        </div>
-        <div
-          className={this.props.active == "pivotal" ? "active" : ""}
-          onClick={this.handlePivotalClick}
-        >
-          <p>
+            <span>My stories</span>
+          </li>
+          <li
+            className={`bottom-nav__item ${
+              active == "pivotal" ? "active" : ""
+            }`}
+            onClick={this.handlePivotalClick}
+          >
             <FontAwesomeIcon size="2x" icon="book-open" />
-          </p>
-          <p>Iteration</p>
-        </div>
-        <div
-          className={this.props.active == "utils" ? "active" : ""}
-          onClick={this.handleUtilsClick}
-        >
-          <p>
+            <span>Iteration</span>
+          </li>
+          <li
+            className={`bottom-nav__item ${active == "utils" ? "active" : ""}`}
+            onClick={this.handleUtilsClick}
+          >
             <FontAwesomeIcon size="2x" icon="sticky-note" />
-          </p>
-          <p>Utils</p>
-        </div>
-        <div
-          className={this.props.active == "settings" ? "active" : ""}
-          onClick={this.handleSettingsClick}
-        >
-          <p>
+            <span>Utils</span>
+          </li>
+          <li
+            className={`bottom-nav__item ${
+              active == "settings" ? "active" : ""
+            }`}
+            onClick={this.handleSettingsClick}
+          >
             <FontAwesomeIcon size="2x" icon="cogs" />
-          </p>
-          <p>Settings</p>
-        </div>
-      </footer>
+            <span>Settings</span>
+          </li>
+        </ul>
+      </nav>
     );
   }
 }
