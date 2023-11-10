@@ -1,31 +1,38 @@
-footer.body-footer {
+.bottom-nav {
   border-top: 1px solid $black;
   @include position-fixed-bottom();
-  @include xy-grid();
 
-  background-color: $white;
-  height: 60px;
+  &__list {
+    @include xy-grid();
+    background-color: $white;
+    height: 60px;
+    margin: 0;
+  }
 
-  & > div {
+  &__item {
     @include xy-cell("auto");
 
     padding: 0.5em;
     cursor: pointer;
+    color: $medium-gray;
+
     &:hover {
       background-color: $light-gray;
     }
-    &.active p {
+
+    &.active {
       color: $primary-color;
     }
-  }
 
-  p {
-    text-align: center;
-    color: $medium-gray;
-    margin: 0;
-    padding: 0;
     i {
       font-size: 2em;
+    }
+
+    * {
+      display: block;
+      text-align: center;
+      margin: auto;
+      padding: 0;
     }
   }
 }
