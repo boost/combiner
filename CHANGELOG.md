@@ -1,5 +1,20 @@
 # Changelog
 
+## Version 3.0.0
+
+Features:
+
+- We had to remove the harvest integration on the pivotal tracker website due to the manifest v3 upgrade
+
+Configuration:
+
+- Upgraded to manifest v3
+
+Bug fix:
+
+- The accordion in the "Stories" tab works again
+- Used a proper HTML markup for the bottom tabs
+
 ## Version 2.3.6
 
 Features:
