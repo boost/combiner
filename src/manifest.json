@@ -47,11 +47,10 @@
       "128": "images/icons/128x128.png"
     }
   },
-  "permissions": [
-    "activeTab",
-    "clipboardWrite",
-    "storage",
-    "tabs",
-    "contextMenus"
-  ]
+  "permissions": ["activeTab", "clipboardWrite", "storage", "tabs"],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{23b14177-1ed1-4442-8d70-c085d0cc4bfe}"
+    }
+  }
 }
