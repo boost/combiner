@@ -49,13 +49,13 @@ jobs:
     needs: build
     steps:
       # fetch the build folder
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: build-firefox
           path: build-firefox
 
       # fetch the build folder
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: build-chrome
           path: build-chrome
@@ -108,7 +108,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # fetch the build folder
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: build-firefox
           path: build-firefox
@@ -130,7 +130,7 @@ jobs:
       - uses: actions/checkout@v2
 
       # fetch the build folder
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: build-chrome
           path: build-chrome
